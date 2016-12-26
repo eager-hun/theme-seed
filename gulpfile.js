@@ -49,8 +49,15 @@ var livereload   = require('gulp-livereload');
 var paths = {
   web: {
     // Use leading slash, but not trailing slash!
-    toDocRoot:  '/theme-seed',
-    toGulpfile: '/theme-seed'
+
+    // When used wrapped with the "anypage" project.
+    toDocroot:  '/anypage/',
+    toGulpfile: '/anypage/themes/theme-seed'
+
+    // When used standalone
+    // (but still accessed via an Apache or Nginx server's virtual host).
+    // toDocRoot:  '/theme-seed',
+    // toGulpfile: '/theme-seed'
   },
   source: {
     // Paths relative to the gulpfile. No trailing slash!
@@ -104,7 +111,7 @@ var options = {
   livereload: {
     start:      true,
     quiet:      false,
-    reloadPage: "http://your-local-instances-domain" + paths.web.toDocRoot,
+    reloadPage: 'http://your-local-instances-domain' + paths.web.toDocRoot,
   },
   reloadOn: {
     // NOTE: for pathToWatch, use a path relative to the gulpfile.js.
