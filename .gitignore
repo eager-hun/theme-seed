@@ -1,0 +1,12 @@
+
+# IDEs
+nbproject
+.idea
+
+# PACKAGE MANAGER STUFF:
+node_modules
+
+# GENERATED CONTENT:
+/build/*
+!/build/.gitkeep
+

@@ -1,0 +1,23 @@
+{
+  "name": "theme-seed",
+  "version": "0.0.0",
+  "description": "Boilerplate for styling and enhancing web pages.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "postinstall": "cd libraries-frontend && npm install"
+  },
+  "author": "Levente",
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "name": "theme-seed-frontend-libraries",
+  "version": "0.0.0",
+  "description": "Asset libraries to be loaded in the browser for the theme-seed project.",
+  "author": "Levente",
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "normalize-css": "https://github.com/necolas/normalize.css#5.0.0",
+    "jquery": "^3.1.1",
+    "prism": "https://github.com/PrismJS/prism.git#1.5.1"
+  }
+}
+

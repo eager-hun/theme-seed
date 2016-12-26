@@ -1,0 +1,9 @@
+/**
+ * @file
+ * Compiler-free barefoot CSS.
+ */
+
+html {
+  border-top: 1em solid slategray;
+}
+
