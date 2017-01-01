@@ -1,0 +1,170 @@
+/**
+ * @file
+ * "Hero mosaic" component style definitions.
+ *
+ * NOTE: this is in a largely unfinished state!
+ */
+
+.hero-mosaic {
+  // See https://github.com/philipwalton/flexbugs#2-column-flex-items-set-to-align-itemscenter-overflow-their-container
+  .box__content {
+    max-width: 100%;
+  }
+}
+.hero-mosaic__minor {
+  @each $breakpoint, $gutter in $grid-column-gutter {
+    @include breakpoint($breakpoint) {
+      margin-top: $gutter;
+    }
+  }
+}
+.hero-mosaic__minor__item + .hero-mosaic__minor__item {
+  @each $breakpoint, $gutter in $grid-column-gutter {
+    @include breakpoint($breakpoint) {
+      margin-top: $gutter;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Growing screens.
+
+@include breakpoint(wide-min) {
+  .hero-mosaic__minor__item,
+  .hero-mosaic__minor__item + .hero-mosaic__minor__item {
+    margin-top: 0;
+  }
+  .hero-mosaic__minor__item:nth-child(n+3) {
+    @each $breakpoint, $gutter in $grid-column-gutter {
+      @include breakpoint($breakpoint) {
+        margin-top: $gutter;
+      }
+    }
+  }
+
+  .hero-mosaic__minor {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > .row {
+      flex: 1 1 auto;
+
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .hero-mosaic__minor__item {
+    width: 50%;
+
+    display: flex;
+    flex: 0 1 auto;
+
+    &:nth-child(-n+2) {
+      margin-top: 0;
+    }
+
+    & > .box {
+      width: 100%;
+
+      flex: 0 1 auto;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:nth-child(n+3) {
+      @each $breakpoint, $gutter in $grid-column-gutter {
+        @include breakpoint($breakpoint) {
+          margin-top: $gutter;
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Has no flexbox.
+
+  .mdz-no-flexbox {
+    .hero-mosaic__major,
+    .hero-mosaic__minor {
+      display: block;
+    }
+    .hero-mosaic__minor__item:nth-child(odd) {
+      clear: left;
+    }
+  }
+}
+
+@include breakpoint(wide-mt-min) {
+  .hero-mosaic {
+    display: flex;
+  }
+
+  .hero-mosaic__major {
+    display: flex;
+    flex: 0 0 auto;
+
+    width: 375px;
+    min-height: 375px;
+
+    padding-right: 0.5rem;
+
+    & > .box {
+      width: 100%;
+      flex: 0 1 auto;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .hero-mosaic__minor {
+    flex: 1 1 auto;
+
+    margin-top: 0;
+    padding-left: 0.5rem;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Has no flexbox.
+
+  .mdz-no-flexbox {
+    .hero-mosaic {
+      @include micro-clearfix();
+
+      display: block;
+    }
+    .hero-mosaic__major {
+      float: left;
+      min-height: 0;
+      width: 40%;
+    }
+    .hero-mosaic__minor {
+      float: left;
+      width: 60%;
+    }
+  }
+}
+
+@include breakpoint(wide-ht-min) {
+  .hero-mosaic__major {
+    width: 450px;
+    min-height: 450px;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Has no flexbox.
+
+  .mdz-no-flexbox {
+    .hero-mosaic__major {
+      width: 40%;
+      min-height: 0;
+    }
+  }
+}
+

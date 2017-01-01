@@ -1,0 +1,147 @@
+/**
+ * @file
+ * Reusable predefined grids.
+ *
+ * TODO: better naming for these things.
+ */
+
+
+// #############################################################################
+// Mixins.
+
+@mixin on-demand-grid-2-col {
+  & > .column {
+    @include grid-column($grid-column-count / 2);
+    @include grid-column-end;
+
+    &:nth-child(2n+3) {
+      clear: left;
+    }
+
+    &:nth-child(-n+2) {
+      margin-top: 0;
+    }
+  }
+}
+
+@mixin on-demand-grid-3-col {
+  & > .column {
+    @include grid-column($grid-column-count / 3);
+    @include grid-column-end;
+
+    &:nth-child(3n+4) {
+      clear: left;
+    }
+
+    &:nth-child(-n+3) {
+      margin-top: 0;
+    }
+  }
+}
+
+@mixin on-demand-grid-4-col {
+  & > .column {
+    @include grid-column($grid-column-count / 4);
+    @include grid-column-end;
+
+    &:nth-child(4n+5) {
+      clear: left;
+    }
+
+    &:nth-child(-n+4) {
+      margin-top: 0;
+    }
+  }
+}
+
+// Apply on `.row`s.
+@mixin flexboxify-floated-grid($payload-selector: '.box') {
+  .mdz-flexbox & {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    & > .column {
+      display: flex;
+      flex: 0 1 auto;
+      float: none;
+
+      & > #{$payload-selector} {
+        flex: 0 1 auto;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+// #############################################################################
+// Shared.
+
+.row--wrap {
+  & > .column + .column {
+    @each $breakpoint, $gutter in $grid-column-gutter {
+      @include breakpoint($breakpoint) {
+        margin-top: $gutter;
+      }
+    }
+  }
+}
+
+
+// #############################################################################
+// 3 column grid.
+
+.row--wrap--2 {
+  @include breakpoint(wide-min) {
+    @include on-demand-grid-2-col;
+  }
+}
+
+// #############################################################################
+// 3 column grid.
+
+.row--wrap--3 {
+  @include breakpoint(wide-min) {
+    @include on-demand-grid-3-col;
+  }
+}
+
+
+// #############################################################################
+// 4 column grid.
+
+.row--wrap--4 {
+  // Even the 4 col grid uses the 3 col mixin on not-big-enough screens.
+  @media (min-width: map-get($breakpoints, wide-min)) and (max-width: map-get($breakpoints, wide-mt-max)) {
+    @include on-demand-grid-3-col;
+  }
+  @include breakpoint(wide-ht-min) {
+    @include on-demand-grid-4-col;
+  }
+}
+
+
+// #############################################################################
+// Flexboxifying grids.
+
+// It seems any of the hereby defined on-demand grids can be flexboxified by
+// adding the classes row--wrap and row--flexbox--wide to them.
+
+// Note: this will only work if a modernizr build is included and is producing
+// an .mdz-flexbox class on the :root element.
+
+// See https://css-tricks.com/snippets/css/a-guide-to-flexbox/ .
+
+.row--flexbox--wide {
+  @include breakpoint(wide-min) {
+    @include flexboxify-floated-grid();
+  }
+}
+

@@ -1,0 +1,192 @@
+/**
+ * @file
+ * SASS variables.
+ */
+
+
+// #############################################################################
+// Typography.
+
+$font-size-default:             16px;
+$line-height-default:           1.5;
+$line-height-condensed:         1.35;
+$line-height-headings:          1.25;
+
+$font-sans:                     "Helvetica Neue",
+                                "Segoe UI",
+                                "Calibri Light",
+                                Roboto,
+                                "Liberation Sans",
+                                sans-serif;
+$font-serif:                    "Times New Roman",
+                                "Liberation Serif",
+                                serif;
+$font-mono:                     "Courier New",
+                                "FreeMono";
+
+
+// #############################################################################
+// Layouts 1.
+
+$page-min-width:                 300px;
+$page-max-width:                1200px;
+
+
+// #############################################################################
+// Media query breakpoints.
+
+/* LEGEND for the breakpoint variables:
+| <- $page-min-width                                        $page-max-width -> |
+|                                                                              |
+|             <- narrow ->              |              <- wide ->              |
+|                                       |                                      |
+|   narrow   |   narrow   |   narrow    |    wide    |    wide    |    wide    |
+|  lowthird  |  midthird  |  highthird  |  lowthird  |  midthird  |  highthird |
+| (narrow-lt)| (narrow-mt)| (narrow-ht) |  (wide-lt) |  (wide-mt) |  (wide-ht) |
+*/
+
+$breakpoints: (
+  narrow-min:                   0,
+  narrow-lt-max:              419px,
+  narrow-mt-min:              420px,
+  narrow-mt-max:              559px,
+  narrow-ht-min:              560px,
+
+  narrow-max:                 699px,
+  wide-min:                   700px,
+
+  wide-lt-max:                919px,
+  wide-mt-min:                920px,
+  wide-mt-max:               1099px,
+  wide-ht-min:               1100px,
+);
+
+
+// #############################################################################
+// Grid-settings.
+
+$grid-column-count:             24;
+$grid-column-gutter: (
+  narrow-min:                   0.5rem,
+  wide-min:                     1rem,
+);
+$grid-column-align-edge:        true;
+
+// NOTE: Foundation grid will look for this variable:
+$grid-row-width:                $page-max-width;
+
+
+// #############################################################################
+// Layouts 2.
+
+$gap-default:                   1rem;
+
+
+// #############################################################################
+// Colors.
+
+/**
+ * See:
+ * http://html-color-codes.info/color-names/
+ * https://color.adobe.com/create/color-wheel/
+ * http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+ * http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375
+ * http://sass-lang.com/documentation/Sass/Script/Functions.html#mix-instance_method
+ */
+
+// NOTE:
+// Prep-colors are just a helper stage to set up the base colors in the final
+// color-map below.
+
+$color-brand:                   green;
+
+$prep-color-prim:               $color-brand;
+$prep-color-accent-1:           purple;
+$prep-color-accent-2:           goldenrod;
+$prep-color-blockfill:          #eee;
+
+$prep-color-nav:                $prep-color-prim;
+$prep-color-action:             $prep-color-accent-1;
+
+// READY TO USE COLOR MAP.
+// In the stylesheets, use only this map to refer to colors. It's awesome power.
+// In SASS, only with this one can you have 'variable variable names'.
+
+$colors: (
+  prim:                         $prep-color-prim,
+  accent-1:                     $prep-color-accent-1,
+  accent-2:                     $prep-color-accent-2,
+
+  text:                         #333,
+  text-faded:                   #777,
+
+  border:                       #cacaca,
+  border-dark:                  #8a8a8a,
+  border-light:                 #e6e6e6,
+
+  bg-bright:                    white,
+  bg-dark:                      #333,
+  blockfill:                    $prep-color-blockfill,
+
+  link:                         mix($prep-color-nav, white, 80%),
+  link-visited:                 mix($prep-color-accent-1, white, 70%),
+  link-hover:                   mix($prep-color-nav, black, 80%),
+  link-visited-hover:           $prep-color-accent-1,
+
+  text-invert:                  white,
+  link-invert:                  mix($prep-color-accent-2, white, 10%),
+
+  shadow:                       rgba(50, 35, 60, 0.5)
+);
+
+/**
+ * Color retriever function.
+ *
+ * Usage example:
+ * 
+ * @code
+ *   .foo {
+ *     border-color: color(bar);
+ *   }
+ * @endcode
+ *
+ * NOTE: in the stylesheets, use only this way to define colors.
+ */
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+/**
+ * Sass-map debugger function.
+ *
+ * See http://www.sitepoint.com/debugging-sass-maps/ .
+ *
+ * Usage:
+ *
+ * @code
+ *   @include debug-map($map-to-inspect);
+ * @endcode
+ *
+ * then look in the generated .css file.
+ */
+@mixin debug-map($map) {
+  @at-root {
+    __properties__ {
+      @each $key, $value in $map {
+        #{$key}: inspect($value);
+      }
+    }
+  }
+}
+
+
+// #############################################################################
+// CSS effects.
+
+$transition-easing-default:     ease-in-out;
+
+$transition-speed-fast:         125ms;
+$transition-speed-semi-fast:    250ms;
+$transition-speed-semi-slow:    4000ms;
+$transition-speed-slow:         700ms;
+

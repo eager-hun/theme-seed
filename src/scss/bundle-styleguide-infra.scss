@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Style bundle styleguide-infra.
+ *
+ * This file is used to stitch together the SCSS partials.
+ *
+ * NOTE:
+ * Check options -> sass -> includePaths entry in gulpfile.js.  Whatever paths
+ * are present there, we can @import stuff from those locations in this file.
+ */
+
+@import 'variables';
+@import 'mixins';
+@import 'extras/mixins-extras';
+
+// NOTE: look at `includePaths` sass compiler option (in gulpfile.js) to find
+// out where this is included from.
+@import "prism";
+
+@import 'infra/styleguide-infra.scss';
+

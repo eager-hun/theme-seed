@@ -1,0 +1,349 @@
+/**
+ * @file
+ * Layout 2 sidebars.
+ *
+ * This layout provides the option to have one big slot for main content and
+ * two narrower slots for the role of "sidebars".
+ *
+ * Back in the days this stuff got implemented on the global page level, but
+ * this layout makes it possible and encourages to have this structure repeated
+ * on pages.
+ */
+
+
+// #############################################################################
+// LAYOUT 2 SIDEBARS.
+
+// This layout is used (best) for the primary layout of a page.
+
+// There are three sets of setups here: one for a symmetric arrangement (main
+// column in the middle, sidebars on each sides), and two other ones, for
+// grouping both sidebars onto one side (either left or right) of the main
+// column.
+
+// Default arrangement is a symmetric one: .column--main is in the center,
+// sidebars surround it from each side.
+
+// NOTE:
+// The arrangements you don't use should be commented out in order to not weigh
+// down the generated .css file.
+
+.layout--2sb {
+  .column--main + .column--sidebar,
+  .column--sidebar + .column--sidebar {
+    margin-top: map-get($grid-column-gutter, narrow-min)*2;
+  }
+}
+
+
+// The layout--2sb arrangement uses a 24 column grid.
+@include grid-context(24) {
+
+  // CONTENT-IN-MID: There is one sidebar: .column--sb--1
+
+  .layout--2sb.content-in-mid.has-1-sb.sb-1 {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+        @include grid-column-position(7);
+      }
+
+      & > .column--sidebar {
+        @include grid-column(7);
+        @include grid-column-position(-17);
+      }
+
+      & > .column {
+        margin-top: 0;
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+        @include grid-column-position(8);
+      }
+
+      // The sidebar's width is inherited from smaller screen;
+      // + no need to offset it by one grid col, because it - being the last
+      // column - is floated to the right.
+    }
+  }
+
+  // CONTENT-IN-MID: There is one sidebar: .column--sb--2
+
+  .layout--2sb.content-in-mid.has-1-sb.sb-2 {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+      }
+
+      & > .column--sidebar {
+        @include grid-column(7);
+      }
+
+      & > .column {
+        margin-top: 0;
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+      }
+
+      // The sidebar's width is inherited from smaller screen;
+      // + no need to offset it by one grid col, because it - being the last
+      // column - is floated to the right.
+    }
+  }
+
+  // CONTENT-IN-MID: Present in the layout: both sidebars.
+
+  .layout--2sb.content-in-mid.has-2-sb {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+        @include grid-column-position(7);
+      }
+
+      & > .column--sb--1 {
+        @include grid-column(7);
+        @include grid-column-position(-17);
+
+        margin-top: 0;
+      }
+
+      & > .column--sb--2 {
+        @include grid-column(24);
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+        @include grid-column-position(8);
+      }
+
+      & > .column--sb--1 {
+        @include grid-column(7);
+        @include grid-column-position(-16);
+      }
+    }
+
+    @include breakpoint(wide-ht-min) {
+      .column--main {
+        @include grid-column(14);
+        @include grid-column-position(5);
+      }
+
+      .column--sb--1 {
+        @include grid-column(5);
+        @include grid-column-position(-14);
+      }
+
+      .column--sb--2 {
+        @include grid-column(5);
+
+        margin-top: 0;
+      }
+    }
+  }
+} // End of grid-context(24).
+
+// -----------------------------------------------------------------------------
+// CONTENT-ON-LEFT: There is one sidebar.
+
+// The layout--2sb arrangement uses a 24 column grid.
+@include grid-context(24) {
+
+  .layout--2sb.content-on-left.has-1-sb {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+      }
+
+      & > .column--sidebar {
+        @include grid-column(7);
+      }
+
+      & > .column {
+        margin-top: 0;
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+      }
+
+      // The sidebar's width is inherited from smaller screen;
+      // + no need to offset it by one grid col, because it - being the last
+      // column - is floated to the right.
+    }
+
+  }
+
+  // CONTENT-ON-LEFT: Present in the layout: both sidebars.
+
+  .layout--2sb.content-on-left.has-2-sb {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+      }
+
+      & > .column--sb--1 {
+        @include grid-column(7);
+
+        margin-top: 0;
+      }
+
+      & > .column--sb--2 {
+        @include grid-column(24);
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+      }
+
+      & > .column--sb--1 {
+        @include grid-column(7);
+        @include grid-column-position(1);
+      }
+    }
+
+    @include breakpoint(wide-ht-min) {
+      .column--main {
+        @include grid-column(14);
+      }
+
+      .column--sb--1 {
+        @include grid-column(5);
+        @include grid-column-unposition();
+      }
+
+      .column--sb--2 {
+        @include grid-column(5);
+
+        margin-top: 0;
+      }
+    }
+  }
+} // End of grid-context(24).
+
+// -----------------------------------------------------------------------------
+// CONTENT-ON-RIGHT: There is one sidebar.
+
+// The layout--2sb arrangement uses a 24 column grid.
+@include grid-context(24) {
+
+  .layout--2sb.content-on-right.has-1-sb {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+        @include grid-column-position(7);
+      }
+
+      & > .column--sidebar {
+        @include grid-column(7);
+        @include grid-column-position(-17);
+      }
+
+      & > .column {
+        margin-top: 0;
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+        @include grid-column-position(8);
+      }
+
+      // The sidebar's width is inherited from smaller screen;
+      // + no need to offset it by one grid col, because it - being the last
+      // column - is floated to the right.
+    }
+  }
+
+
+  // CONTENT-ON-RIGHT: Present in the layout: both sidebars.
+
+  .layout--2sb.content-on-right.has-2-sb {
+
+    @include breakpoint(wide-min) {
+
+      & > .column--main {
+        @include grid-column(17);
+        @include grid-column-position(7);
+      }
+
+      & > .column--sb--1 {
+        @include grid-column(7);
+        @include grid-column-position(-17);
+
+        margin-top: 0;
+      }
+
+      & > .column--sb--2 {
+        @include grid-column(24);
+      }
+    }
+
+    @include breakpoint(wide-mt-min) {
+
+      & > .column--main {
+        @include grid-column(16);
+        @include grid-column-position(8);
+      }
+
+      & > .column--sb--1 {
+        @include grid-column(7);
+        @include grid-column-position(-16);
+      }
+    }
+
+    @include breakpoint(wide-ht-min) {
+      .column--main {
+        @include grid-column(14);
+        @include grid-column-position(10);
+      }
+
+      .column--sb--1 {
+        @include grid-column(5);
+        @include grid-column-position(-14);
+      }
+
+      .column--sb--2 {
+        @include grid-column(5);
+        @include grid-column-position(-14);
+
+        margin-top: 0;
+      }
+    }
+  }
+} // End of grid-context(24).
+
+
+
+

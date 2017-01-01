@@ -1,0 +1,79 @@
+/**
+ * @file
+ * Layouts shared styling.
+ *
+ * Either global rules for several layouts, or styles for such layouts that
+ * did not get a separate file.
+ */
+
+
+// #############################################################################
+// Layout-fitting.
+
+.fit-content,
+.page__level > .container {
+  @include fit-content;
+
+  // TODO: SORTING THIS OUT.
+  //& > h2:first-child,
+  //& > .h2:first-child {
+    //@include line-height-fit($line-height-headings, top, 1);
+  //}
+}
+
+
+// #############################################################################
+// Page levels and page centering.
+// (Horizontal sections - often seen as full-width colourful stripes - on the
+// page.)
+
+.page__level {
+  @each $breakpoint, $gutter in $grid-column-gutter {
+    $padding: $gutter / 2;
+
+    @include breakpoint($breakpoint) {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  // TODO: SORTING THIS OUT.
+  // @include vertical-gap(padding, both, 1);
+}
+
+.container {
+  min-width: $page-min-width;
+  max-width: $page-max-width;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+// #############################################################################
+// Boxes at specific locations.
+
+.column {
+  .box + .box {
+    // TODO: SORT THIS THING OUT.
+    // @include vertical-gap(margin, top, 0.5);
+    margin-top: 1rem;
+  }
+}
+
+.column--sidebar {
+  .box {
+    &,
+    & p {
+      line-height: $line-height-condensed;
+    }
+  }
+  .box__content {
+    // TODO: SORT THIS THING OUT.
+    // @include line-height-fit($line-height-condensed, bottom);
+  }
+}
+

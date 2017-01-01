@@ -1,0 +1,177 @@
+/**
+ * @file
+ * Basic, single element level styling.
+ *
+ * A lot of the typography gets set up here.
+ */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font-sans;
+  font-size: 100% * ($font-size-default / 16px);
+  line-height: $line-height-default;
+
+  background: color(bg-bright);
+  color: color(text);
+}
+
+
+// #############################################################################
+// Headings.
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.pseudo-heading {
+
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+
+  }
+  .h#{$i} {
+
+  }
+}
+
+
+// #############################################################################
+// Links.
+
+a {
+  text-decoration: none;
+
+  &,
+  &:active {
+    color: color(link);
+  }
+  &:focus {
+    outline: 1px dotted color(link);
+  }
+  &:visited {
+    color: color(link-visited);
+
+    &:focus {
+      outline-color: color(link-visited);
+    }
+  }
+  &:hover {
+    text-decoration: underline;
+
+    color: color(link-hover);
+  }
+  &:visited:hover {
+    color: color(link-visited-hover);
+  }
+}
+
+
+// #############################################################################
+// Regular text.
+
+p {
+  margin: 1em 0;
+}
+
+
+// #############################################################################
+// Lists.
+
+ul {
+  padding-left: 1em;
+}
+
+ol {
+  padding-left: 1.35em;
+}
+
+dl {
+
+}
+dt {
+  font-weight: 700;
+
+  dd + & {
+    margin-top: 0.3em;
+  }
+}
+dd {
+  margin-left: 1em;
+}
+
+
+// #############################################################################
+// Tables.
+
+table {
+
+}
+tr {
+
+}
+th {
+
+}
+td {
+
+}
+
+
+// #############################################################################
+// Misc.
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+blockquote {
+  @include fit-content();
+
+  padding: 1em;
+
+  background: color(blockfill);
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: $font-mono;
+
+  background: color(blockfill);
+}
+
+pre {
+  padding: 1em;
+}
+
+code {
+
+}
+
+pre {
+  code {
+    word-wrap: normal;
+    display: block;
+    max-width: 100%;
+    overflow: auto;
+  }
+}
+
+// #############################################################################
+// Utilities.
+
+.hidden {
+  @include hidden();
+}
+

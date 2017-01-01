@@ -1,0 +1,66 @@
+/**
+ * @file
+ * Page definition default.
+ *
+ * Typically rules for the header and footer, and other globally applying
+ * page properties.
+ */
+
+
+// #############################################################################
+// Essentials.
+
+.page__header,
+.page__footer {
+  // TODO: SORTING THESE THINGS OUT!
+  //@include vertical-gap(padding, both, 0.75);
+  //@include text-color-invert-zone;
+
+  //a {
+    //@include override-link-color($color: color(link-invert));
+  //}
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.page__header {
+  background: color(prim);
+  color: color(text-invert);
+
+  a {
+    color: color(link-invert);
+  }
+}
+.page__footer {
+  background: color(bg-dark);
+  color: color(text-invert);
+}
+
+.header__site-name {
+  font-weight: 700;
+}
+
+.page__title {
+  @include page-title-appearance;
+}
+
+
+// #############################################################################
+// Sticky footer.
+
+$footer-height: 150px;
+
+html,
+body {
+  height: 100%;
+}
+.page__wrap {
+  min-height: 100%;
+  margin-bottom: -$footer-height;
+}
+.footer__room-preserve,
+.page__footer {
+  height: $footer-height;
+}
+

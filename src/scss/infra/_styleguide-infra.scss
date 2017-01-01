@@ -1,0 +1,125 @@
+/**
+ * @file
+ * Styleguide-related styles.
+ */
+
+// ############################################################################
+// Styles for component-demo items' template.
+
+.appmeta__cd-item {
+  @each $breakpoint, $gutter in $grid-column-gutter {
+    $padding: $gutter / 2;
+
+    @include breakpoint($breakpoint) {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+
+  // TODO: SORTING THIS OUT.
+  // @include vertical-gap($implemented_as: padding, $which: both, $size: 3);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:nth-child(even) {
+    background: whitesmoke;
+
+    .appmeta__cd-item__code pre {
+      background: white;
+    }
+  }
+}
+
+.appmeta__cd-item__title {
+  // TODO: SORTING THIS OUT.
+  // @include line-height-fit($line-height: $line-height-headings, $pos: top, $correction: 1);
+}
+
+.appmeta__cd-item__content {
+  .cd-item-content-extra-room & {
+    margin: 5rem 0;
+  }
+}
+
+.appmeta__cd-item__description {
+  .element__content {
+    @include description-appearance();
+  }
+}
+
+.appmeta__cd-item {
+  .element__label {
+    display: block;
+    margin: 1rem 0;
+    font-style: italic;
+    font-weight: 700;
+  }
+}
+
+.appmeta__cd-item__code {
+  pre {
+    background: whitesmoke;
+    padding: 2rem;
+
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+  }
+}
+
+
+// #############################################################################
+// Grid-demos.
+
+.appmeta__grid-demos {
+  @include fit-content;
+
+  .row + .row {
+    margin-top: 3rem;
+  }
+  .row + p {
+    margin-top: 2.5rem;
+  }
+  p + .row {
+    margin-top: 1.5rem;
+  }
+
+  .box {
+    background: color(blockfill);
+
+    .appmeta__cd-item:nth-child(even) & {
+      background: white;
+    }
+
+    &,
+    & p {
+      line-height: 1;
+    }
+  }
+  .box__content {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  code {
+    background: none;
+    border: none;
+    color: color(minor);
+    padding: 0;
+  }
+
+  &.l-2sb-demo {
+    .column--sb--1 .box {
+      background: desaturate(pink, 10%);
+    }
+    .column--sb--2 .box {
+      background: desaturate(palegreen, 10%);
+    }
+  }
+}
+

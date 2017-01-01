@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Box component styles.
+ */
+
+.box {
+  background: color(blockfill);
+  padding: $gap-default;
+}
+.box__title {
+  @include box-title-appearance;
+
+  margin-bottom: $gap-default;
+}
+.box__content {
+  @include fit-content;
+  @include line-height-fit($line-height-default, bottom);
+
+  // If there is no box title.
+  &:first-child {
+    @include line-height-fit($line-height-default, top);
+  }
+}

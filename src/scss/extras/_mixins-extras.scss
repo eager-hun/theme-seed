@@ -1,0 +1,34 @@
+/**
+ * @file
+ * Extra mixins.
+ */
+
+@mixin vertical-gap($implemented_as: margin, $which: both, $size: 3rem) {
+  @if $which == (both) {
+    #{$implemented_as}-top: $size;
+    #{$implemented_as}-bottom: $size;
+  }
+  @else {
+    #{$implemented_as}-#{$which}: $size;
+  }
+}
+
+/**
+ * Offsets text-containing elements so that texts align better to bounding box.
+ *
+ * @param $line-height
+ *   The prevailing line-height in the current DOM-subtree.
+ * @param $pos
+ *   Position, either `top` or `bottom`.
+ * @param $correction
+ *   Number, allows for custom adjustments, which might be neccessary,
+ *   depending on the characteristics of the actual font being used.
+ */
+@mixin line-height-fit($line-height, $pos, $correction: 0, $font-size: 1em) {
+  // Take the part of line-height that's above 1, half it (as it is distributed
+  // on the top and the bottom), apply correction, then add an em unit on it.
+  $offset: ($line-height - 1) * 0.5 * (1+$correction);
+  $offset-w-unit: $offset * $font-size;
+  margin-#{$pos}: -$offset-w-unit;
+}
+

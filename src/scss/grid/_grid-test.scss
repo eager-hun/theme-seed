@@ -1,0 +1,189 @@
+/**
+ * @file
+ * Helps testing features' intactness in the foundation-lean-grid library.
+ */
+
+.grid-test + .grid-test {
+  margin-top: 5em;
+}
+
+
+
+
+
+[id="grid-test--3-cols-simple"] {
+  .column {
+    @include grid-column($grid-column-count / 3);
+  }
+}
+
+
+
+
+
+[id="grid-test--4-cols-conditional"] {
+
+  .column {
+    @include grid-column($grid-column-count / 2);
+    @include grid-column-end;
+
+    @include breakpoint(wide-min) {
+      @include grid-column($grid-column-count / 4);
+      @include grid-column-end;
+    }
+  }
+}
+
+
+
+
+
+[id="grid-test--layout-mixin"] {
+  @include grid-layout(2);
+
+  @include breakpoint(wide-min) {
+    @include grid-layout(4);
+  }
+}
+
+
+
+
+
+[id="grid-test--column-position"] {
+
+  @include breakpoint(wide-min) {
+    & > .column--main {
+      @include grid-column(17);
+      @include grid-column-position(7);
+    }
+
+    & > .column--sb--1 {
+      @include grid-column(7);
+      @include grid-column-position(-17);
+    }
+
+    & > .column--sb--2 {
+      @include grid-column(24);
+    }
+  }
+
+  @include breakpoint(wide-mt-min) {
+    & > .column--main {
+      @include grid-column(16);
+      @include grid-column-position(8);
+    }
+
+    & > .column--sb--1 {
+      @include grid-column(7);
+      @include grid-column-position(-16);
+    }
+  }
+
+  @include breakpoint(wide-ht-min) {
+    .column--main {
+      @include grid-column(14);
+      @include grid-column-position(5);
+    }
+
+    .column--sb--1 {
+      @include grid-column(5);
+      @include grid-column-position(-14);
+    }
+
+    .column--sb--2 {
+      @include grid-column(5);
+    }
+  }
+}
+
+
+
+
+
+[id="grid-test--nested-grids"] {
+  & > .column:first-child .box {
+    background: pink;
+  }
+  & > .column:last-child .box {
+    background: lightgreen;
+  }
+  .row {
+    .column {
+      @include grid-column($grid-column-count / 3);
+    }
+  }
+
+  @include breakpoint(wide-min) {
+    & > .column {
+      @include grid-column($grid-column-count / 2);
+    }
+  }
+
+  // Additional, plain grid below it, to serve as reference.
+  & + .row {
+    @each $breakpoint, $gutter in $grid-column-gutter {
+      @include breakpoint($breakpoint) {
+        margin-top: $gutter;
+      }
+    }
+
+    .column {
+      @include grid-column($grid-column-count / 3);
+    }
+  }
+}
+
+
+
+
+
+[id="grid-test--simple-with-only-mixins"] {
+
+  // NOTE: it's a hack -> I use this grid the same way as Bootstrap's.  For
+  // this reason, every, even top level `.row`s have to behave as Foundation's
+  // nested grids do: having half-gutter-sized negative margins.
+  @include grid-row(null, nest);
+
+  .group-item {
+    @include grid-column($grid-column-count / 3);
+  }
+}
+
+
+
+
+
+[id="grid-test--nested-with-only-mixins"] {
+
+  & > .group-left:first-child .box {
+    background: pink;
+  }
+  & > .group-right:last-child .box {
+    background: lightgreen;
+  }
+
+  // NOTE: it's a hack -> I use this grid the same way as Bootstrap's.  For
+  // this reason, every, even top level `.row`s have to behave as Foundation's
+  // nested grids do: having half-gutter-sized negative margins.
+  @include grid-row(null, nest);
+
+  .group-left,
+  .group-right {
+    @include grid-column(100%);
+  }
+  .inner-group-wrapper {
+    @include grid-row(null, nest);
+  }
+  .inner-group-item {
+    @include grid-column($grid-column-count / 3);
+  }
+
+  @include breakpoint(wide-min) {
+    .group-left,
+    .group-right {
+      @include grid-column-size($grid-column-count / 2);
+    }
+  }
+}
+

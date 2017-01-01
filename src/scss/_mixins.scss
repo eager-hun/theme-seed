@@ -1,0 +1,126 @@
+/**
+ * @file
+ * SASS mixins.
+ *
+ * Mixins vs Extending utility-role Placeholders?
+ *
+ * Mixins won, placeholders lost so badly that they will not be used. Repetition
+ * originating from using mixins will be mitigated by gzip serving the resulting
+ * files (gzip works well on repeated patterns, they say).
+ *
+ * @see
+ * http://www.sitepoint.com/avoid-sass-extend/
+ * http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/
+ *
+ * NOTES on basic syntax:
+ * @code
+ *   @mixin test-mixin--box($bg: gold, $padding: 1em) {
+ *     background: $bg;
+ *     padding: $padding;
+ *
+ *     @if $bg == (gold) and $padding == (1em) {
+ *       border: 1px solid red;
+ *     }
+ *     @else if $bg == (gold) and $padding != (1em) {
+ *       border: 5px solid red;
+ *     }
+ *     @else {
+ *       border: 3px solid black;
+ *     }
+ *   }
+ * @endcode
+ */
+
+
+// #############################################################################
+// Grid-related mixins.
+
+// NOTE: look at `includePaths` sass compiler option (in gulpfile.js) to find
+// out where these are included from.
+@import 'foundation-lean-grid-deps';
+@import 'foundation-lean-grid';
+
+
+// #############################################################################
+// Resets.
+
+@mixin bare-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin strip-button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+// #############################################################################
+// Basic utils.
+
+@mixin hidden {
+  // Hiding texts visually, but enabling screen readers to read them.
+  // See http://webaim.org/techniques/css/invisiblecontent/ .
+  height: 1px;
+  left: -9999em;
+  top: auto;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+
+// #############################################################################
+// Layout.
+
+@mixin micro-clearfix {
+  // See http://nicolasgallagher.com/micro-clearfix-hack/ .
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+  // WARNING: This rule interferes with ::before and ::after pseudo-elements.
+  //          Take that into account when applying this anywhere.
+}
+
+// Passes control of providing whitespace between groups of contents to
+// containing elements (e.g. layouts), by removing possibly disruptive margins
+// from the children.
+@mixin fit-content {
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+// #############################################################################
+// Components.
+
+@mixin page-title-appearance() {
+
+}
+
+@mixin box-title-appearance() {
+
+}
+
+@mixin description-appearance {
+  font-size: 0.9rem;
+  font-style: italic;
+
+  p {
+    line-height: $line-height-condensed;
+    margin: 0.5em 0;
+  }
+}
+

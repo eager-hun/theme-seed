@@ -115,8 +115,9 @@ var options = {
   },
   livereload: {
     start:      true,
-    quiet:      false,
-    reloadPage: 'http://your-local-instances-domain' + paths.web.toDocRoot,
+    quiet:      true
+    // ? (For me, it appears to be working without specifying `reloadPage`.)
+    // reloadPage: 'http://your-local-instances-domain' + paths.web.toDocRoot,
   },
   reloadOn: {
     // NOTE: for pathToWatch, use a path relative to the gulpfile.js.
@@ -130,7 +131,7 @@ var options = {
     },
     php: {
       reloadEnabled: false,
-      pathToWatch:   '**/*.php'
+      pathToWatch:   '../../**/*.php' // Path when used with Anypage project.
     },
     svg: {
       reloadEnabled: false,
@@ -171,10 +172,10 @@ gulp.task('clean-css', function () {
 // Build tasks.
 
 // -----------------------------------------------------------------------------
-// COMPILING SASS.
+// COMPILING SCSS.
 
-gulp.task('compile-sass', ['clean-css'], function () {
-  return gulp.src(paths.source.sass + '/*.scss')
+gulp.task('compile-scss', ['clean-css'], function () {
+  return gulp.src(paths.source.scss + '/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass(options.sass)
       .on('error', sass.logError))
@@ -194,7 +195,7 @@ var watcherAnnounce = function watcherAnnounce(event) {
 gulp.task('watchers', function() {
   livereload.listen(options.livereload);
 
-  gulp.watch(paths.source.sass + '/**/*.scss', ['compile-sass']);
+  gulp.watch(paths.source.scss + '/**/*.scss', ['compile-scss']);
 
   // Extra watchers for various filetypes.
   for (fileExtension in options.reloadOn) {
@@ -216,7 +217,7 @@ gulp.task('watchers', function() {
 // #############################################################################
 // Tasks to be called from the cli.
 
-gulp.task('compile', ['compile-sass']);
+gulp.task('compile', ['compile-scss']);
 
 gulp.task('watch', ['compile', 'watchers']);
 

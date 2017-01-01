@@ -1,0 +1,53 @@
+/**
+ * @file
+ * Establishment of grid-related classes.
+ *
+ * This setup was primarily made for on-demand-grids. It is when we do not
+ * automatically generate a series of HTML classes (pre-generated grid), but
+ * instead, establish grid behavior by using grid-related sass-mixins when
+ * neccessary.
+ *
+ * Even though 'row' and 'column' behavior can be achieved via just mixins,
+ * it might still make sense to pre-define .row and .column classes, so these
+ * classes still can be used in the markup.
+ *
+ * Also, it may still be useful to pre-define some tailor-made grid-related
+ * classes to support reusing simple-enough grid patterns accross multiple
+ * components.
+ */
+
+
+// #############################################################################
+// Elementary level grid definition (mainly .row and .column classes).
+
+@include foundation-grid();
+
+
+// #############################################################################
+// Grid hack to make Foundation's grid work like Bootstrap's.
+
+// NOTE: since this project is using a "forked" version of Foundation grid,
+// it would be possible to modify the forked lib, instead of having to override
+// things here. This task is a TODO.
+
+.container {
+  max-width: $page-max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @each $breakpoint, $gutter in $grid-column-gutter {
+    $padding: $gutter / 2;
+
+    @include breakpoint($breakpoint) {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+}
+
+.row {
+  @include grid-row-nest;
+
+  max-width: none;
+}
+
