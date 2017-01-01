@@ -61,9 +61,10 @@ var paths = {
   },
   source: {
     // Paths relative to the gulpfile. No trailing slash!
-    customLibs: 'src/libs-custom',
-    sass:       'src/sass',
-    customJs:   'src/js'
+    frontendLibs: 'libraries-frontend/node_modules',
+    customLibs:   'src/libs-custom',
+    scss:         'src/scss',
+    customJs:     'src/js'
   },
   output: {
     // Paths relative to the gulpfile. No trailing slash!
@@ -98,8 +99,12 @@ var options = {
     //
     // See https://web-design-weekly.com/2014/06/15/different-sass-output-styles/
     // nested || expanded || compact || compressed
-    outputStyle: 'expanded'
-    // includePaths: []
+    outputStyle: 'expanded',
+    includePaths: [
+      paths.source.frontendLibs + '/normalize.css',
+      paths.source.frontendLibs + '/foundation-lean-grid/scss',
+      paths.source.frontendLibs + '/prismjs/themes'
+    ]
   },
   autoprefixer: {
     // https://github.com/postcss/autoprefixer#options
