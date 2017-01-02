@@ -130,7 +130,7 @@ var options = {
       pathToWatch:   '**/*.html'
     },
     php: {
-      reloadEnabled: false,
+      reloadEnabled: true,
       pathToWatch:   '../../**/*.php' // Path when used with Anypage project.
     },
     svg: {

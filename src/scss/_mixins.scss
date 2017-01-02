@@ -58,18 +58,63 @@
   padding: 0;
 }
 
-// #############################################################################
-// Basic utils.
 
-@mixin hidden {
-  // Hiding texts visually, but enabling screen readers to read them.
-  // See http://webaim.org/techniques/css/invisiblecontent/ .
-  height: 1px;
-  left: -9999em;
-  top: auto;
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
+// #############################################################################
+// Typography-related mixins.
+
+@mixin heading-aftereffects($heading) {
+  @if $heading == (h1) {
+    font-size: 2em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+  @else if $heading == (h2) {
+    font-size: 1.6em;
+    margin-top: 1.75em;
+    margin-bottom: 0.85em;
+  }
+  @else if $heading == (h2-underlined) {
+    border-bottom: 1px solid color(border-light);
+    font-size: 1.6em;
+    padding-bottom: 0.25em;
+    margin-bottom: 0.85em;
+  }
+  @else if $heading == (h3) {
+    font-size: 1.45em;
+    margin-top: 1.75em;
+    margin-bottom: 0.85em;
+  }
+  @else if $heading == (h4) {
+    font-size: 1.3em;
+    margin-top: 1.5em;
+    margin-bottom: 0.65em;
+  }
+  @else if $heading == (h5) {
+    font-size: 1.15em;
+    margin-top: 1.5em;
+    margin-bottom: 0.65em;
+  }
+  @else if $heading == (h6) {
+    font-size: 1.05em;
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+  }
+}
+
+@mixin headings-base {
+  display: block;
+  line-height: $line-height-headings;
+
+  font-family: $font-serif;
+  font-weight: normal;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+
+  color: color(text);
+}
+
+@mixin pseudo-heading($heading) {
+  @include heading-aftereffects($heading);
 }
 
 
@@ -104,6 +149,21 @@
 
 
 // #############################################################################
+// Basic utils.
+
+@mixin hidden {
+  // Hiding texts visually, but enabling screen readers to read them.
+  // See http://webaim.org/techniques/css/invisiblecontent/ .
+  height: 1px;
+  left: -9999em;
+  top: auto;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+
+// #############################################################################
 // Components.
 
 @mixin page-title-appearance() {
@@ -123,4 +183,5 @@
     margin: 0.5em 0;
   }
 }
+
 

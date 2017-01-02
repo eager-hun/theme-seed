@@ -31,16 +31,21 @@ h4,
 h5,
 h6,
 .pseudo-heading {
-
+  @include headings-base;
 }
 
 @for $i from 1 through 6 {
   h#{$i} {
-
+    @include heading-aftereffects(h#{$i});
   }
   .h#{$i} {
-
+    @include pseudo-heading(h#{$i});
   }
+}
+
+h2.underlined,
+.h2.underlined {
+  @include heading-aftereffects(h2-underlined);
 }
 
 
@@ -167,6 +172,14 @@ pre {
     overflow: auto;
   }
 }
+
+hr {
+  height: 0;
+  background: 0;
+  border: 0;
+  border-top: 1px solid color(border-light);
+}
+
 
 // #############################################################################
 // Utilities.
