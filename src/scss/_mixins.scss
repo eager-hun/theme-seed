@@ -66,8 +66,8 @@
   display: block;
   line-height: $line-height-headings;
 
-  font-family: $font-serif;
-  font-weight: 700;
+  font-family: $font-sans;
+  font-weight: normal;
   font-style: normal;
   text-rendering: optimizeLegibility;
 
@@ -162,16 +162,18 @@
 // #############################################################################
 // Components.
 
+// -----------------------------------------------------------------------------
+// Content titles.
+
 @mixin page-title-appearance() {
   @include headings-base;
   @include heading-aftereffects(h1);
-  @include line-height-fit($line-height-headings, top, 1);
 
   margin-bottom: 0;
 
   &::after {
-    @include line-height-fit($line-height-headings, top, 1);
-    @include vertical-gap(margin, bottom, 1);
+    @include line-height-fit($line-height-headings, top, 2);
+    @include vertical-gap(margin, bottom, 0.9);
 
     content: '';
     display: block;
@@ -189,6 +191,72 @@
 
   @include line-height-fit($line-height-headings, top);
 }
+
+// -----------------------------------------------------------------------------
+// Color zones.
+
+@mixin override-link-color($color, $hover-color: $color) {
+  &,
+  &:active,
+  &:visited {
+    color: $color;
+  }
+  &:hover,
+  &:visited:hover {
+    color: $hover-color;
+  }
+}
+
+@mixin color-zone-brand {
+  background-color: color(brand);
+
+  &,
+  & h2 {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+}
+
+@mixin color-zone-accent-1 {
+  background-color: color(accent-1);
+
+  &,
+  & h2 {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+}
+
+@mixin color-zone-accent-2 {
+  background-color: color(accent-2);
+
+  &,
+  & h2 {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+}
+
+@mixin color-zone-black {
+  background-color: color(bg-dark);
+
+  &,
+  & h2 {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Misc components.
 
 @mixin description-appearance {
   font-size: 0.9rem;

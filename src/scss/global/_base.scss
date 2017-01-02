@@ -20,6 +20,13 @@ html {
   color: color(text);
 }
 
+// This is experimental.
+@include breakpoint(wide-ht-min) {
+  body {
+    font-size: 1.1em;
+  }
+}
+
 
 // #############################################################################
 // Headings.

@@ -103,10 +103,10 @@
 
 [id="grid-test--nested-grids"] {
   & > .column:first-child .box {
-    background: pink;
+    background: color(column-demo-pink);
   }
   & > .column:last-child .box {
-    background: lightgreen;
+    background: color(column-demo-green);
   }
   .row {
     .column {
@@ -157,10 +157,10 @@
 [id="grid-test--nested-with-only-mixins"] {
 
   & > .group-left:first-child .box {
-    background: pink;
+    background: color(column-demo-pink);
   }
   & > .group-right:last-child .box {
-    background: lightgreen;
+    background: color(column-demo-green);
   }
 
   // NOTE: it's a hack -> I use this grid the same way as Bootstrap's.  For

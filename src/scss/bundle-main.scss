@@ -20,12 +20,13 @@
 @import 'global/base';
 
 @import 'grid/grids-base';
-@import 'grid/grid-test';
+@import 'infra/grid-test';
 
 @import 'layouts/layouts-shared';
 @import 'layouts/grid-layouts';
 @import 'layouts/layout-2sb';
 
+@import 'global/color-zones';
 @import 'global/page-definition-default';
 @import 'global/forms';
 

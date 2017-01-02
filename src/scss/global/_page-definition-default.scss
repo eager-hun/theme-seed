@@ -14,6 +14,11 @@
 .page__footer {
   @include vertical-gap(padding, both, 0.5);
 
+  .page__level__content {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   // TODO: SORTING THESE THINGS OUT!
   //@include text-color-invert-zone;
   //a {
@@ -30,25 +35,21 @@
 }
 
 .page__header {
-  background: color(prim);
-  color: color(text-invert);
-
-  a {
-    color: color(link-invert);
-  }
+  @include color-zone-brand;
 }
 
 .page__footer {
-  background: color(bg-dark);
-  color: color(text-invert);
+  @include color-zone-black;
 }
 
 .header__site-name {
   font-weight: 700;
 }
 
-.page__title {
+// Specificity hack.
+.page__title.page__title {
   @include page-title-appearance;
+  @include line-height-fit($line-height-headings, top, 1);
 }
 
 

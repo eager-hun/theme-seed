@@ -21,8 +21,7 @@ $font-sans:                     "Helvetica Neue",
 $font-serif:                    "Times New Roman",
                                 "Liberation Serif",
                                 serif;
-$font-mono:                     "Courier New",
-                                "FreeMono";
+$font-mono:                     monospace;
 
 
 // #############################################################################
@@ -102,8 +101,8 @@ $gap-default:                   1rem;
 $color-brand:                   teal;
 
 $prep-color-prim:               $color-brand;
-$prep-color-accent-1:           purple;
-$prep-color-accent-2:           goldenrod;
+$prep-color-accent-1:           #8D2C73; // Magenta-ish.
+$prep-color-accent-2:           #B29912; // Ochre-ish.
 $prep-color-blockfill:          #eee;
 
 $prep-color-nav:                $prep-color-prim;
@@ -114,6 +113,7 @@ $prep-color-action:             $prep-color-accent-1;
 // In SASS, only with this one can you have 'variable variable names'.
 
 $colors: (
+  brand:                        $color-brand,
   prim:                         $prep-color-prim,
   accent-1:                     $prep-color-accent-1,
   accent-2:                     $prep-color-accent-2,
@@ -137,7 +137,9 @@ $colors: (
   text-invert:                  white,
   link-invert:                  mix($prep-color-accent-2, white, 10%),
 
-  shadow:                       rgba(50, 35, 60, 0.5)
+  shadow:                       rgba(50, 35, 60, 0.5),
+  column-demo-pink:             desaturate(pink, 10%),
+  column-demo-green:            desaturate(palegreen, 10%)
 );
 
 /**

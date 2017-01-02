@@ -6,52 +6,19 @@
 // ############################################################################
 // Styles for component-demo items' template.
 
-.appmeta__cd-item {
-  @each $breakpoint, $gutter in $grid-column-gutter {
-    $padding: $gutter / 2;
-
-    @include breakpoint($breakpoint) {
-      padding-left: $padding;
-      padding-right: $padding;
-    }
-  }
-
-  // TODO: SORTING THIS OUT.
-  // @include vertical-gap($implemented_as: padding, $which: both, $size: 3);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:nth-child(even) {
-    background: whitesmoke;
-
-    .appmeta__cd-item__code pre {
-      background: white;
-    }
-  }
-}
-
-.appmeta__cd-item__title {
-  // TODO: SORTING THIS OUT.
-  // @include line-height-fit($line-height: $line-height-headings, $pos: top, $correction: 1);
-}
-
-.appmeta__cd-item__content {
+.app-infra__cd-item__content {
   .cd-item-content-extra-room & {
-    margin: 5rem 0;
+    // @include vertical-gap(margin, both);
   }
 }
 
-.appmeta__cd-item__description {
+.app-infra__cd-item__description {
   .element__content {
     @include description-appearance();
   }
 }
 
-.appmeta__cd-item {
+.app-infra__cd-item {
   .element__label {
     display: block;
     margin: 1rem 0;
@@ -60,10 +27,10 @@
   }
 }
 
-.appmeta__cd-item__code {
+.app-infra__cd-item__code {
   pre {
-    background: whitesmoke;
-    padding: 2rem;
+    background: color(blockfill);
+    padding: 1rem;
 
     code {
       background: none;
@@ -77,48 +44,36 @@
 // #############################################################################
 // Grid-demos.
 
-.appmeta__grid-demos {
+.app-infra__grid-demos {
   @include fit-content;
 
-  .row + .row {
-    margin-top: 3rem;
+  .variant-title {
+    @include vertical-gap(margin, top, 1.15);
   }
-  .row + p {
-    margin-top: 2.5rem;
-  }
-  p + .row {
-    margin-top: 1.5rem;
-  }
-
   .box {
     background: color(blockfill);
-
-    .appmeta__cd-item:nth-child(even) & {
-      background: white;
-    }
-
-    &,
-    & p {
-      line-height: 1;
-    }
   }
-  .box__content {
+  // Specificity hack.
+  .box__content.box__content {
     margin-top: 0;
     margin-bottom: 0;
+
+    line-height: $line-height-condensed;
+    font-size: 1em;
   }
   code {
     background: none;
     border: none;
-    color: color(minor);
+    color: color(text-faded);
     padding: 0;
   }
 
   &.l-2sb-demo {
     .column--sb--1 .box {
-      background: desaturate(pink, 10%);
+      background: color(column-demo-pink);
     }
     .column--sb--2 .box {
-      background: desaturate(palegreen, 10%);
+      background: color(column-demo-green);
     }
   }
 }

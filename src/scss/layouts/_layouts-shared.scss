@@ -11,12 +11,12 @@
 // Layout-fitting.
 
 .fit-content,
-.container {
+.page__level__content {
   @include fit-content;
 
   & > h2:first-child,
   & > .h2:first-child {
-    @include line-height-fit($line-height-headings, top);
+    @include line-height-fit($line-height-headings, top, 1.5);
   }
 }
 
@@ -27,6 +27,8 @@
 // page.)
 
 .page__level {
+  min-width: $page-min-width;
+
   @each $breakpoint, $gutter in $grid-column-gutter {
     $padding: $gutter / 2;
 
@@ -36,14 +38,22 @@
     }
   }
 
-  @include vertical-gap(padding, both, 1);
+  &.has-bg {
+    @include vertical-gap(padding, both, 1);
+  }
 }
 
-.container {
-  min-width: $page-min-width;
+.page__level__content {
   max-width: $page-max-width;
 
   margin-left: auto;
   margin-right: auto;
+
+  @include vertical-gap(margin, both, 1);
+
+  .has-bg & {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 

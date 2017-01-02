@@ -131,7 +131,13 @@ var options = {
     },
     php: {
       reloadEnabled: true,
-      pathToWatch:   '../../**/*.php' // Path when used with Anypage project.
+      // Path when used with Anypage project.
+      pathToWatch:   '../../**/*.php'
+    },
+    twig: {
+      reloadEnabled: true,
+      // Path when used with Anypage project.
+      pathToWatch:   '../../anypages/templates/**/*.twig'
     },
     svg: {
       reloadEnabled: false,

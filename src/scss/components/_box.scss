@@ -43,6 +43,8 @@
     &:first-child {
       @include line-height-fit($line-height-condensed, top);
     }
+
+    font-size: 0.9em;
   }
 }
 
