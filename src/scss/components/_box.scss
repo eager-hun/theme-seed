@@ -21,3 +21,28 @@
     @include line-height-fit($line-height-default, top);
   }
 }
+
+
+// #############################################################################
+// Boxes at specific locations.
+
+.column {
+  .box + .box {
+    @include vertical-gap(margin, top, 0.5);
+  }
+}
+
+.column--sidebar {
+  .box {
+    line-height: $line-height-condensed;
+  }
+  .box__content {
+    @include line-height-fit($line-height-condensed, bottom);
+
+    // If there is no box title.
+    &:first-child {
+      @include line-height-fit($line-height-condensed, top);
+    }
+  }
+}
+

@@ -35,11 +35,9 @@ h6,
 }
 
 @for $i from 1 through 6 {
-  h#{$i} {
-    @include heading-aftereffects(h#{$i});
-  }
+  h#{$i},
   .h#{$i} {
-    @include pseudo-heading(h#{$i});
+    @include heading-aftereffects(h#{$i});
   }
 }
 

@@ -12,16 +12,21 @@
 
 .page__header,
 .page__footer {
-  // TODO: SORTING THESE THINGS OUT!
-  //@include vertical-gap(padding, both, 0.75);
-  //@include text-color-invert-zone;
+  @include vertical-gap(padding, both, 0.5);
 
+  // TODO: SORTING THESE THINGS OUT!
+  //@include text-color-invert-zone;
   //a {
     //@include override-link-color($color: color(link-invert));
   //}
 
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  .header__site-name {
+    @include line-height-fit($line-height-default, top);
+  }
+  .header__site-slogan {
+    @include vertical-gap(margin, top, 0.15);
+    @include line-height-fit($line-height-default, bottom);
+  }
 }
 
 .page__header {
@@ -32,6 +37,7 @@
     color: color(link-invert);
   }
 }
+
 .page__footer {
   background: color(bg-dark);
   color: color(text-invert);

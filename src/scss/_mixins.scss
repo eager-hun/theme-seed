@@ -62,6 +62,18 @@
 // #############################################################################
 // Typography-related mixins.
 
+@mixin headings-base {
+  display: block;
+  line-height: $line-height-headings;
+
+  font-family: $font-serif;
+  font-weight: 700;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+
+  color: color(text);
+}
+
 @mixin heading-aftereffects($heading) {
   @if $heading == (h1) {
     font-size: 2em;
@@ -99,22 +111,6 @@
     margin-top: 1.5em;
     margin-bottom: 0.6em;
   }
-}
-
-@mixin headings-base {
-  display: block;
-  line-height: $line-height-headings;
-
-  font-family: $font-serif;
-  font-weight: normal;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-
-  color: color(text);
-}
-
-@mixin pseudo-heading($heading) {
-  @include heading-aftereffects($heading);
 }
 
 
@@ -167,11 +163,31 @@
 // Components.
 
 @mixin page-title-appearance() {
+  @include headings-base;
+  @include heading-aftereffects(h1);
+  @include line-height-fit($line-height-headings, top, 1);
 
+  margin-bottom: 0;
+
+  &::after {
+    @include line-height-fit($line-height-headings, top, 1);
+    @include vertical-gap(margin, bottom, 1);
+
+    content: '';
+    display: block;
+    height: 0;
+  }
+
+  &:only-child::after {
+    margin: 0;
+  }
 }
 
 @mixin box-title-appearance() {
+  @include headings-base;
+  @include heading-aftereffects(h4);
 
+  @include line-height-fit($line-height-headings, top);
 }
 
 @mixin description-appearance {
@@ -183,5 +199,4 @@
     margin: 0.5em 0;
   }
 }
-
 

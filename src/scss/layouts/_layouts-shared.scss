@@ -11,14 +11,13 @@
 // Layout-fitting.
 
 .fit-content,
-.page__level > .container {
+.container {
   @include fit-content;
 
-  // TODO: SORTING THIS OUT.
-  //& > h2:first-child,
-  //& > .h2:first-child {
-    //@include line-height-fit($line-height-headings, top, 1);
-  //}
+  & > h2:first-child,
+  & > .h2:first-child {
+    @include line-height-fit($line-height-headings, top);
+  }
 }
 
 
@@ -37,11 +36,7 @@
     }
   }
 
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-
-  // TODO: SORTING THIS OUT.
-  // @include vertical-gap(padding, both, 1);
+  @include vertical-gap(padding, both, 1);
 }
 
 .container {
@@ -50,30 +45,5 @@
 
   margin-left: auto;
   margin-right: auto;
-}
-
-
-// #############################################################################
-// Boxes at specific locations.
-
-.column {
-  .box + .box {
-    // TODO: SORT THIS THING OUT.
-    // @include vertical-gap(margin, top, 0.5);
-    margin-top: 1rem;
-  }
-}
-
-.column--sidebar {
-  .box {
-    &,
-    & p {
-      line-height: $line-height-condensed;
-    }
-  }
-  .box__content {
-    // TODO: SORT THIS THING OUT.
-    // @include line-height-fit($line-height-condensed, bottom);
-  }
 }
 
