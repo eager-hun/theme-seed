@@ -172,7 +172,7 @@
   margin-bottom: 0;
 
   &::after {
-    @include line-height-fit($line-height-headings, top, 2);
+    @include line-height-fit($line-height-headings, top);
     @include vertical-gap(margin, bottom, 0.9);
 
     content: '';
@@ -181,7 +181,7 @@
   }
 
   &:only-child::after {
-    margin: 0;
+    display: none;
   }
 }
 

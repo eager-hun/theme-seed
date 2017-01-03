@@ -46,10 +46,14 @@
   font-weight: 700;
 }
 
-// Specificity hack.
-.page__title.page__title {
+.page__title {
   @include page-title-appearance;
-  @include line-height-fit($line-height-headings, top, 1);
+
+  // If we know that next to it a sidebar appears.
+  .has-1-sb &,
+  .has-2-sb & {
+    @include line-height-fit($line-height-headings, top, 1);
+  }
 }
 
 

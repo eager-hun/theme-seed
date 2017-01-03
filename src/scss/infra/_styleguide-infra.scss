@@ -6,6 +6,44 @@
 // ############################################################################
 // Styles for component-demo items' template.
 
+.app-infra__cd-item {
+  .element__label {
+    display: block;
+    margin: 1rem 0;
+    font-style: italic;
+    font-weight: 700;
+
+    color: color(text-faded);
+  }
+
+  & + .app-infra__cd-item {
+    position: relative;
+
+    padding-top: 1em;
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+
+      display: block;
+      height: 1em;
+
+      background: color(blockfill);
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent 1.2em,
+        transparent 2.2em,
+        color(blockfill) 2.2em,
+        color(blockfill) 3.2em
+      );
+    }
+  }
+}
+
 .app-infra__cd-item__content {
   .cd-item-content-extra-room & {
     // @include vertical-gap(margin, both);
@@ -18,24 +56,21 @@
   }
 }
 
-.app-infra__cd-item {
-  .element__label {
-    display: block;
-    margin: 1rem 0;
-    font-style: italic;
-    font-weight: 700;
-  }
-}
-
 .app-infra__cd-item__code {
   pre {
+    margin: 0;
+    padding: 1em 1.35em;
+
+    font-family: monospace;
     background: color(blockfill);
-    padding: 1rem;
 
     code {
       background: none;
       border: none;
       padding: 0;
+
+      font-family: monospace;
+      line-height: 1.75;
     }
   }
 }
