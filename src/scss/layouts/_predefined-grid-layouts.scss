@@ -1,0 +1,88 @@
+/**
+ * @file
+ * Reusable predefined grids.
+ *
+ * NOTE:
+ * These are just examples how the related mixins can be used. They are actually
+ * used here in a pretty expensive way.
+ *
+ * Feel free to delete / slim down as many of these as many you don't need.
+ */
+
+
+// #############################################################################
+// Shared.
+
+.grid--wrapping {
+  @include grid-wrapping-base;
+}
+
+
+// #############################################################################
+// 2 column grid.
+
+// Apply on `.row`s.
+.grid--2-cols {
+  @include breakpoint(wide-min) {
+    @include grid-with-cols(2);
+
+    &.grid--wrapping {
+      @include grid-wrapping-for-cols(2);
+    }
+    &.grid--flexboxify {
+      @include flexboxify-floated-grid($flex-wrap: wrap, $breakpoint: wide-min);
+    }
+  }
+}
+
+
+// #############################################################################
+// 3 column grid.
+
+// Apply on `.row`s.
+.grid--3-cols {
+  @include breakpoint(wide-min) {
+    @include grid-with-cols(2);
+
+    &.grid--wrapping {
+      @include grid-wrapping-for-cols(2);
+    }
+    &.grid--flexboxify {
+      @include flexboxify-floated-grid($flex-wrap: wrap, $breakpoint: wide-min);
+    }
+  }
+  @include breakpoint(wide-mt-min) {
+    @include grid-with-cols(3);
+
+    &.grid--wrapping {
+      @include grid-wrapping-for-cols(3);
+    }
+  }
+}
+
+
+// #############################################################################
+// 4 column grid.
+
+// Apply on `.row`s.
+.grid--4-cols {
+  // and (max-width: map-get($breakpoints, wide-lt-max))
+  @media (min-width: map-get($breakpoints, narrow-ht-min)) {
+    @include grid-with-cols(2);
+
+    &.grid--wrapping {
+      @include grid-wrapping-for-cols(2);
+    }
+    &.grid--flexboxify {
+      @include flexboxify-floated-grid($flex-wrap: wrap, $breakpoint: narrow-ht-min);
+    }
+  }
+  @include breakpoint(wide-mt-min) {
+    @include grid-with-cols(4);
+
+    &.grid--wrapping {
+      @include grid-wrapping-for-cols(4);
+    }
+  }
+}
+

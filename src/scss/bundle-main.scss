@@ -19,12 +19,11 @@
 
 @import 'global/base';
 
-@import 'grid/grids-base';
-@import 'infra/grid-test';
-
+@import 'layouts/grids-base';
 @import 'layouts/layouts-shared';
-@import 'layouts/grid-layouts';
+@import 'layouts/predefined-grid-layouts';
 @import 'layouts/layout-2sb';
+@import 'infra/grid-test';
 
 @import 'global/color-zones';
 @import 'global/page-definition-default';

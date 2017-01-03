@@ -143,6 +143,91 @@
   }
 }
 
+// -----------------------------------------------------------------------------
+// Grid-related mixins.
+
+// Apply on `.row`s.
+@mixin grid-with-cols($n) {
+  & > .column {
+    @include grid-column($grid-column-count / $n);
+  }
+}
+
+// Apply on `.row`s.
+@mixin grid-wrapping-base {
+  & > .column + .column {
+    @each $breakpoint, $gutter in $grid-column-gutter {
+      @include breakpoint($breakpoint) {
+        margin-top: $gutter;
+      }
+    }
+  }
+}
+
+// Apply on `.row`s.
+@mixin grid-wrapping-for-cols($n) {
+  & > .column {
+    @include grid-column-end;
+
+    // Resetting potentially previously set clear-ings.
+    // Specificity hack.
+    &.column {
+      clear: none;
+    }
+
+    &:nth-child(#{$n}n+#{$n+1}) {
+      clear: both;
+    }
+
+    &:nth-child(-n+#{$n}) {
+      margin-top: 0;
+    }
+  }
+}
+
+// Note: this will work only if a modernizr build is included and is producing
+// an .mdz-flexbox class on the :root element.
+//
+// See https://css-tricks.com/snippets/css/a-guide-to-flexbox/ .
+//
+// Apply on `.row`s.
+@mixin flexboxify-floated-grid(
+  $column-selector: '.column',
+  $payload-selector: '.box',
+  $flex-wrap: wrap,
+  $breakpoint: wide-min
+) {
+  @include breakpoint($breakpoint) {
+
+    // TODO: actually do modernizr check!
+    //.mdz-flexbox & {
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: $flex-wrap;
+
+      // Removing the elements that were used for the micro-clearfix hack.
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      & > #{$column-selector} {
+        display: flex;
+        flex: 0 1 auto;
+        float: none;
+
+        // Stretching the actual box that is sitting in the `.column`.
+        & > #{$payload-selector} {
+          flex: 0 1 auto;
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    //}
+  }
+}
+
 
 // #############################################################################
 // Basic utils.
