@@ -38,6 +38,12 @@ var sourcemaps   = require('gulp-sourcemaps');
 var sass         = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var livereload   = require('gulp-livereload');
+var gulpif       = require('gulp-if');
+var uglify       = require('gulp-uglify');
+var rename       = require('gulp-rename');
+var concat       = require('gulp-concat');
+var jshint       = require('gulp-jshint');
+var plumber      = require('gulp-plumber');
 
 
 // #############################################################################
@@ -148,6 +154,44 @@ var options = {
 
 
 // #############################################################################
+// Js bundle definitions.
+
+var jsBundles = {
+  libs: {
+    filename: 'libs'
+  },
+  styleguide: {
+    filename: 'styleguide'
+  },
+  custom: {
+    filename: 'custom'
+  }
+};
+
+// -----------------------------------------------------------------------------
+// Libraries' bundle.
+
+jsBundles.libs.files = [
+  paths.source.frontendLibs + '/jquery/dist/jquery.js'
+];
+
+// -----------------------------------------------------------------------------
+// Custom JS files' bundle.
+
+jsBundles.custom.files = [
+  paths.source.customJs + '/custom-script-1.js',
+  paths.source.customJs + '/custom-script-2.js'
+];
+
+// -----------------------------------------------------------------------------
+// Bundle of JS files that are needed only by the styleguide.
+
+jsBundles.styleguide.files = [
+  paths.source.frontendLibs + '/prismjs/prism.js'
+];
+
+
+// #############################################################################
 // Helper tasks.
 
 // -----------------------------------------------------------------------------
@@ -166,11 +210,36 @@ var announceCleaning = function (paths) {
   }
 };
 
+var cleanBuiltJsBundle = function (bundleName) {
+  if (options.cleaning.enabled) {
+    var globs = [
+      paths.output.js + '/' + jsBundles[bundleName].filename + '.js',
+      paths.output.js + '/' + jsBundles[bundleName].filename + '.min.js',
+      paths.output.js + '/sourcemaps/' + jsBundles[bundleName].filename + '.js.map',
+      paths.output.js + '/sourcemaps/' + jsBundles[bundleName].filename + '.min.js.map'
+    ];
+    del(globs, options.cleaning.delOpts)
+      .then(announceCleaning);
+  }
+};
+
 gulp.task('clean-css', function () {
   if (options.cleaning.enabled) {
     del([paths.output.css + '/*'], options.cleaning.delOpts)
       .then(announceCleaning);
   }
+});
+
+gulp.task('clean-js-libs', function () {
+  cleanBuiltJsBundle('libs');
+});
+
+gulp.task('clean-custom-js', function () {
+  cleanBuiltJsBundle('custom');
+});
+
+gulp.task('clean-styleguide-js', function () {
+  cleanBuiltJsBundle('styleguide');
 });
 
 
@@ -192,6 +261,47 @@ gulp.task('compile-scss', ['clean-css'], function () {
 });
 
 // -----------------------------------------------------------------------------
+// COMPILING JS BUNDLES.
+
+// NOTE: there is a watcher set up only for the "custom" js bundle; if you add
+// or remove libraries, you need to relaunch gulp.
+
+var compileJsBundle = function (bundleName) {
+  var doJsHinting  = false;
+  var doLivereload = false;
+
+  if (bundleName === 'custom') {
+    doJsHinting  = true;
+    doLivereload = true;
+  }
+
+  // Do we need to check for files' length (if they exist) first?
+  return gulp.src(jsBundles[bundleName].files)
+    .pipe(gulpif(doJsHinting, jshint()))
+    .pipe(gulpif(doJsHinting, jshint.reporter('default')))
+    .pipe(sourcemaps.init())
+    .pipe(concat(jsBundles[bundleName].filename + '.js', {newLine: "\n;"}))
+    .pipe(gulp.dest(paths.output.js))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify(options.uglify))
+    .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
+    .pipe(gulp.dest(paths.output.js))
+    .pipe(gulpif(doLivereload, livereload()));
+};
+
+gulp.task('compile-js-libs', ['clean-js-libs'], function() {
+  return compileJsBundle('libs');
+});
+
+gulp.task('compile-custom-js', ['clean-custom-js'], function() {
+  return compileJsBundle('custom');
+});
+
+gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
+  return compileJsBundle('styleguide');
+});
+
+// -----------------------------------------------------------------------------
 // WATCHERS.
 
 var watcherAnnounce = function watcherAnnounce(event) {
@@ -201,7 +311,8 @@ var watcherAnnounce = function watcherAnnounce(event) {
 gulp.task('watchers', function() {
   livereload.listen(options.livereload);
 
-  gulp.watch(paths.source.scss + '/**/*.scss', ['compile-scss']);
+  gulp.watch(paths.source.scss     + '/**/*.scss', ['compile-scss']);
+  gulp.watch(paths.source.customJs + '/**/*.js',   ['compile-custom-js']);
 
   // Extra watchers for various filetypes.
   for (fileExtension in options.reloadOn) {
@@ -223,7 +334,12 @@ gulp.task('watchers', function() {
 // #############################################################################
 // Tasks to be called from the cli.
 
-gulp.task('compile', ['compile-scss']);
+gulp.task('compile', [
+  'compile-scss',
+  'compile-js-libs',
+  'compile-custom-js',
+  'compile-styleguide-js'
+]);
 
 gulp.task('watch', ['compile', 'watchers']);
 
