@@ -119,6 +119,9 @@ var options = {
     flexbox:  'no-2009',
     cascade:  true
   },
+  uglify: {
+    mangle: false
+  },
   livereload: {
     start:      true,
     quiet:      true
