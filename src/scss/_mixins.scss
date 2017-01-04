@@ -177,6 +177,7 @@
 }
 
 // Apply on `.row`s.
+// See http://nth-test.com/
 @mixin grid-wrapping-for-cols($n) {
   & > .column {
     @include grid-column-end;
@@ -206,6 +207,7 @@
 @mixin flexboxify-floated-grid(
   $column-selector: '.column',
   $payload-selector: '.box',
+  $flex: 0 1 auto,
   $flex-wrap: wrap,
   $breakpoint: wide-min
 ) {
@@ -226,7 +228,7 @@
 
       & > #{$column-selector} {
         display: flex;
-        flex: 0 1 auto;
+        flex: $flex;
         float: none;
 
         // Stretching the actual box that is sitting in the `.column`.
