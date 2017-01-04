@@ -19,12 +19,6 @@
     margin-bottom: 0;
   }
 
-  // TODO: SORTING THESE THINGS OUT!
-  //@include text-color-invert-zone;
-  //a {
-    //@include override-link-color($color: color(link-invert));
-  //}
-
   .header__site-name {
     @include line-height-fit($line-height-default, top);
   }

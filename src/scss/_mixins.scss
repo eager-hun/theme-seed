@@ -316,6 +316,18 @@
   & a {
     @include override-link-color(color(link-invert));
   }
+
+  -webkit-tap-highlight-color: rgba(color(prim), 0.25);
+
+  // This is experimental.
+  ::selection {
+    background: rgba(color(accent-1), 0.85);
+    color: color(text-invert);
+  }
+  ::-moz-selection {
+    background: rgba(color(accent-1), 0.85);
+    color: color(text-invert);
+  }
 }
 
 @mixin color-zone-accent-1 {
