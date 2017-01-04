@@ -16,44 +16,41 @@
     color: color(text-faded);
   }
 
-  & + .app-infra__cd-item {
+  &:not(:first-child) {
     position: relative;
-
-    padding-top: 1em;
 
     &::before {
       content: '';
-
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-
       display: block;
       height: 1em;
+      width: 100%;
+      max-width: $page-max-width;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      @include vertical-gap(margin, bottom);
 
       background: color(blockfill);
       background: repeating-linear-gradient(
         -45deg,
-        transparent 1.2em,
-        transparent 2.2em,
-        color(blockfill) 2.2em,
-        color(blockfill) 3.2em
+        //mix(color(blockfill), white, 25%) 1em,
+        //mix(color(blockfill), white, 25%) 1.75em,
+        transparent 1em,
+        transparent 1.75em,
+        color(blockfill) 1.75em,
+        color(blockfill) 3em
       );
     }
   }
 }
 
-.app-infra__cd-item__content {
-  .cd-item-content-extra-room & {
-    // @include vertical-gap(margin, both);
-  }
+.element--content__content {
+  @include fit-content;
 }
 
-.app-infra__cd-item__description {
-  .element__content {
-    @include description-appearance();
-  }
+.element--description__content {
+  @include description-appearance();
 }
 
 .app-infra__cd-item__code {
@@ -80,10 +77,8 @@
 // Grid-demos.
 
 .app-infra__grid-demos {
-  @include fit-content;
-
   .variant-title {
-    @include vertical-gap(margin, top, 1.15);
+    @include vertical-gap(margin, top);
   }
   .box {
     background: color(blockfill);
@@ -110,6 +105,12 @@
     .column--sb--2 .box {
       background: color(column-demo-green);
     }
+  }
+}
+
+.app-infra__readmes {
+  h1:first-child {
+    @include line-height-fit($line-height-headings, top);
   }
 }
 

@@ -4,8 +4,11 @@
  */
 
 .box {
-  background: color(blockfill);
   padding: $gap-default;
+
+  &:not(.has-bg) {
+    background: color(blockfill);
+  }
 }
 .box__title {
   @include box-title-appearance;
@@ -28,7 +31,7 @@
 
 .column {
   .box + .box {
-    @include vertical-gap(margin, top, 0.5);
+    @include vertical-gap(margin, top, 0.33);
   }
 }
 

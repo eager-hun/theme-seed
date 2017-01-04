@@ -77,16 +77,16 @@
 @mixin heading-aftereffects($heading) {
   @if $heading == (h1) {
     font-size: 2em;
-    margin-top: 2em;
+    margin-top: 1.5em;
     margin-bottom: 1em;
   }
   @else if $heading == (h2) {
     font-size: 1.6em;
-    margin-top: 1.75em;
+    margin-top: 1.5em;
     margin-bottom: 0.85em;
   }
   @else if $heading == (h2-underlined) {
-    border-bottom: 1px solid color(border-light);
+    border-bottom: 1px solid color(border);
     font-size: 1.6em;
     padding-bottom: 0.25em;
     margin-bottom: 0.85em;
@@ -271,8 +271,8 @@
   margin-bottom: 0;
 
   &::after {
-    @include line-height-fit($line-height-headings, top);
-    @include vertical-gap(margin, bottom, 0.9);
+    // @include line-height-fit($line-height-headings, top);
+    @include vertical-gap(margin, bottom);
 
     content: '';
     display: block;
@@ -321,11 +321,11 @@
 
   // This is experimental.
   ::selection {
-    background: rgba(color(accent-1), 0.85);
+    background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
   ::-moz-selection {
-    background: rgba(color(accent-1), 0.85);
+    background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
 }
@@ -334,11 +334,23 @@
   background-color: color(accent-1);
 
   &,
-  & h2 {
+  & h2,
+  & h3,
+  & .box__title {
     color: color(text-invert);
   }
   & a {
     @include override-link-color(color(link-invert));
+  }
+
+  // This is experimental.
+  ::selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+  ::-moz-selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
   }
 }
 
@@ -346,11 +358,23 @@
   background-color: color(accent-2);
 
   &,
-  & h2 {
+  & h2,
+  & h3,
+  & .box__title {
     color: color(text-invert);
   }
   & a {
     @include override-link-color(color(link-invert));
+  }
+
+  // This is experimental.
+  ::selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+  ::-moz-selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
   }
 }
 
@@ -358,7 +382,9 @@
   background-color: color(bg-dark);
 
   &,
-  & h2 {
+  & h2,
+  & h3,
+  & .box__title {
     color: color(text-invert);
   }
   & a {

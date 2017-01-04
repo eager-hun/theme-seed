@@ -20,12 +20,10 @@ html {
   color: color(text);
 
   -webkit-tap-highlight-color: rgba(color(prim), 0.25);
-}
 
-// This is experimental.
-@include breakpoint(wide-ht-min) {
-  body {
-    font-size: 1.1em;
+  // This is experimental.
+  @include breakpoint(wide-ht-min) {
+    font-size: 115% * ($font-size-default / 16px);
   }
 }
 
@@ -184,7 +182,7 @@ hr {
   height: 0;
   background: 0;
   border: 0;
-  border-top: 1px solid color(border-light);
+  border-top: 1px solid color(border);
 }
 
 // This is experimental.
