@@ -113,6 +113,18 @@
   }
 }
 
+@mixin font-smoothing($switch) {
+  @if $switch == (on) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+  }
+  @else {
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: auto;
+    font-smooth: never;
+  }
+}
 
 // #############################################################################
 // Layout.
