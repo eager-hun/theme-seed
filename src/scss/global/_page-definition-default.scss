@@ -19,12 +19,8 @@
     margin-bottom: 0;
   }
 
-  .header__site-name {
-    @include line-height-fit($line-height-default, top);
-  }
   .header__site-slogan {
     @include vertical-gap(margin, top, 0.15);
-    @include line-height-fit($line-height-default, bottom);
   }
 }
 
@@ -42,12 +38,6 @@
 
 .page__title {
   @include page-title-appearance;
-
-  // If we know that next to it a sidebar appears.
-  .has-1-sb &,
-  .has-2-sb & {
-    @include line-height-fit($line-height-headings, top, 1);
-  }
 }
 
 

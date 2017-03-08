@@ -268,31 +268,15 @@
   @include headings-base;
   @include heading-aftereffects(h1);
 
-  margin-bottom: 0;
-
-  &::after {
-    @include line-height-fit($line-height-headings, top, 1.5);
-    @include vertical-gap(margin, bottom);
-
-    content: '';
-    display: block;
-    height: 0;
-  }
-
-  &:only-child {
-    @include line-height-fit($line-height-headings, bottom, 2);
-
-    &::after {
-      display: none;
-    }
-  }
+  margin-top: 0;
+  @include vertical-gap(margin, bottom);
 }
 
 @mixin box-title-appearance() {
   @include headings-base;
   @include heading-aftereffects(h4);
 
-  @include line-height-fit($line-height-headings, top);
+  margin-top: 0;
 }
 
 // -----------------------------------------------------------------------------

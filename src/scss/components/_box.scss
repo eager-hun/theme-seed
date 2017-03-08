@@ -17,12 +17,6 @@
 }
 .box__content {
   @include fit-content;
-  @include line-height-fit($line-height-default, bottom);
-
-  // If there is no box title.
-  &:first-child {
-    @include line-height-fit($line-height-default, top);
-  }
 }
 
 

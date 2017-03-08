@@ -13,11 +13,6 @@
 .fit-content,
 .page__level__content {
   @include fit-content;
-
-  & > h2:first-child,
-  & > .h2:first-child {
-    @include line-height-fit($line-height-headings, top, 1.35);
-  }
 }
 
 
