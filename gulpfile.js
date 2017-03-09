@@ -318,7 +318,7 @@ gulp.task('watchers', function() {
   gulp.watch(paths.source.customJs + '/**/*.js',   ['compile-custom-js']);
 
   // Extra watchers for various filetypes.
-  for (fileExtension in options.reloadOn) {
+  for (var fileExtension in options.reloadOn) {
     if (options.reloadOn.hasOwnProperty(fileExtension)
         && options.reloadOn[fileExtension].reloadEnabled) {
       console.log(
