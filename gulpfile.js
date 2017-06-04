@@ -142,7 +142,12 @@ var options = {
     php: {
       reloadEnabled: true,
       // Path when used with the Anypage project.
-      pathToWatch:   '../../../**/*.php'
+      pathToWatch:   [
+          '../../../index.php',
+          '../../../private/anypages/**/*.php',
+          '../../../private/app/**/*.php',
+          '../../../private/config/**/*.php'
+      ]
     },
     twig: {
       reloadEnabled: true,
