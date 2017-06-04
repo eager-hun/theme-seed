@@ -131,22 +131,23 @@ var options = {
   reloadOn: {
     // NOTE: for pathToWatch, use a path relative to the gulpfile.js.
     css: {
+      // Path when used with the Anypage project.
       reloadEnabled: true,
-      pathToWatch:   'static-assets/**/*.css'
+      pathToWatch:   '../../**/*.css'
     },
     html: {
-      reloadEnabled: true,
+      reloadEnabled: false,
       pathToWatch:   '**/*.html'
     },
     php: {
       reloadEnabled: true,
-      // Path when used with Anypage project.
-      pathToWatch:   '../../**/*.php'
+      // Path when used with the Anypage project.
+      pathToWatch:   '../../../**/*.php'
     },
     twig: {
       reloadEnabled: true,
-      // Path when used with Anypage project.
-      pathToWatch:   '../../anypages/templates/**/*.twig'
+      // Path when used with the Anypage project.
+      pathToWatch:   '../../../private/anypages/templates/**/*.twig'
     },
     svg: {
       reloadEnabled: false,
