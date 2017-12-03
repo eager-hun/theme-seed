@@ -157,6 +157,11 @@ var options = {
     svg: {
       reloadEnabled: false,
       pathToWatch:   '**/*.svg'
+    },
+    md: {
+      reloadEnabled: true,
+      // Path when used with the Anypage project.
+      pathToWatch: '../../../private/anypages/**/*.md'
     }
   }
 };
