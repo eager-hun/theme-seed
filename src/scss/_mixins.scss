@@ -68,19 +68,21 @@
 @mixin heading-aftereffects($heading) {
   @if $heading == (h1) {
     font-size: 2em;
-    margin-top: 1.5em;
+    margin-top: 2em;
     margin-bottom: 1em;
   }
   @else if $heading == (h2) {
     font-size: 1.6em;
-    margin-top: 1.5em;
+    margin-top: 1.75em;
     margin-bottom: 0.85em;
   }
   @else if $heading == (h2-underlined) {
-    border-bottom: 1px solid color(border);
     font-size: 1.6em;
+    margin-top: 1.75em;
     padding-bottom: 0.25em;
     margin-bottom: 0.85em;
+
+    border-bottom: 1px solid color(border);
   }
   @else if $heading == (h3) {
     font-size: 1.45em;
@@ -173,7 +175,7 @@
 // #############################################################################
 // Basic utils.
 
-@mixin hidden {
+@mixin hidden-sr-only {
   // Hiding texts visually, but enabling screen readers to read them.
   // See http://webaim.org/techniques/css/invisiblecontent/ .
   height: 1px;

@@ -101,12 +101,12 @@ $gap-default:                   1rem;
 // Prep-colors are just a helper stage to set up the base colors in the final
 // color-map below.
 
-$color-brand:                   teal;
+$color-brand:                   desaturate(lighten(navy, 25%), 70%);
 
-$prep-color-prim:               $color-brand;
-$prep-color-accent-1:           #8D2C73; // Magenta-ish.
-$prep-color-accent-2:           #B29912; // Ochre-ish.
-$prep-color-blockfill:          #eee;
+$prep-color-prim:               desaturate(lighten(navy, 25%), 70%);
+$prep-color-accent-1:           desaturate(magenta, 60%);
+$prep-color-accent-2:           desaturate(darken(cyan, 10%), 35%);
+$prep-color-blockfill:          #eeeeee;
 
 $prep-color-nav:                $prep-color-prim;
 $prep-color-action:             $prep-color-accent-1;
@@ -124,7 +124,7 @@ $colors: (
   text:                         #333,
   text-faded:                   #777,
 
-  border:                       #dddddd,
+  border:                       #cccccc,
   border-dark:                  #8a8a8a,
   border-light:                 #e6e6e6,
 
@@ -132,8 +132,8 @@ $colors: (
   bg-dark:                      #333,
   blockfill:                    $prep-color-blockfill,
 
-  link:                         mix($prep-color-nav, white, 80%),
-  link-visited:                 mix($prep-color-accent-1, white, 70%),
+  link:                         mix($prep-color-nav, white, 90%),
+  link-visited:                 mix($prep-color-accent-1, white, 80%),
   link-hover:                   mix($prep-color-nav, black, 80%),
   link-visited-hover:           $prep-color-accent-1,
 
