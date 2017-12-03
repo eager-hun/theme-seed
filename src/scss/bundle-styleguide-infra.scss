@@ -11,11 +11,9 @@
 
 @import 'variables';
 @import 'mixins';
-@import 'extras/mixins-extras';
 
 // NOTE: look at `includePaths` sass compiler option (in gulpfile.js) to find
 // out where this is included from.
 @import "prism";
 
-@import 'infra/styleguide-infra.scss';
-
+@import 'styleguide-infra/styleguide-infra.scss';

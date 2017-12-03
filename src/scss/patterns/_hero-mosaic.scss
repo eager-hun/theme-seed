@@ -13,14 +13,14 @@
 }
 .hero-mosaic__minor {
   @each $breakpoint, $gutter in $grid-column-gutter {
-    @include breakpoint($breakpoint) {
+    @media(min-width: $breakpoint) {
       margin-top: $gutter;
     }
   }
 }
 .hero-mosaic__minor__item + .hero-mosaic__minor__item {
   @each $breakpoint, $gutter in $grid-column-gutter {
-    @include breakpoint($breakpoint) {
+    @media(min-width: $breakpoint) {
       margin-top: $gutter;
     }
   }
@@ -29,14 +29,14 @@
 // -----------------------------------------------------------------------------
 // Growing screens.
 
-@include breakpoint(wide-min) {
+@media(min-width: breakpoint(wide-min)) {
   .hero-mosaic__minor__item,
   .hero-mosaic__minor__item + .hero-mosaic__minor__item {
     margin-top: 0;
   }
   .hero-mosaic__minor__item:nth-child(n+3) {
     @each $breakpoint, $gutter in $grid-column-gutter {
-      @include breakpoint($breakpoint) {
+      @media(min-width: $breakpoint) {
         margin-top: $gutter;
       }
     }
@@ -77,7 +77,7 @@
 
     &:nth-child(n+3) {
       @each $breakpoint, $gutter in $grid-column-gutter {
-        @include breakpoint($breakpoint) {
+        @media(min-width: $breakpoint) {
           margin-top: $gutter;
         }
       }
@@ -98,7 +98,7 @@
   }
 }
 
-@include breakpoint(wide-mt-min) {
+@media(min-width: breakpoint(wide-mt-min)) {
   .hero-mosaic {
     display: flex;
   }
@@ -151,7 +151,7 @@
   }
 }
 
-@include breakpoint(wide-ht-min) {
+@media(min-width: breakpoint(wide-ht-min)) {
   .hero-mosaic__major {
     width: 450px;
     min-height: 450px;

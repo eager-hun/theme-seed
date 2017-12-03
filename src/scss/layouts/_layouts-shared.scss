@@ -1,52 +1,10 @@
 /**
- * @file
- * Layouts shared styling.
- *
- * Either global rules for several layouts, or styles for such layouts that
- * did not get a separate file.
+ * Layouts shared rules.
  */
-
 
 // #############################################################################
 // Layout-fitting.
 
-.fit-content,
-.page__level__content {
-  @include fit-content;
+.fit-content{
+  @include fit-content();
 }
-
-
-// #############################################################################
-// Page levels and page centering.
-// (Horizontal sections - often seen as full-width colourful stripes - on the
-// page.)
-
-.page__level {
-  min-width: $page-min-width;
-
-  @each $breakpoint, $gutter in $grid-column-gutter {
-    @include breakpoint($breakpoint) {
-      padding-left: $gutter;
-      padding-right: $gutter;
-    }
-  }
-
-  &.has-bg {
-    @include vertical-gap(padding, both, 1);
-  }
-}
-
-.page__level__content {
-  max-width: $page-max-width;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  @include vertical-gap(margin, both, 1);
-
-  .has-bg & {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-

@@ -22,7 +22,7 @@ html {
   -webkit-tap-highlight-color: rgba(color(prim), 0.25);
 
   // This is experimental.
-  @include breakpoint(wide-ht-min) {
+  @media(min-width: breakpoint(wide-ht-min)) {
     font-size: 115% * ($font-size-default / 16px);
   }
 }

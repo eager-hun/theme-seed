@@ -33,15 +33,6 @@
 
 
 // #############################################################################
-// Grid-related mixins.
-
-// NOTE: look at `includePaths` sass compiler option (in gulpfile.js) to find
-// out where these are included from.
-@import 'foundation-lean-grid-deps';
-@import 'foundation-lean-grid';
-
-
-// #############################################################################
 // Resets.
 
 @mixin bare-list {
@@ -114,15 +105,15 @@
 }
 
 @mixin font-smoothing($switch) {
-  @if $switch == (on) {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-smooth: always;
-  }
-  @else {
+  @if $switch == (off) {
     -webkit-font-smoothing: initial;
     -moz-osx-font-smoothing: auto;
     font-smooth: never;
+  }
+  @else {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
   }
 }
 
@@ -155,90 +146,26 @@
   }
 }
 
-// -----------------------------------------------------------------------------
-// Grid-related mixins.
+@mixin vertical-gap($implemented_as: margin, $which: both, $multiplier: 1) {
 
-// Apply on `.row`s.
-@mixin grid-with-cols($n) {
-  & > .column {
-    @include grid-column($grid-column-count / $n);
-  }
-}
+  // We need to use keys here sparingly, because when this gets used, for every
+  // key in here there will be a chunk of CSS generated.
+  $vertical-gap-values: (
+    narrow-min:  2.75rem,
+    wide-mt-min: 3.25rem,
+    wide-max:    4rem
+  );
 
-// Apply on `.row`s.
-@mixin grid-wrapping-base {
-  & > .column + .column {
-    @each $breakpoint, $gutter in $grid-column-gutter {
-      @include breakpoint($breakpoint) {
-        margin-top: $gutter;
+  @each $breakpoint, $gap in $vertical-gap-values {
+    @media(min-width: breakpoint($breakpoint)) {
+      @if $which == (both) {
+        #{$implemented_as}-top: $gap * $multiplier;
+        #{$implemented_as}-bottom: $gap * $multiplier;
+      }
+      @else {
+        #{$implemented_as}-#{$which}: $gap * $multiplier;
       }
     }
-  }
-}
-
-// Apply on `.row`s.
-// See http://nth-test.com/
-@mixin grid-wrapping-for-cols($n) {
-  & > .column {
-    @include grid-column-end;
-
-    // Resetting potentially previously set clear-ings.
-    // Specificity hack.
-    &.column {
-      clear: none;
-    }
-
-    &:nth-child(#{$n}n+#{$n+1}) {
-      clear: both;
-    }
-
-    &:nth-child(-n+#{$n}) {
-      margin-top: 0;
-    }
-  }
-}
-
-// Note: this will work only if a modernizr build is included and is producing
-// an .mdz-flexbox class on the :root element.
-//
-// See https://css-tricks.com/snippets/css/a-guide-to-flexbox/ .
-//
-// Apply on `.row`s.
-@mixin flexboxify-floated-grid(
-  $column-selector: '.column',
-  $payload-selector: '.box',
-  $flex: 0 1 auto,
-  $flex-wrap: wrap,
-  $breakpoint: wide-min
-) {
-  @include breakpoint($breakpoint) {
-
-    // TODO: actually do modernizr check!
-    //.mdz-flexbox & {
-
-      display: flex;
-      flex-direction: row;
-      flex-wrap: $flex-wrap;
-
-      // Removing the elements that were used for the micro-clearfix hack.
-      &::before,
-      &::after {
-        display: none;
-      }
-
-      & > #{$column-selector} {
-        display: flex;
-        flex: $flex;
-        float: none;
-
-        // Stretching the actual box that is sitting in the `.column`.
-        & > #{$payload-selector} {
-          flex: 0 1 auto;
-          width: 100%;
-          max-width: 100%;
-        }
-      }
-    //}
   }
 }
 
@@ -259,7 +186,7 @@
 
 
 // #############################################################################
-// Components.
+// Patterns.
 
 // -----------------------------------------------------------------------------
 // Content titles.

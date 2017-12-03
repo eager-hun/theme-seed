@@ -15,13 +15,13 @@ $line-height-headings:          1.25;
 $font-sans:                     "Helvetica Neue",
                                 "Segoe UI",
                                 "Calibri Light",
-                                Roboto,
+                                "Roboto",
                                 "Liberation Sans",
-                                sans-serif;
+                                "sans-serif";
 $font-serif:                    "Times New Roman",
                                 "Liberation Serif",
-                                serif;
-$font-mono:                     monospace;
+                                "serif";
+$font-mono:                     "monospace";
 
 
 // #############################################################################
@@ -45,21 +45,28 @@ $page-max-width:                1200px;
 */
 
 $breakpoints: (
-  narrow-min:                   0,
+  narrow-min:                 0,
   narrow-lt-max:              419px,
+
   narrow-mt-min:              420px,
   narrow-mt-max:              559px,
+
   narrow-ht-min:              560px,
-
   narrow-max:                 699px,
-  wide-min:                   700px,
 
+  wide-min:                   700px,
   wide-lt-max:                919px,
+
   wide-mt-min:                920px,
   wide-mt-max:               1099px,
+
   wide-ht-min:               1100px,
   wide-max:                  $page-max-width
 );
+
+@function breakpoint($key) {
+  @return map-get($breakpoints, $key);
+}
 
 
 // #############################################################################
@@ -70,10 +77,6 @@ $grid-column-gutter: (
   narrow-min:                   0.5rem,
   wide-min:                     1rem,
 );
-$grid-column-align-edge:        true;
-
-// NOTE: Foundation grid will look for this variable:
-$grid-row-width:                $page-max-width;
 
 
 // #############################################################################
