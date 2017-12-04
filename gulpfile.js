@@ -45,6 +45,10 @@ var concat       = require('gulp-concat');
 var jshint       = require('gulp-jshint');
 var plumber      = require('gulp-plumber');
 
+const plumberErrorHandler = function(err) {
+    console.log(err);
+};
+
 
 // #############################################################################
 // Project setup.
@@ -291,6 +295,7 @@ var compileJsBundle = function (bundleName) {
 
   // Do we need to check for files' length (if they exist) first?
   return gulp.src(jsBundles[bundleName].files)
+    .pipe(plumber({errorHandler: plumberErrorHandler}))
     .pipe(gulpif(doJsHinting, jshint()))
     .pipe(gulpif(doJsHinting, jshint.reporter('default')))
     .pipe(sourcemaps.init())
