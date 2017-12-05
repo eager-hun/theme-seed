@@ -1,0 +1,24 @@
+
+Docs:
+    https://github.com/gulpjs/gulp/blob/master/docs/API.md
+    https://github.com/gulpjs/gulp/tree/master/docs/recipes
+
+Overviews:
+    http://andy-carter.com/blog/a-beginners-guide-to-the-task-runner-gulp
+    https://markgoodyear.com/2014/01/getting-started-with-gulp/
+    http://www.chenhuijing.com/blog/drupal-101-theming-with-gulp/
+
+On gulp-load-plugins:
+    https://github.com/jackfranklin/gulp-load-plugins
+
+On concatenating files:
+    Gulp minify multiple js files to one
+        http://stackoverflow.com/a/26719941
+    Using Gulp to Concatenate and Uglify files
+        http://stackoverflow.com/a/24597914
+
+On sourcemaps:
+    https://github.com/floridoo/gulp-sourcemaps/wiki/Plugins-with-gulp-sourcemaps-support
+
+On livereload:
+    https://www.npmjs.com/package/gulp-livereload
