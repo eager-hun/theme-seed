@@ -10,7 +10,7 @@
  */
 
 @import 'variables';
-@import 'mixins';
+@import 'mixins/mixins';
 
 // NOTE: look at `includePaths` sass compiler option (in gulpfile.js) to find
 // out where this is included from.

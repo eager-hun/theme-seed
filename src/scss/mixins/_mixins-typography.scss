@@ -1,0 +1,66 @@
+
+@mixin headings-base {
+  display: block;
+  line-height: $line-height-headings;
+
+  font-family: $font-sans;
+  font-weight: normal;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+
+  color: color(text);
+}
+
+@mixin heading-aftereffects($heading) {
+  @if $heading == (h1) {
+    font-size: 2em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+  @else if $heading == (h2) {
+    font-size: 1.6em;
+    margin-top: 1.75em;
+    margin-bottom: 0.85em;
+  }
+  @else if $heading == (h2-underlined) {
+    font-size: 1.6em;
+    margin-top: 1.75em;
+    padding-bottom: 0.25em;
+    margin-bottom: 0.85em;
+
+    border-bottom: 1px solid color(border);
+  }
+  @else if $heading == (h3) {
+    font-size: 1.45em;
+    margin-top: 1.75em;
+    margin-bottom: 0.85em;
+  }
+  @else if $heading == (h4) {
+    font-size: 1.3em;
+    margin-top: 1.5em;
+    margin-bottom: 0.65em;
+  }
+  @else if $heading == (h5) {
+    font-size: 1.15em;
+    margin-top: 1.5em;
+    margin-bottom: 0.65em;
+  }
+  @else if $heading == (h6) {
+    font-size: 1.05em;
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+  }
+}
+
+@mixin font-smoothing($switch) {
+  @if $switch == (off) {
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: auto;
+    font-smooth: never;
+  }
+  @else {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+  }
+}

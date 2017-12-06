@@ -1,0 +1,98 @@
+
+@mixin override-link-color($color, $hover-color: $color) {
+  &,
+  &:active,
+  &:visited {
+    color: $color;
+  }
+  &:hover,
+  &:visited:hover {
+    color: $hover-color;
+  }
+}
+
+@mixin color-zone-brand {
+  background-color: color(brand);
+
+  &,
+  & h2 {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+
+  -webkit-tap-highlight-color: rgba(color(prim), 0.25);
+
+  // This is experimental.
+  ::selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+  ::-moz-selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+}
+
+@mixin color-zone-accent-1 {
+  background-color: color(accent-1);
+
+  &,
+  & h2,
+  & h3,
+  & .box__title {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+
+  // This is experimental.
+  ::selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+  ::-moz-selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+}
+
+@mixin color-zone-accent-2 {
+  background-color: color(accent-2);
+
+  &,
+  & h2,
+  & h3,
+  & .box__title {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+
+  // This is experimental.
+  ::selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+  ::-moz-selection {
+    background: rgba(color(bg-dark), 0.5);
+    color: color(text-invert);
+  }
+}
+
+@mixin color-zone-black {
+  background-color: color(bg-dark);
+
+  &,
+  & h2,
+  & h3,
+  & .box__title {
+    color: color(text-invert);
+  }
+  & a {
+    @include override-link-color(color(link-invert));
+  }
+}

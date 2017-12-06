@@ -1,118 +1,17 @@
 
-// ############################################################################
-// Styles for component-demo items' template.
+.styles-demo-grid-palette {
 
-.app-infra__cd-item {
-  .element__label {
-    display: block;
-    margin: 1rem 0;
-    font-style: italic;
-    font-weight: 700;
-
-    color: color(text-faded);
+  // `ee` = Expose Edges.
+  &.ee {
+    background: darkslategray;
   }
 
-  &:not(:first-child) {
-    position: relative;
-
-    &::before {
-      content: '';
-      display: block;
-      height: 1em;
-      width: 100%;
-      max-width: $page-max-width;
-
-      margin-left: auto;
-      margin-right: auto;
-
-      @include vertical-gap(margin, bottom);
-
-      background: color(blockfill);
-      background: repeating-linear-gradient(
-        -45deg,
-        //mix(color(blockfill), white, 25%) 1em,
-        //mix(color(blockfill), white, 25%) 1.75em,
-        transparent 1em,
-        transparent 1.75em,
-        color(blockfill) 1.75em,
-        color(blockfill) 3em
-      );
+  hr {
+    @each $breakpoint, $gutter in $grid-column-gutters {
+      @media(min-width: breakpoint($breakpoint)) {
+        margin-top: $gutter;
+        margin-bottom: $gutter;
+      }
     }
   }
 }
-
-.element--content__content {
-  @include fit-content;
-}
-
-.element--description__content {
-  @include description-appearance();
-}
-
-.app-infra__cd-item__code {
-  pre {
-    margin: 0;
-    padding: 1em 1.35em;
-
-    font-family: monospace;
-    background: color(blockfill);
-
-    code {
-      background: none;
-      border: none;
-      padding: 0;
-
-      font-family: monospace;
-      line-height: 1.75;
-    }
-  }
-}
-
-
-// #############################################################################
-// Grid-demos.
-
-.app-infra__grid-demos {
-  .variant-title {
-    @include vertical-gap(margin, top);
-  }
-  .box {
-    background: color(blockfill);
-  }
-  // Specificity hack.
-  .box__content.box__content {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    line-height: $line-height-condensed;
-    font-size: 1em;
-  }
-  code {
-    background: none;
-    border: none;
-    color: color(text-faded);
-    padding: 0;
-  }
-
-  &.l-2sb-demo {
-    .column--sb--1 .box {
-      background: color(column-demo-pink);
-    }
-    .column--sb--2 .box {
-      background: color(column-demo-green);
-    }
-  }
-}
-
-
-// ############################################################################
-// Misc.
-
-.html-generator-button {
-  margin-bottom: 1.5em;
-
-  & + .label {
-    margin-bottom: 1em;
-  }
-}
-

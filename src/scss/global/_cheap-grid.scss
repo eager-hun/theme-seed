@@ -4,3 +4,65 @@
  *
  * TODO.
  */
+
+.cheap-grid--fixed {
+  @include cheap-grid($wrap: true);
+
+  & > .cheap-grid__item {
+    @include cheap-grid-item();
+  }
+}
+
+// In case grids get nested.
+.cheap-grid__item {
+  & > .cheap-grid {
+    flex: 1 1 auto;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Option to "steer" grid items with classes on them.
+
+// NOTE: this is a "second-best" option, as it has several shortcomings:
+// - due to media-query support not being implemented, these grid-items don't
+//   adapt to screen-width-change, so on mobile they will likely be badly
+//   crammed.
+// - when the grid wraps, there is no solution offered to keep a vertical gap
+//   between the wrapped items.
+
+// A better option might be is to "sculpt" custom grids with the grid-related
+// mixins.
+
+.cheap-grid--fixed {
+  .cheap-grid__item {
+    &.full {
+      @include width-full();
+    }
+    &.three-quarters {
+      @include width-three-quarters();
+    }
+    &.two-thirds {
+      @include width-two-thirds();
+    }
+    &.half {
+      @include width-half();
+    }
+    &.third {
+      @include width-third();
+    }
+    &.quarter {
+      @include width-quarter();
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Vertical gap between adjacent grid instances.
+
+.cheap-grid + .cheap-grid {
+  @each $breakpoint, $gutter in $grid-column-gutters {
+    @media(min-width: breakpoint($breakpoint)) {
+      margin-top: $gutter;
+    }
+  }
+}

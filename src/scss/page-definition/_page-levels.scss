@@ -7,7 +7,7 @@
 .page__level {
   min-width: $page-min-width;
 
-  @each $breakpoint, $gutter in $grid-column-gutter {
+  @each $breakpoint, $gutter in $grid-column-gutters {
     @media(min-width: breakpoint($breakpoint)) {
       padding-left: $gutter;
       padding-right: $gutter;

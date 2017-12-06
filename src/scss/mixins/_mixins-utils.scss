@@ -1,0 +1,11 @@
+
+@mixin hidden-sr-only {
+  // Hiding texts visually, but enabling screen readers to read them.
+  // See http://webaim.org/techniques/css/invisiblecontent/ .
+  height: 1px;
+  left: -9999em;
+  top: auto;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}

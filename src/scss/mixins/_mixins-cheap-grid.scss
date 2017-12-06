@@ -1,0 +1,83 @@
+
+@mixin cheap-grid($wrap: false) {
+
+  @each $breakpoint, $gutter in $grid-column-gutters {
+    @media(min-width: breakpoint($breakpoint)) {
+      margin-left: $gutter * -0.5;
+      margin-right: $gutter * -0.5;
+    }
+  }
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  @if $wrap == (true) {
+    flex-wrap: wrap;
+  }
+  @else {
+    flex-wrap: nowrap;
+  }
+}
+
+@mixin cheap-grid-item() {
+  flex: 0 1 auto; // As a flex child.
+  display: flex;  // As a flex parent.
+  align-items: stretch;
+
+  @each $breakpoint, $gutter in $grid-column-gutters {
+    @media(min-width: breakpoint($breakpoint)) {
+      padding-left: $gutter * 0.5;
+      padding-right: $gutter * 0.5;
+    }
+  }
+}
+
+
+// #############################################################################
+// Width helpers.
+
+@mixin width-full() {
+  width: 100%;
+}
+
+@mixin width-three-quarters() {
+  width: 75%;
+}
+
+@mixin width-two-thirds() {
+  width: 66.66%;
+}
+
+@mixin width-half() {
+  width: 50%;
+}
+
+@mixin width-third() {
+  width: 33%;
+}
+
+@mixin width-quarter() {
+  width: 25%;
+}
+
+
+// #############################################################################
+// Wrapping helpers.
+
+// Apply on grid root element.
+@mixin grid-wrapping-for-cols($n) {
+  & > .cheap-grid__item {
+
+    @each $breakpoint, $gutter in $grid-column-gutters {
+      @media(min-width: breakpoint($breakpoint)) {
+        margin-top: $gutter;
+      }
+    }
+
+    // See http://nth-test.com/
+    &:nth-child(-n+#{$n}) {
+      margin-top: 0;
+    }
+  }
+}

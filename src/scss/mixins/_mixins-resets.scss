@@ -1,0 +1,14 @@
+
+@mixin bare-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin strip-button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}

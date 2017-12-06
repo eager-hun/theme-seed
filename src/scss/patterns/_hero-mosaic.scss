@@ -12,14 +12,14 @@
   }
 }
 .hero-mosaic__minor {
-  @each $breakpoint, $gutter in $grid-column-gutter {
+  @each $breakpoint, $gutter in $grid-column-gutters {
     @media(min-width: $breakpoint) {
       margin-top: $gutter;
     }
   }
 }
 .hero-mosaic__minor__item + .hero-mosaic__minor__item {
-  @each $breakpoint, $gutter in $grid-column-gutter {
+  @each $breakpoint, $gutter in $grid-column-gutters {
     @media(min-width: $breakpoint) {
       margin-top: $gutter;
     }
@@ -35,7 +35,7 @@
     margin-top: 0;
   }
   .hero-mosaic__minor__item:nth-child(n+3) {
-    @each $breakpoint, $gutter in $grid-column-gutter {
+    @each $breakpoint, $gutter in $grid-column-gutters {
       @media(min-width: $breakpoint) {
         margin-top: $gutter;
       }
@@ -76,7 +76,7 @@
     }
 
     &:nth-child(n+3) {
-      @each $breakpoint, $gutter in $grid-column-gutter {
+      @each $breakpoint, $gutter in $grid-column-gutters {
         @media(min-width: $breakpoint) {
           margin-top: $gutter;
         }

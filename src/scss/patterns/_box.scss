@@ -10,28 +10,22 @@
     background: color(blockfill);
   }
 }
+
 .box__title {
   @include box-title-appearance;
 
   margin-bottom: $gap-default;
 }
+
 .box__content {
   @include fit-content;
 }
 
-
 // #############################################################################
-// Boxes at specific locations.
+// Box behaviors.
 
-.column {
-  .box + .box {
-    @include vertical-gap(margin, top, 0.33);
+.box {
+  &.fill-flex {
+    flex: 1 1 auto;
   }
 }
-
-.column--sidebar {
-  .box__content {
-    font-size: 0.9em;
-  }
-}
-

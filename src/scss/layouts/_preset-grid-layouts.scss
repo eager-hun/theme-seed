@@ -1,0 +1,85 @@
+
+
+// #############################################################################
+// Preset 3 column responsive grid.
+
+.cheap-grid--preset-3-cols {
+  @include grid-wrapping-for-cols(1);
+}
+
+.cheap-grid--preset-3-cols {
+  // As the screen grows, this where grids kick in for the first time.
+  @media (min-width: breakpoint(wide-min)) {
+    @include cheap-grid($wrap: true);
+
+    & > .cheap-grid__item {
+      @include cheap-grid-item();
+
+      flex: 1 1 auto;
+    }
+  }
+
+  // 2 cols only, when there is room for that.
+  @media (min-width: breakpoint(wide-min)) and (max-width: breakpoint(wide-lt-max)) {
+    @include grid-wrapping-for-cols(2);
+
+    & > .cheap-grid__item {
+      @include width-half();
+    }
+  }
+
+  // 3 cols, when there is room for that.
+  @media (min-width: breakpoint(wide-mt-min)) {
+    @include grid-wrapping-for-cols(3);
+
+    & > .cheap-grid__item {
+      @include width-third();
+    }
+  }
+}
+
+
+// #############################################################################
+// Preset 4 column responsive grid.
+
+.cheap-grid--preset-4-cols {
+  @include grid-wrapping-for-cols(1);
+
+  // As the screen grows, this where grids kick in for the first time.
+  @media (min-width: breakpoint(narrow-ht-min)) {
+    @include cheap-grid($wrap: true);
+
+    & > .cheap-grid__item {
+      @include cheap-grid-item();
+
+      flex: 1 1 auto;
+    }
+  }
+
+  // 2 cols only, when there is room for that.
+  @media (min-width: breakpoint(narrow-ht-min)) and (max-width: breakpoint(wide-lt-max)) {
+    @include grid-wrapping-for-cols(2);
+
+    & > .cheap-grid__item {
+      @include width-half();
+    }
+  }
+
+  // 3 cols only, when there is room for that.
+  @media (min-width: breakpoint(wide-mt-min)) and (max-width: breakpoint(wide-mt-max)) {
+    @include grid-wrapping-for-cols(3);
+
+    & > .cheap-grid__item {
+      @include width-third();
+    }
+  }
+
+  // 4 cols, when there is room for that.
+  @media (min-width: breakpoint(wide-ht-min)) {
+    @include grid-wrapping-for-cols(4);
+
+    & > .cheap-grid__item {
+      @include width-quarter();
+    }
+  }
+}

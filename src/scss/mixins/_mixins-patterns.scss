@@ -1,0 +1,31 @@
+
+// -----------------------------------------------------------------------------
+// Content titles.
+
+@mixin page-title-appearance() {
+  @include headings-base;
+  @include heading-aftereffects(h1);
+
+  margin-top: 0;
+  @include vertical-gap(margin, bottom);
+}
+
+@mixin box-title-appearance() {
+  @include headings-base;
+  @include heading-aftereffects(h4);
+
+  margin-top: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Misc patterns.
+
+@mixin description-appearance {
+  font-size: 0.9rem;
+  font-style: italic;
+
+  p {
+    line-height: $line-height-condensed;
+    margin: 0.5em 0;
+  }
+}

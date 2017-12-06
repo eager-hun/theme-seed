@@ -45,7 +45,7 @@ $page-max-width:                1200px;
 */
 
 $breakpoints: (
-  narrow-min:                 0,
+  narrow-min:                   0,
   narrow-lt-max:              419px,
 
   narrow-mt-min:              420px,
@@ -61,7 +61,7 @@ $breakpoints: (
   wide-mt-max:               1099px,
 
   wide-ht-min:               1100px,
-  wide-max:                  $page-max-width
+  wide-max:         $page-max-width
 );
 
 @function breakpoint($key) {
@@ -72,9 +72,8 @@ $breakpoints: (
 // #############################################################################
 // Grid-settings.
 
-$grid-column-count:             24;
-$grid-column-gutter: (
-  narrow-min:                   0.5rem,
+$grid-column-gutters: (
+  narrow-min:                   0.75rem,
   wide-min:                     1rem,
 );
 

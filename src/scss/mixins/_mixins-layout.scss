@@ -1,0 +1,49 @@
+
+@mixin micro-clearfix {
+  // See http://nicolasgallagher.com/micro-clearfix-hack/ .
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+  // WARNING: This rule interferes with ::before and ::after pseudo-elements.
+  //          Take that into account when applying this anywhere.
+}
+
+// Passes control of providing whitespace between groups of contents to
+// containing elements (e.g. layouts), by removing possibly disruptive margins
+// from the children.
+@mixin fit-content {
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin vertical-gap($implemented_as: margin, $which: both, $multiplier: 1) {
+
+  // We need to use keys here sparingly, because when this gets used, for every
+  // key in here there will be a chunk of CSS generated.
+  $vertical-gap-values: (
+          narrow-min:  2.75rem,
+          wide-mt-min: 3.25rem,
+          wide-max:    4rem
+  );
+
+  @each $breakpoint, $gap in $vertical-gap-values {
+    @media(min-width: breakpoint($breakpoint)) {
+      @if $which == (both) {
+        #{$implemented_as}-top: $gap * $multiplier;
+        #{$implemented_as}-bottom: $gap * $multiplier;
+      }
+      @else {
+        #{$implemented_as}-#{$which}: $gap * $multiplier;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+/**
+ * @file
+ * SASS mixins.
+ *
+ * Mixins vs Extending utility-role Placeholders?
+ *
+ * Mixins won, placeholders lost so badly that they will not be used. Repetition
+ * originating from using mixins will be mitigated by gzip serving the resulting
+ * files (gzip works well on repeated patterns, they say).
+ *
+ * @see
+ * http://www.sitepoint.com/avoid-sass-extend/
+ * http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/
+ *
+ * NOTES on basic syntax:
+ * @code
+ *   @mixin test-mixin--box($bg: gold, $padding: 1em) {
+ *     background: $bg;
+ *     padding: $padding;
+ *
+ *     @if $bg == (gold) and $padding == (1em) {
+ *       border: 1px solid red;
+ *     }
+ *     @else if $bg == (gold) and $padding != (1em) {
+ *       border: 5px solid red;
+ *     }
+ *     @else {
+ *       border: 3px solid black;
+ *     }
+ *   }
+ * @endcode
+ */
+
+@import "mixins-cheap-grid";
+@import "mixins-color-zones";
+@import "mixins-layout";
+@import "mixins-patterns";
+@import "mixins-resets";
+@import "mixins-typography";
+@import "mixins-utils";
