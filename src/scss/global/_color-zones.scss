@@ -4,15 +4,19 @@
  */
 
 .has-bg--color-brand {
-  @include color-zone-brand;
+  @include color-zone-brand();
 }
 
 .has-bg--color-accent-1 {
-  @include color-zone-accent-1;
+  @include color-zone-accent-1();
 }
 
 .has-bg--color-accent-2 {
-  @include color-zone-accent-2;
+  @include color-zone-accent-2();
+}
+
+.has-bg--color-dark {
+  @include color-zone-dark();
 }
 
 .has-bg--color-blockfill {

@@ -17,11 +17,11 @@
 }
 
 .page__header {
-  @include color-zone-brand;
+  @include color-zone-brand();
 }
 
 .page__footer {
-  @include color-zone-black;
+  @include color-zone-dark();
 }
 
 .header__site-name {

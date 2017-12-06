@@ -1,4 +1,7 @@
 
+// #############################################################################
+// Color-related helpers.
+
 @mixin override-link-color($color, $hover-color: $color) {
   &,
   &:active,
@@ -11,15 +14,23 @@
   }
 }
 
+
+// #############################################################################
+// Color-zones.
+
 @mixin color-zone-brand {
   background-color: color(brand);
 
   &,
-  & h2 {
+  & h2,
+  & h3,
+  & .box__title {
     color: color(text-invert);
   }
-  & a {
+  a {
     @include override-link-color(color(link-invert));
+
+    text-decoration: underline;
   }
 
   -webkit-tap-highlight-color: rgba(color(prim), 0.25);
@@ -44,8 +55,10 @@
   & .box__title {
     color: color(text-invert);
   }
-  & a {
+  a {
     @include override-link-color(color(link-invert));
+
+    text-decoration: underline;
   }
 
   // This is experimental.
@@ -68,8 +81,10 @@
   & .box__title {
     color: color(text-invert);
   }
-  & a {
+  a {
     @include override-link-color(color(link-invert));
+
+    text-decoration: underline;
   }
 
   // This is experimental.
@@ -83,7 +98,7 @@
   }
 }
 
-@mixin color-zone-black {
+@mixin color-zone-dark {
   background-color: color(bg-dark);
 
   &,
@@ -92,7 +107,9 @@
   & .box__title {
     color: color(text-invert);
   }
-  & a {
+  a {
     @include override-link-color(color(link-invert));
+
+    text-decoration: underline;
   }
 }
