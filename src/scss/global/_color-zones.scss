@@ -3,23 +3,23 @@
  * Color zones.
  */
 
-.has-bg--color-brand {
+.color-zone--brand {
   @include color-zone-brand();
 }
 
-.has-bg--color-accent-1 {
+.color-zone--accent-1 {
   @include color-zone-accent-1();
 }
 
-.has-bg--color-accent-2 {
+.color-zone--accent-2 {
   @include color-zone-accent-2();
 }
 
-.has-bg--color-dark {
+.color-zone--dark {
   @include color-zone-dark();
 }
 
-.has-bg--color-blockfill {
+.color-zone--blockfill {
   background: color(blockfill);
 }
 

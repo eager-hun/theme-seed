@@ -6,7 +6,7 @@
 .box {
   padding: $gap-default;
 
-  &:not(.has-bg) {
+  &:not(.color-zone) {
     background: color(blockfill);
   }
 }
