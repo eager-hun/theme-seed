@@ -12,7 +12,18 @@
 }
 
 .box__title {
-  @include box-title-appearance;
+  @include headings-base();
+  @include heading-aftereffects(h4);
+
+  margin-top: 0;
+
+  .box--major & {
+    @media (min-width: breakpoint(wide-min)) {
+      @include heading-aftereffects(h3);
+
+      margin-top: 0;
+    }
+  }
 
   margin-bottom: $gap-default;
 }
@@ -20,6 +31,7 @@
 .box__content {
   @include fit-content;
 }
+
 
 // #############################################################################
 // Box behaviors.

@@ -10,13 +10,6 @@
   @include vertical-gap(margin, bottom);
 }
 
-@mixin box-title-appearance() {
-  @include headings-base;
-  @include heading-aftereffects(h4);
-
-  margin-top: 0;
-}
-
 // -----------------------------------------------------------------------------
 // Misc patterns.
 
