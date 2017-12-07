@@ -36,11 +36,13 @@
   -webkit-tap-highlight-color: rgba(color(prim), 0.25);
 
   // This is experimental.
-  ::selection {
+  &::selection,
+  & ::selection {
     background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
-  ::-moz-selection {
+  &::-moz-selection,
+  & ::-moz-selection {
     background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
@@ -62,11 +64,13 @@
   }
 
   // This is experimental.
-  ::selection {
+  &::selection,
+  & ::selection {
     background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
-  ::-moz-selection {
+  &::-moz-selection,
+  & ::-moz-selection {
     background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
@@ -88,11 +92,13 @@
   }
 
   // This is experimental.
-  ::selection {
+  &::selection,
+  & ::selection {
     background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
-  ::-moz-selection {
+  &::-moz-selection,
+  & ::-moz-selection {
     background: rgba(color(bg-dark), 0.5);
     color: color(text-invert);
   }
