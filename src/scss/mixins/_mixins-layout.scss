@@ -30,9 +30,9 @@
   // We need to use keys here sparingly, because when this gets used, for every
   // key in here there will be a chunk of CSS generated.
   $vertical-gap-values: (
-          narrow-min:  2.75rem,
-          wide-mt-min: 3.25rem,
-          wide-max:    4rem
+    initial:  2.75rem,
+    wide-mt-min: 3.25rem,
+    wide-max:    4rem
   );
 
   @each $breakpoint, $gap in $vertical-gap-values {
