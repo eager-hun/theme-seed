@@ -57,6 +57,19 @@
 }
 
 // -----------------------------------------------------------------------------
+// Collapsing grids.
+
+.cheap-grid.cheap-grid--collapsed {
+  margin-left: 0;
+  margin-right: 0;
+
+  & > .cheap-grid__item {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Vertical gap between adjacent grid instances.
 
 .cheap-grid + .cheap-grid {

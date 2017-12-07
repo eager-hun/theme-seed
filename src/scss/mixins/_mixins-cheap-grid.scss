@@ -67,7 +67,7 @@
 
 // Apply on grid root element.
 @mixin grid-wrapping-for-cols($n) {
-  & > .cheap-grid__item {
+  &:not(.cheap-grid--collapsed) > .cheap-grid__item {
 
     @each $breakpoint, $gutter in $grid-column-gutters {
       @media(min-width: breakpoint($breakpoint)) {
