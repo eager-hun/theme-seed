@@ -7,11 +7,6 @@
   }
 
   hr {
-    @each $breakpoint, $gutter in $grid-column-gutters {
-      @media(min-width: breakpoint($breakpoint)) {
-        margin-top: $gutter;
-        margin-bottom: $gutter;
-      }
-    }
+    @include gap(margin, vertical, 1);
   }
 }

@@ -73,9 +73,5 @@
 // Vertical gap between adjacent grid instances.
 
 .cheap-grid + .cheap-grid {
-  @each $breakpoint, $gutter in $grid-column-gutters {
-    @media(min-width: breakpoint($breakpoint)) {
-      margin-top: $gutter;
-    }
-  }
+  @include gap(margin, top, 1);
 }

@@ -1,12 +1,6 @@
 
 @mixin cheap-grid($wrap: false) {
-
-  @each $breakpoint, $gutter in $grid-column-gutters {
-    @media(min-width: breakpoint($breakpoint)) {
-      margin-left: $gutter * -0.5;
-      margin-right: $gutter * -0.5;
-    }
-  }
+  @include gap(margin, horizontal, -0.5);
 
   display: flex;
   flex-direction: row;
@@ -21,16 +15,11 @@
 }
 
 @mixin cheap-grid-item() {
+  @include gap(padding, horizontal, 0.5);
+
   flex: 0 1 auto; // As a flex child.
   display: flex;  // As a flex parent.
   align-items: stretch;
-
-  @each $breakpoint, $gutter in $grid-column-gutters {
-    @media(min-width: breakpoint($breakpoint)) {
-      padding-left: $gutter * 0.5;
-      padding-right: $gutter * 0.5;
-    }
-  }
 }
 
 
@@ -68,12 +57,7 @@
 // Apply on grid root element.
 @mixin grid-wrapping-for-cols($n) {
   &:not(.cheap-grid--collapsed) > .cheap-grid__item {
-
-    @each $breakpoint, $gutter in $grid-column-gutters {
-      @media(min-width: breakpoint($breakpoint)) {
-        margin-top: $gutter;
-      }
-    }
+    @include gap(margin, top, 1);
 
     // See http://nth-test.com/
     &:nth-child(-n+#{$n}) {

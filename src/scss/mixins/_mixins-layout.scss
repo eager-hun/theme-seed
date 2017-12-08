@@ -25,24 +25,55 @@
   }
 }
 
-@mixin vertical-gap($implemented_as: margin, $which: both, $multiplier: 1) {
-
-  // We need to use keys here sparingly, because when this gets used, for every
-  // key in here there will be a chunk of CSS generated.
-  $vertical-gap-values: (
-    initial:  2.75rem,
-    wide-mt-min: 3.25rem,
-    wide-max:    4rem
-  );
-
-  @each $breakpoint, $gap in $vertical-gap-values {
-    @media(min-width: breakpoint($breakpoint)) {
-      @if $which == (both) {
-        #{$implemented_as}-top: $gap * $multiplier;
-        #{$implemented_as}-bottom: $gap * $multiplier;
+@mixin gap($implemented-as, $applied-at: all, $multiplier: 1, $gap-map: $grid-column-gutters) {
+  @if $applied-at == (all) {
+    @each $breakpoint, $gap in $gap-map {
+      @if $breakpoint == (initial) {
+        #{$implemented-as}: $gap * $multiplier;
       }
       @else {
-        #{$implemented_as}-#{$which}: $gap * $multiplier;
+        @media (min-width: breakpoint($breakpoint)) {
+          #{$implemented-as}: $gap * $multiplier;
+        }
+      }
+    }
+  }
+  @else if $applied-at == (horizontal) {
+    @each $breakpoint, $gap in $gap-map {
+      @if $breakpoint == (initial) {
+        #{$implemented-as}-left: $gap * $multiplier;
+        #{$implemented-as}-right: $gap * $multiplier;
+      }
+      @else {
+        @media (min-width: breakpoint($breakpoint)) {
+          #{$implemented-as}-left: $gap * $multiplier;
+          #{$implemented-as}-right: $gap * $multiplier;
+        }
+      }
+    }
+  }
+  @else if $applied-at == (vertical) {
+    @each $breakpoint, $gap in $gap-map {
+      @if $breakpoint == (initial) {
+        #{$implemented-as}-top: $gap * $multiplier;
+        #{$implemented-as}-bottom: $gap * $multiplier;
+      }
+      @else {
+        @media (min-width: breakpoint($breakpoint)) {
+          #{$implemented-as}-top: $gap * $multiplier;
+          #{$implemented-as}-bottom: $gap * $multiplier;
+        }
+      }
+    }
+  }
+  @else {
+    @each $breakpoint, $gap in $gap-map {
+      @if $breakpoint == (initial) {
+        #{$implemented-as}-#{$applied-at}: $gap * $multiplier;
+      } @else {
+        @media (min-width: breakpoint($breakpoint)) {
+          #{$implemented-as}-#{$applied-at}: $gap * $multiplier;
+        }
       }
     }
   }

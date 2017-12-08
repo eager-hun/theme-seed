@@ -6,8 +6,9 @@
   @include headings-base;
   @include heading-aftereffects(h1);
 
+  @include gap(margin, bottom, 3);
+
   margin-top: 0;
-  @include vertical-gap(margin, bottom);
 }
 
 // -----------------------------------------------------------------------------

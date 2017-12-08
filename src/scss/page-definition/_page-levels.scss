@@ -5,29 +5,23 @@
 // page.)
 
 .page__level {
+  @include gap(padding, horizontal, 1);
+
   min-width: $page-min-width;
 
-  @each $breakpoint, $gutter in $grid-column-gutters {
-    @media(min-width: breakpoint($breakpoint)) {
-      padding-left: $gutter;
-      padding-right: $gutter;
-    }
-  }
-
   &.has-bg {
-    @include vertical-gap(padding, both, 1);
+    @include gap(padding, vertical, 3);
   }
 }
 
 .page__level__content {
   @include fit-content();
+  @include gap(margin, vertical, 3);
 
   max-width: $page-max-width;
 
   margin-left: auto;
   margin-right: auto;
-
-  @include vertical-gap(margin, both, 1);
 
   .has-bg & {
     margin-top: 0;

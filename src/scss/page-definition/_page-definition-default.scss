@@ -4,7 +4,7 @@
 
 .page__header,
 .page__footer {
-  @include vertical-gap(padding, both, 0.5);
+  @include gap(padding, vertical, 1.5);
 
   .page__level__content {
     margin-top: 0;
@@ -12,7 +12,7 @@
   }
 
   .header__site-slogan {
-    @include vertical-gap(margin, top, 0.15);
+    @include gap(margin, top, 0.15);
   }
 }
 

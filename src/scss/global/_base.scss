@@ -183,7 +183,7 @@ pre {
 }
 
 hr {
-  @include vertical-gap(margin, both, 0.5);
+  @include gap(margin, vertical, 0.5);
 
   height: 0;
   background: 0;
