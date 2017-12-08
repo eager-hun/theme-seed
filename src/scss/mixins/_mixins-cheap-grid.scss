@@ -1,4 +1,7 @@
 
+// -----------------------------------------------------------------------------
+// Grid root element.
+
 @mixin cheap-grid($wrap: false) {
   @include gap(margin, horizontal, -0.5);
 
@@ -14,6 +17,10 @@
   }
 }
 
+
+// -----------------------------------------------------------------------------
+// Grid item.
+
 @mixin cheap-grid-item() {
   @include gap(padding, horizontal, 0.5);
 
@@ -23,39 +30,16 @@
 }
 
 
-// #############################################################################
-// Width helpers.
-
-@mixin width-full() {
-  width: 100%;
-}
-
-@mixin width-three-quarters() {
-  width: 75%;
-}
-
-@mixin width-two-thirds() {
-  width: 66.6666%;
-}
-
-@mixin width-half() {
-  width: 50%;
-}
-
-@mixin width-third() {
-  width: 33.3333%;
-}
-
-@mixin width-quarter() {
-  width: 25%;
-}
+// -----------------------------------------------------------------------------
+// Grid item width.
 
 @mixin grid-item-width($item-width, $of-total-cols: $grid-default-column-count) {
   width: 100 / $of-total-cols * $item-width * 1%;
 }
 
-// #############################################################################
-// Wrapping helpers.
+
+// -----------------------------------------------------------------------------
+// Wrapping helper.
 
 // Apply on grid root element.
 @mixin grid-wrapping-for-cols($n, $item_classname: cheap-grid__item) {

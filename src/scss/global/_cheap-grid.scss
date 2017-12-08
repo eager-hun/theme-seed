@@ -36,22 +36,22 @@
 .cheap-grid--fixed {
   .cheap-grid__item {
     &.full {
-      @include width-full();
+      @include grid-item-width(1, 1);
     }
     &.three-quarters {
-      @include width-three-quarters();
+      @include grid-item-width(3, 4);
     }
     &.two-thirds {
-      @include width-two-thirds();
+      @include grid-item-width(2, 3);
     }
     &.half {
-      @include width-half();
+      @include grid-item-width(1, 2);
     }
     &.third {
-      @include width-third();
+      @include grid-item-width(1, 3);
     }
     &.quarter {
-      @include width-quarter();
+      @include grid-item-width(1, 4);
     }
   }
 }
