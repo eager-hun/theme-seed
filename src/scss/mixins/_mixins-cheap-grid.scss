@@ -50,13 +50,16 @@
   width: 25%;
 }
 
+@mixin grid-item-width($item-width, $of-total-cols: $grid-default-column-count) {
+  width: 100 / $of-total-cols * $item-width * 1%;
+}
 
 // #############################################################################
 // Wrapping helpers.
 
 // Apply on grid root element.
-@mixin grid-wrapping-for-cols($n) {
-  &:not(.cheap-grid--collapsed) > .cheap-grid__item {
+@mixin grid-wrapping-for-cols($n, $item_classname: cheap-grid__item) {
+  &:not(.grid-collapsing) > .#{$item_classname} {
     @include gap(margin, top, 1);
 
     // See http://nth-test.com/

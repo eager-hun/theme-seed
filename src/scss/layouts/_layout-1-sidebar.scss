@@ -1,0 +1,74 @@
+
+.layout-1-sidebar {
+  @include grid-wrapping-for-cols(1, $item_classname: layout__element);
+
+  // ---------------------------------------------------------------------------
+  // The width when the grid kicks in.
+
+  @media (min-width: breakpoint(wide-min)) {
+
+    @include cheap-grid($wrap: true);
+    @include grid-wrapping-for-cols(2, $item_classname: layout__element);
+
+    .layout__main,
+    .layout__sidebar {
+      @include cheap-grid-item();
+
+      flex: 0 0 auto;
+    }
+
+    // The default state assumes that we don't actually have a sidebar.
+    .layout__main {
+      width: 100%;
+    }
+
+    // But if there is a sidebar, then:
+    &.has-sidebar {
+      .layout__main {
+        @include grid-item-width($item-width: 15, $of-total-cols: 24);
+      }
+      .layout__sidebar {
+        @include grid-item-width($item-width: 8, $of-total-cols: 24);
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Sidebar on the right side.
+
+    &.sidebar-on-right {
+      .layout__sidebar {
+        margin-left: auto;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Sidebar on the left side.
+
+    &.sidebar-on-left {
+      .layout__main {
+        order: 2;
+
+        // Sending it to the opposite side, thus using all the remaining
+        // available width to contribute to the gap between the items.
+        margin-left: auto;
+      }
+      .layout__sidebar {
+        order: 1;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Resize the columns to better suit wider screens.
+
+  @media (min-width: breakpoint(wide-mt-min)) {
+    &.has-sidebar {
+      .layout__main {
+        @include grid-item-width($item-width: 16, $of-total-cols: 24);
+      }
+      .layout__sidebar {
+        @include grid-item-width($item-width: 7, $of-total-cols: 24);
+      }
+    }
+  }
+}

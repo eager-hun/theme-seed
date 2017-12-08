@@ -54,7 +54,7 @@ $breakpoints: (
   narrow-ht-min:              560px,
   narrow-max:                 699px,
 
-  wide-min:                   700px,
+  wide-min:                   760px,
   wide-lt-max:                919px,
 
   wide-mt-min:                920px,
@@ -72,6 +72,7 @@ $breakpoints: (
 // #############################################################################
 // Grid-settings.
 
+$grid-default-column-count:     24;
 $grid-column-gutters: (
   initial:                      0.75rem,
   wide-min:                     1.5rem,
