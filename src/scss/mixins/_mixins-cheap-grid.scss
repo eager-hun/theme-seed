@@ -1,8 +1,26 @@
 
 // -----------------------------------------------------------------------------
+// Helper.
+
+@mixin make-grid-item-flex-parent() {
+  // As a flex parent.
+  display: flex;
+  flex-direction: column;
+
+  // The following is here only for the sake of IE11.
+  // See https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421
+  & > * {
+    min-height: 1px;
+  }
+  & > img {
+    flex: 0 0 auto;
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Grid root element.
 
-@mixin cheap-grid($wrap: false) {
+@mixin cheap-grid($wrap: false, $item-classname: cheap-grid__item) {
   @include gap(margin, horizontal, -0.5);
 
   display: flex;
@@ -15,30 +33,17 @@
   @else {
     flex-wrap: nowrap;
   }
-}
 
+  & > .#{$item-classname} {
+    @include gap(padding, horizontal, 0.5);
 
-// -----------------------------------------------------------------------------
-// Grid item.
-
-@mixin cheap-grid-item() {
-  @include gap(padding, horizontal, 0.5);
-
-  // As a flex child.
-  flex: 0 1 auto;
-
-  // As a flex parent.
-  display: flex;
-  flex-direction: column;
-
-  // This is here only for the sake of IE11.
-  // See https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421
-  & > * {
     flex: 0 1 auto;
-    min-height: 1px;
   }
-  & > img {
-    flex: 0 0 auto;
+
+  &.flexboxify-items {
+    & > .#{$item-classname} {
+      @include make-grid-item-flex-parent();
+    }
   }
 }
 
@@ -59,8 +64,8 @@
 // Wrapping helper.
 
 // Apply on grid root element.
-@mixin grid-wrapping-for-cols($n, $item_classname: cheap-grid__item) {
-  &:not(.grid-collapsing) > .#{$item_classname} {
+@mixin grid-wrapping-for-cols($n, $item-classname: cheap-grid__item) {
+  &:not(.grid-collapsing) > .#{$item-classname} {
     @include gap(margin, top, 1);
 
     // See http://nth-test.com/

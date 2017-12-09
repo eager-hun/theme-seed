@@ -6,13 +6,12 @@
   // Initially, on mobile, items are wrapped right at 1 column.
   @include grid-wrapping-for-cols(1);
 
-  // 2 columns as soon as there is enough width for it.
+  // As the screen grows, time for side-by-side arrangement.
   @media (min-width: breakpoint(wide-min)) {
     @include cheap-grid($wrap: true);
     @include grid-wrapping-for-cols(2);
 
     & > .cheap-grid__item {
-      @include cheap-grid-item();
       @include apply-grid-item-width(1, 2);
 
       flex: 1 1 auto;
@@ -33,8 +32,6 @@
     @include cheap-grid($wrap: true);
 
     & > .cheap-grid__item {
-      @include cheap-grid-item();
-
       flex: 1 1 auto;
     }
   }
@@ -71,8 +68,6 @@
     @include cheap-grid($wrap: true);
 
     & > .cheap-grid__item {
-      @include cheap-grid-item();
-
       flex: 1 1 auto;
     }
   }

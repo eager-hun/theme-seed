@@ -7,10 +7,6 @@
 
 .cheap-grid--fixed {
   @include cheap-grid($wrap: true);
-
-  & > .cheap-grid__item {
-    @include cheap-grid-item();
-  }
 }
 
 // In case grids get nested.
