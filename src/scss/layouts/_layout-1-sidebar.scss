@@ -25,10 +25,10 @@
     // But if there is a sidebar, then:
     &.has-sidebar {
       .layout__main {
-        @include grid-item-width($item-width: 15, $of-total-cols: 24);
+        @include apply-grid-item-width($item-width: 15, $of-total-cols: 24);
       }
       .layout__sidebar {
-        @include grid-item-width($item-width: 8, $of-total-cols: 24);
+        @include apply-grid-item-width($item-width: 8, $of-total-cols: 24);
       }
     }
 
@@ -64,10 +64,10 @@
   @media (min-width: breakpoint(wide-mt-min)) {
     &.has-sidebar {
       .layout__main {
-        @include grid-item-width($item-width: 16, $of-total-cols: 24);
+        @include apply-grid-item-width($item-width: 16, $of-total-cols: 24);
       }
       .layout__sidebar {
-        @include grid-item-width($item-width: 7, $of-total-cols: 24);
+        @include apply-grid-item-width($item-width: 7, $of-total-cols: 24);
       }
     }
   }

@@ -1,4 +1,8 @@
 
+
+// #############################################################################
+// Grid-demo custom rules.
+
 .styles-demo-grid-palette {
 
   // `ee` = Expose Edges.
@@ -6,7 +10,29 @@
     background: darkslategray;
   }
 
-  hr {
-    @include gap(margin, vertical, 1);
+  .cheap-grid + .cheap-grid {
+    @include gap(margin, vertical, 2.5);
+  }
+
+  .box {
+    @include fit-content();
+  }
+  img {
+    vertical-align: bottom;
+  }
+
+  .column-offset-poc {
+    .cheap-grid__item {
+      @include apply-grid-item-width(4, 12);
+    }
+    .offset-1-of-12-cols {
+      margin-left: grid-item-width(1, 12);
+    }
+    .offset-2-of-12-cols {
+      margin-left: grid-item-width(2, 12);
+    }
+    .offset-3-of-12-cols {
+      margin-left: grid-item-width(3, 12);
+    }
   }
 }

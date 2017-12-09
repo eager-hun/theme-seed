@@ -24,17 +24,34 @@
 @mixin cheap-grid-item() {
   @include gap(padding, horizontal, 0.5);
 
-  flex: 0 1 auto; // As a flex child.
-  display: flex;  // As a flex parent.
-  align-items: stretch;
+  // As a flex child.
+  flex: 0 1 auto;
+
+  // As a flex parent.
+  display: flex;
+  flex-direction: column;
+
+  // This is here only for the sake of IE11.
+  // See https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421
+  & > * {
+    flex: 0 1 auto;
+    min-height: 1px;
+  }
+  & > img {
+    flex: 0 0 auto;
+  }
 }
 
 
 // -----------------------------------------------------------------------------
 // Grid item width.
 
-@mixin grid-item-width($item-width, $of-total-cols: $grid-default-column-count) {
-  width: 100 / $of-total-cols * $item-width * 1%;
+@function grid-item-width($item-width, $of-total-cols: $grid-default-column-count) {
+  @return 100 / $of-total-cols * $item-width * 1%;
+}
+
+@mixin apply-grid-item-width($item-width, $of-total-cols: $grid-default-column-count) {
+  width: grid-item-width($item-width, $of-total-cols);
 }
 
 
