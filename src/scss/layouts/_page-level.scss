@@ -6,7 +6,7 @@ Horizontal sections - often seen as full-width colourful stripes - on the page.
 
 */
 
-.page__level {
+.page-level {
   @include gap(padding, horizontal, 1);
 
   min-width: $page-min-width;
@@ -16,7 +16,7 @@ Horizontal sections - often seen as full-width colourful stripes - on the page.
   }
 }
 
-.page__level__content {
+.page-level__content {
   @include fit-content();
   @include gap(margin, vertical, 3);
 
@@ -31,6 +31,6 @@ Horizontal sections - often seen as full-width colourful stripes - on the page.
   }
 }
 
-.page__level__title {
+.page-level__title {
   @include page-level-title-appearance();
 }

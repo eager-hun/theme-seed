@@ -6,7 +6,7 @@
 .page__footer {
   @include gap(padding, vertical, 1.5);
 
-  .page__level__content {
+  .page-level__content {
     margin-top: 0;
     margin-bottom: 0;
   }
