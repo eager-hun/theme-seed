@@ -20,11 +20,12 @@
 @import "global/forms";
 
 @import "layouts/layouts-shared";
+@import "layouts/page-level";
+@import "layouts/squeeze";
 @import "layouts/preset-grid-layouts";
 @import "layouts/layout-1-sidebar";
 
 @import "page-definition/page-definition-default";
-@import "page-definition/page-levels";
 
 @import "patterns/box";
 @import "patterns/hero-mosaic";

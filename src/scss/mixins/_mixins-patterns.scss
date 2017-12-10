@@ -11,6 +11,13 @@
   margin-top: 0;
 }
 
+@mixin page-level-title-appearance() {
+  @include headings-base;
+  @include heading-aftereffects(h2);
+
+  margin-top: 0;
+}
+
 // -----------------------------------------------------------------------------
 // Misc patterns.
 

@@ -1,8 +1,10 @@
+/**
 
-// #############################################################################
-// Page levels and page centering.
-// (Horizontal sections - often seen as full-width colourful stripes - on the
-// page.)
+Page levels and page centering.
+
+Horizontal sections - often seen as full-width colourful stripes - on the page.
+
+*/
 
 .page__level {
   @include gap(padding, horizontal, 1);
@@ -29,3 +31,6 @@
   }
 }
 
+.page__level__title {
+  @include page-level-title-appearance();
+}

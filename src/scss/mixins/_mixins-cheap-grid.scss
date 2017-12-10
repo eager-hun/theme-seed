@@ -74,3 +74,13 @@
     }
   }
 }
+
+
+// -----------------------------------------------------------------------------
+// Layout helper.
+
+@function squeezed-max-width($squeeze-by-cols-per-side, $of-total-cols: $grid-default-column-count) {
+  $width-limit: $page-max-width - ($page-max-width / $of-total-cols * $squeeze-by-cols-per-side * 2);
+
+  @return $width-limit;
+}
