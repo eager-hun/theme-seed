@@ -14,6 +14,7 @@ const uglify        = require('gulp-uglify');
 const rename        = require('gulp-rename');
 const concat        = require('gulp-concat');
 const jshint        = require('gulp-jshint');
+const svgsprite     = require('gulp-svg-sprite');
 const plumber       = require('gulp-plumber');
 
 // Setup.
@@ -27,6 +28,7 @@ const jsBundles = setup.jsBundles;
 // Tasks to be called from the cli.
 
 gulp.task('compile', [
+    'compile-svg-sprites',
     'compile-scss',
     'compile-js-libs',
     'compile-custom-js',
@@ -93,6 +95,14 @@ gulp.task('clean-styleguide-js', function () {
   cleanBuiltJsBundle('styleguide');
 });
 
+// Not being used due to a difficulty.
+gulp.task('clean-svg-sprites', function () {
+    if (options.cleaning.enabled) {
+        del([paths.output.svgSprite + '/*'], options.cleaning.delOpts)
+            .then(announceCleaning);
+    }
+});
+
 
 // #############################################################################
 // Build tasks.
@@ -154,6 +164,21 @@ gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
 });
 
 // -----------------------------------------------------------------------------
+// BUILDING SVG SPRITE(s).
+
+// NOTE: the 'clean-svg-sprites' task, if set as dependency for this one,
+// doesn't happen properly, seems to execute async/ race-conditiony... So not
+// using yet.
+
+gulp.task('compile-svg-sprites', function() {
+    return gulp.src(paths.source.svgSprite + '/*.svg')
+        .pipe(plumber({errorHandler: plumberErrorHandler}))
+        .pipe(svgsprite(options.svgSprite))
+        .pipe(gulp.dest(paths.output.svgSprite))
+        .pipe(livereload());
+});
+
+// -----------------------------------------------------------------------------
 // WATCHERS.
 
 const watcherAnnounce = function watcherAnnounce(event) {
@@ -163,8 +188,9 @@ const watcherAnnounce = function watcherAnnounce(event) {
 gulp.task('watchers', function() {
   livereload.listen(options.livereload);
 
-  gulp.watch(paths.source.scss     + '/**/*.scss', ['compile-scss']);
-  gulp.watch(paths.source.customJs + '/**/*.js',   ['compile-custom-js']);
+  gulp.watch(paths.source.scss      + '/**/*.scss', ['compile-scss']);
+  gulp.watch(paths.source.customJs  + '/**/*.js',   ['compile-custom-js']);
+  gulp.watch(paths.source.svgSprite + '/**/*.svg',  ['compile-svg-sprites']);
 
   // Extra watchers for various filetypes.
   for (let fileExtension in options.reloadOn) {

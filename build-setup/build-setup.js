@@ -3,6 +3,7 @@
  * Setup values for gulpfile.js.
  */
 
+
 // -----------------------------------------------------------------------------
 // PATHS.
 // NOTE: relative paths are relative from gulpfile.js' location.
@@ -13,19 +14,24 @@ const paths = {
         frontendLibs: 'libraries-frontend/node_modules',
         customLibs:   'src/libs-custom',
         scss:         'src/scss',
-        customJs:     'src/js'
+        customJs:     'src/js',
+        svgSprite:    'src/graphics/icons/svg'
     },
     output: {
         // Paths relative to the gulpfile. No trailing slash!
         css:        'build/css',
-        js:         'build/js'
+        js:         'build/js',
+        svgSprite:  'build/graphics/svg-sprite'
     },
     web: {
         // Use leading slash, but not trailing slash!
         // When used wrapped with the "anypage" project.
         toGulpfile: '/anypage/public/themes/theme-seed'
-    }
+    },
+    // Path relative to the gulpfile. No trailing slash!
+    svgSpriteConfigs: 'src/graphics/icons'
 };
+
 
 // -----------------------------------------------------------------------------
 // Options.
@@ -109,6 +115,63 @@ const options = {
             // Path when used with the Anypage project.
             pathToWatch:   '../../../private/anypages/**/*.md'
         }
+    },
+    // See http://jkphl.github.io/svg-sprite/#gulp
+    // See https://github.com/jkphl/gulp-svg-sprite#examples
+    // See https://github.com/jkphl/svg-sprite#configuration-basics
+    // See https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md
+    // See https://caniuse.com/#search=SVG
+    // See https://css-tricks.com/svg-sprites-use-better-icon-fonts/
+    // See https://css-tricks.com/svg-use-with-external-reference-take-2/
+    // See https://css-tricks.com/ajaxing-svg-sprite/
+    // See https://css-tricks.com/svg-symbol-good-choice-icons/
+    // See https://css-tricks.com/svg-fragment-identifiers-work/
+    // See https://codepen.io/chriscoyier/pen/GndhE
+    // See https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
+    // See https://github.com/jonathantneal/svg4everybody
+    // see https://github.com/jonathantneal/svg4everybody#readability-and-accessibility
+    svgSprite: {
+        // dest: "foobar-dir",
+        // log: "debug",
+        svg: {
+            xmlDeclaration: false,
+            doctypeDeclaration: false,
+            dimensionAttributes: true,
+            namespaceIDs: true
+        },
+        shape: {
+            dimension: { maxWidth: 32, maxHeight: 32 },
+            spacing: { padding: 1, box: 'icon' },
+            align: paths.svgSpriteConfigs + '/svg-sprite-alignment.yaml',
+            meta: paths.svgSpriteConfigs + '/svg-sprite-meta.yaml',
+            transform: [
+                {'svgo': {}}
+            ],
+        },
+        mode: {
+            css: {
+                dest: ".",
+                sprite: "svg-sprite.css-mode.svg",
+                common: "svg-icon-sprite",
+                prefix: "svg-icon-sprite__%s",
+                layout: "vertical", // "vertical", "horizontal", "diagonal" or "packed"
+                render: {
+                    css: false
+                    // css: { dest: "svg-sprite.css-mode.stylesheet.css" }
+                },
+                bust: false,
+                example: {
+                    dest: "svg-sprite.css-mode.inventory.html"
+                }
+            },
+            symbol: {
+                dest: ".",
+                sprite: "svg-sprite.symbol-mode.svg",
+                prefix: "svg-icon-sprite__%s",
+                inline: true,
+                bust: false
+            }
+        }
     }
 };
 
@@ -132,11 +195,16 @@ const jsBundles = {
     custom: {
         filename: 'custom',
         files: [
+            paths.source.customJs + '/svg-sprite-ajax.js',
             paths.source.customJs + '/custom-script-1.js',
             paths.source.customJs + '/custom-script-2.js'
         ]
     }
 };
+
+
+// #############################################################################
+// EXPORT.
 
 module.exports = {
     paths,
