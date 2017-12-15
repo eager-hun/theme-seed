@@ -43,9 +43,9 @@ gulp.task('watch', ['compile', 'watchers']);
 gulp.task('compile', [
     'compile-svg-sprites',
     'compile-scss',
-    'compile-js-libs',
-    'compile-custom-js',
-    'compile-styleguide-js',
+    'oldschool-js-compile-libs',
+    'oldschool-js-compile-custom',
+    'oldschool-js-compile-styleguide',
     'webpack'
 ]);
 
@@ -153,15 +153,15 @@ const compileJsBundle = function (bundleName) {
     .pipe(gulpif(doLivereload, livereload()));
 };
 
-gulp.task('compile-js-libs', ['clean-js-libs'], function() {
+gulp.task('oldschool-js-compile-libs', ['clean-js-libs'], function() {
   return compileJsBundle('libs');
 });
 
-gulp.task('compile-custom-js', ['clean-custom-js'], function() {
+gulp.task('oldschool-js-compile-custom', ['clean-custom-js'], function() {
   return compileJsBundle('custom');
 });
 
-gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
+gulp.task('oldschool-js-compile-styleguide', ['clean-styleguide-js'], function() {
   return compileJsBundle('styleguide');
 });
 
@@ -209,7 +209,7 @@ gulp.task('watchers', function() {
   livereload.listen(options.livereload);
 
   gulp.watch(paths.source.scss      + '/**/*.scss', ['compile-scss']);
-  gulp.watch(paths.source.customJs  + '/**/*.js',   ['compile-custom-js']);
+  gulp.watch(paths.source.customJs  + '/**/*.js',   ['oldschool-js-compile-custom']);
   gulp.watch(paths.source.svgSprite + '/**/*.svg',  ['compile-svg-sprites']);
 
   // Extra watchers for various filetypes.
