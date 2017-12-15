@@ -9,7 +9,7 @@
     "use strict";
 
     var themeUrl = window.apSettings.themeUrl;
-    var spritePath = "build/graphics/svg-sprite";
+    var spritePath = "built/gulp-out/graphics/svg-sprite";
     var spriteFileName = "svg-sprite.symbol-mode.svg";
     var requestUrl = themeUrl + "/" + spritePath + "/" + spriteFileName;
 
@@ -17,7 +17,6 @@
     xhr.open("GET", requestUrl, true);
     xhr.send();
     xhr.onloadend = function(event) {
-        console.log(xhr);
         if (xhr.status === 200) {
             var div = document.createElement("div");
             div.id = "svg-sprite-housing";
@@ -25,7 +24,7 @@
             document.body.insertBefore(div, document.body.childNodes[0]);
         }
         else {
-            // console.log("Sprite not found...");
+            console.log("Icon sprite not found...");
         }
     };
 

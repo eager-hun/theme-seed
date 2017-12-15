@@ -17,4 +17,3 @@ if (typeof console === "undefined") {
   window.apSettings.testVariable = 'testVariable works.';
 
 })(this.jQuery, this, this.document);
-

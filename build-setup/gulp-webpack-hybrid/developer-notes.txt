@@ -1,0 +1,52 @@
+
+################################################################################
+On GULP:
+
+Docs:
+    https://github.com/gulpjs/gulp/blob/master/docs/API.md
+    https://github.com/gulpjs/gulp/tree/master/docs/recipes
+
+Overviews:
+    http://andy-carter.com/blog/a-beginners-guide-to-the-task-runner-gulp
+    https://markgoodyear.com/2014/01/getting-started-with-gulp/
+    http://www.chenhuijing.com/blog/drupal-101-theming-with-gulp/
+
+On gulp-load-plugins:
+    https://github.com/jackfranklin/gulp-load-plugins
+
+On concatenating files:
+    Gulp minify multiple js files to one
+        http://stackoverflow.com/a/26719941
+    Using Gulp to Concatenate and Uglify files
+        http://stackoverflow.com/a/24597914
+
+On sourcemaps:
+    https://github.com/floridoo/gulp-sourcemaps/wiki/Plugins-with-gulp-sourcemaps-support
+
+On livereload:
+    https://www.npmjs.com/package/gulp-livereload
+
+On SVG icons and sprites:
+    http://jkphl.github.io/svg-sprite/#gulp
+    https://github.com/jkphl/gulp-svg-sprite#examples
+    https://github.com/jkphl/svg-sprite#configuration-basics
+    https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md
+    https://caniuse.com/#search=SVG
+    https://css-tricks.com/svg-sprites-use-better-icon-fonts/
+    https://css-tricks.com/svg-use-with-external-reference-take-2/
+    https://css-tricks.com/ajaxing-svg-sprite/
+    https://css-tricks.com/svg-symbol-good-choice-icons/
+    https://css-tricks.com/svg-fragment-identifiers-work/
+    https://codepen.io/chriscoyier/pen/GndhE
+    https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
+    https://github.com/jonathantneal/svg4everybody
+    https://github.com/jonathantneal/svg4everybody#readability-and-accessibility
+
+
+################################################################################
+On WEBPACK:
+
+    https://webpack.js.org/configuration/
+    https://webpack.js.org/guides/integrations/#gulp
+    https://github.com/shama/webpack-stream
+    https://vue-loader.vuejs.org/en/

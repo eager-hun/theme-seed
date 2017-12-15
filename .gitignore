@@ -7,6 +7,6 @@ nbproject
 node_modules
 
 # GENERATED CONTENT:
-/build/*
-!/build/.gitkeep
+/built/*
+!/built/.gitkeep
 

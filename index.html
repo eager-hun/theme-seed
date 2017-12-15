@@ -4,18 +4,33 @@
   <meta charset="UTF-8">
   <title>Theme seed index.html</title>
 
-  <link rel="stylesheet" type="text/css" href="build/css/bundle-main.css">
+  <link rel="stylesheet" type="text/css" href="built/gulp-out/css/bundle-main.css">
   <link rel="stylesheet" type="text/css" href="static-assets/css/static.css">
 
-  <!--script src="http://localhost:35729/livereload.js?snipver=1"></script-->
+  <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 </head>
 <body>
+
   <div class="page-level">
     <div class="page-level__content">
+
       <h1 class="page__title">Theme seed</h1>
       <p>A default index page for the theme-seed setup.</p>
+
     </div>
   </div>
+
+  <div class="page-level">
+    <div class="page-level__content">
+
+      <div id="example-vue__mount">
+        <p><strong>Vue component did not mount.</strong></p>
+        <p>(This text should have been replaced by a successfully mounted Vue component.)</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="built/webpack-out/index.built.js"></script>
 </body>
 </html>
-

@@ -4,37 +4,37 @@
  */
 
 
-// -----------------------------------------------------------------------------
+// #############################################################################
 // PATHS.
-// NOTE: relative paths are relative from gulpfile.js' location.
+// NOTE: relative paths are relative from gulpfile.js' location!
 
 const paths = {
     source: {
-        // Paths relative to the gulpfile. No trailing slash!
-        frontendLibs: 'libraries-frontend/node_modules',
-        customLibs:   'src/libs-custom',
-        scss:         'src/scss',
-        customJs:     'src/js',
-        svgSprite:    'src/graphics/icons/svg'
+        // No trailing slash!
+        frontendLibs:   'libraries-frontend/node_modules',
+        customLibs:     'src/libs-custom',
+        scss:           'src/scss',
+        customJs:       'src/js-oldschool',
+        svgSprite:      'src/graphics/icons/svg'
     },
     output: {
-        // Paths relative to the gulpfile. No trailing slash!
-        css:        'build/css',
-        js:         'build/js',
-        svgSprite:  'build/graphics/svg-sprite'
+        // No trailing slash!
+        css:            'built/gulp-out/css',
+        js:             'built/gulp-out/js',
+        svgSprite:      'built/gulp-out/graphics/svg-sprite'
     },
     web: {
         // Use leading slash, but not trailing slash!
         // When used wrapped with the "anypage" project.
-        toGulpfile: '/anypage/public/themes/theme-seed'
+        toGulpfile:     '/anypage/public/themes/theme-seed'
     },
-    // Path relative to the gulpfile. No trailing slash!
-    svgSpriteConfigs: 'src/graphics/icons'
+    // No trailing slash!
+    svgSpriteConfigs:   'src/graphics/icons'
 };
 
 
-// -----------------------------------------------------------------------------
-// Options.
+// #############################################################################
+// OPTIONS.
 
 const options = {
     // Cleaning deletes earlier instances of built files before writing new ones.
@@ -80,21 +80,21 @@ const options = {
         quiet: true
     },
     reloadOn: {
-        // NOTE: for pathToWatch, use a path relative to gulpfile.js.
+        // NOTE: for pathsToWatch, use paths relative to gulpfile.js.
         css: {
             reloadEnabled: true,
-            pathToWatch: [
+            pathsToWatch: [
                 '../../app-assets/**/*.css' // Path when used with the Anypage project.
             ]
         },
         html: {
             reloadEnabled: false,
-            pathToWatch:   '**/*.html'
+            pathsToWatch:   '**/*.html'
         },
         php: {
             reloadEnabled: true,
             // Paths when used with the Anypage project.
-            pathToWatch: [
+            pathsToWatch: [
                 '../../../index.php',
                 '../../../private/anypages/**/*.php',
                 '../../../private/app/**/*.php',
@@ -104,32 +104,18 @@ const options = {
         twig: {
             reloadEnabled: true,
             // Path when used with the Anypage project.
-            pathToWatch:   '../../../private/anypages/templates/**/*.twig'
+            pathsToWatch:   '../../../private/anypages/templates/**/*.twig'
         },
         svg: {
             reloadEnabled: false,
-            pathToWatch:   '**/*.svg'
+            pathsToWatch:   '**/*.svg'
         },
         md: {
             reloadEnabled: true,
             // Path when used with the Anypage project.
-            pathToWatch:   '../../../private/anypages/**/*.md'
+            pathsToWatch:   '../../../private/anypages/**/*.md'
         }
     },
-    // See http://jkphl.github.io/svg-sprite/#gulp
-    // See https://github.com/jkphl/gulp-svg-sprite#examples
-    // See https://github.com/jkphl/svg-sprite#configuration-basics
-    // See https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md
-    // See https://caniuse.com/#search=SVG
-    // See https://css-tricks.com/svg-sprites-use-better-icon-fonts/
-    // See https://css-tricks.com/svg-use-with-external-reference-take-2/
-    // See https://css-tricks.com/ajaxing-svg-sprite/
-    // See https://css-tricks.com/svg-symbol-good-choice-icons/
-    // See https://css-tricks.com/svg-fragment-identifiers-work/
-    // See https://codepen.io/chriscoyier/pen/GndhE
-    // See https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
-    // See https://github.com/jonathantneal/svg4everybody
-    // see https://github.com/jonathantneal/svg4everybody#readability-and-accessibility
     svgSprite: {
         // dest: "foobar-dir",
         // log: "debug",
@@ -176,10 +162,10 @@ const options = {
 };
 
 
-// -----------------------------------------------------------------------------
-// Js bundle definitions.
+// #############################################################################
+// JS BUNDLE DEFINITIONS - the oldschool (pre-module-bundling) way.
 
-const jsBundles = {
+const jsOldschoolBundles = {
     libs: {
         filename: 'libs',
         files: [
@@ -209,5 +195,5 @@ const jsBundles = {
 module.exports = {
     paths,
     options,
-    jsBundles
+    jsOldschoolBundles
 };

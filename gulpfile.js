@@ -1,47 +1,57 @@
 
 // #############################################################################
-// Gulp wiring.
+// GULP WIRING.
 
-// Plugins.
-const gulp          = require("gulp");
-const del           = require('del');
-const sourcemaps    = require('gulp-sourcemaps');
-const sass          = require('gulp-sass');
-const autoprefixer  = require('gulp-autoprefixer');
-const livereload    = require('gulp-livereload');
-const gulpif        = require('gulp-if');
-const uglify        = require('gulp-uglify');
-const rename        = require('gulp-rename');
-const concat        = require('gulp-concat');
-const jshint        = require('gulp-jshint');
-const svgsprite     = require('gulp-svg-sprite');
-const plumber       = require('gulp-plumber');
+// -----------------------------------------------------------------------------
+// PLUGINS.
 
-// Setup.
-const setup     = require("./build-setup/build-setup");
-const paths     = setup.paths;
-const options   = setup.options;
-const jsBundles = setup.jsBundles;
+const gulp                  = require("gulp");
+const del                   = require('del');
+const sourcemaps            = require('gulp-sourcemaps');
+const sass                  = require('gulp-sass');
+const autoprefixer          = require('gulp-autoprefixer');
+const livereload            = require('gulp-livereload');
+const gulpif                = require('gulp-if');
+const uglify                = require('gulp-uglify');
+const rename                = require('gulp-rename');
+const concat                = require('gulp-concat');
+const jshint                = require('gulp-jshint');
+const svgsprite             = require('gulp-svg-sprite');
+const plumber               = require('gulp-plumber');
+const webpack               = require("webpack");
+const webpackStream         = require("webpack-stream");
+
+// -----------------------------------------------------------------------------
+// SETUP.
+
+const setup                 = require("./build-setup/gulp-webpack-hybrid/gulp-setup");
+
+const paths                 = setup.paths;
+const options               = setup.options;
+const jsOldschoolBundles    = setup.jsOldschoolBundles;
+
+const webpackConfig         = require("./build-setup/gulp-webpack-hybrid/webpack-config");
 
 
 // #############################################################################
-// Tasks to be called from the cli.
+// TASKS TO BE CALLED FROM THE CLI.
+
+gulp.task('default', ['watch']);
+
+gulp.task('watch', ['compile', 'watchers']);
 
 gulp.task('compile', [
     'compile-svg-sprites',
     'compile-scss',
     'compile-js-libs',
     'compile-custom-js',
-    'compile-styleguide-js'
+    'compile-styleguide-js',
+    'webpack'
 ]);
-
-gulp.task('watch', ['compile', 'watchers']);
-
-gulp.task('default', ['watch']);
 
 
 // #############################################################################
-// Helpers.
+// HELPER FUNCTIONS AND TASKS.
 
 const plumberErrorHandler = function(err) {
     console.log(err);
@@ -66,10 +76,10 @@ const announceCleaning = function (paths) {
 const cleanBuiltJsBundle = function (bundleName) {
   if (options.cleaning.enabled) {
     const globs = [
-      paths.output.js + '/' + jsBundles[bundleName].filename + '.js',
-      paths.output.js + '/' + jsBundles[bundleName].filename + '.min.js',
-      paths.output.js + '/sourcemaps/' + jsBundles[bundleName].filename + '.js.map',
-      paths.output.js + '/sourcemaps/' + jsBundles[bundleName].filename + '.min.js.map'
+      paths.output.js + '/' + jsOldschoolBundles[bundleName].filename + '.js',
+      paths.output.js + '/' + jsOldschoolBundles[bundleName].filename + '.min.js',
+      paths.output.js + '/sourcemaps/' + jsOldschoolBundles[bundleName].filename + '.js.map',
+      paths.output.js + '/sourcemaps/' + jsOldschoolBundles[bundleName].filename + '.min.js.map'
     ];
     del(globs, options.cleaning.delOpts)
       .then(announceCleaning);
@@ -95,17 +105,9 @@ gulp.task('clean-styleguide-js', function () {
   cleanBuiltJsBundle('styleguide');
 });
 
-// Not being used due to a difficulty.
-gulp.task('clean-svg-sprites', function () {
-    if (options.cleaning.enabled) {
-        del([paths.output.svgSprite + '/*'], options.cleaning.delOpts)
-            .then(announceCleaning);
-    }
-});
-
 
 // #############################################################################
-// Build tasks.
+// BUILD FUNCTIONS AND TASKS.
 
 // -----------------------------------------------------------------------------
 // COMPILING SCSS.
@@ -137,12 +139,12 @@ const compileJsBundle = function (bundleName) {
   }
 
   // Do we need to check for files' length (if they exist) first?
-  return gulp.src(jsBundles[bundleName].files)
+  return gulp.src(jsOldschoolBundles[bundleName].files)
     .pipe(plumber({errorHandler: plumberErrorHandler}))
     .pipe(gulpif(doJsHinting, jshint()))
     .pipe(gulpif(doJsHinting, jshint.reporter('default')))
     .pipe(sourcemaps.init())
-    .pipe(concat(jsBundles[bundleName].filename + '.js', {newLine: "\n;"}))
+    .pipe(concat(jsOldschoolBundles[bundleName].filename + '.js', {newLine: "\n;"}))
     .pipe(gulp.dest(paths.output.js))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify(options.uglify))
@@ -166,15 +168,33 @@ gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
 // -----------------------------------------------------------------------------
 // BUILDING SVG SPRITE(s).
 
-// NOTE: the 'clean-svg-sprites' task, if set as dependency for this one,
-// doesn't happen properly, seems to execute async/ race-conditiony... So not
-// using yet.
+// NOTE: in the case of the SVG sprite generator, trying to clean previously
+// built files in the same fashion as they are pre-cleaned in the case of .css
+// and .js files, the deletion of the old files doesn't happen properly: it
+// seems to execute async, it feels race-conditiony, and sometimes deletes the
+// freshly created files. So it's not implemented.
 
 gulp.task('compile-svg-sprites', function() {
     return gulp.src(paths.source.svgSprite + '/*.svg')
         .pipe(plumber({errorHandler: plumberErrorHandler}))
         .pipe(svgsprite(options.svgSprite))
         .pipe(gulp.dest(paths.output.svgSprite))
+        .pipe(livereload());
+});
+
+// -----------------------------------------------------------------------------
+// WEBPACK.
+
+gulp.task('webpack', function() {
+    // If this task was invoked via the Gulp 'watch' task, let's ask webpack to
+    // watch, too.
+    if ("seq" in this && this.seq.includes('watch')) {
+        webpackConfig.watch = true;
+    }
+
+    return gulp.src(webpackConfig.entry.index)
+        .pipe(webpackStream(webpackConfig, webpack))
+        .pipe(gulp.dest(webpackConfig.output.path))
         .pipe(livereload());
 });
 
@@ -199,7 +219,7 @@ gulp.task('watchers', function() {
       console.log(
         'Extra watcher + livereload is enabled for filetype: .' + fileExtension
       );
-      gulp.watch(options.reloadOn[fileExtension].pathToWatch)
+      gulp.watch(options.reloadOn[fileExtension].pathsToWatch)
         .on('change', function(event) {
           watcherAnnounce(event);
           livereload.reload();
