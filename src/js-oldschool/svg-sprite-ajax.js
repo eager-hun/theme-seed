@@ -8,24 +8,43 @@
 (function(window, document, undefined) {
     "use strict";
 
-    var themeUrl = window.apSettings.themeUrl;
-    var spritePath = "built/gulp-out/graphics/svg-sprite";
-    var spriteFileName = "svg-sprite.symbol-mode.svg";
-    var requestUrl = themeUrl + "/" + spritePath + "/" + spriteFileName;
+    var housing = document.getElementById("svg-sprite-housing");
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", requestUrl, true);
-    xhr.send();
-    xhr.onloadend = function(event) {
-        if (xhr.status === 200) {
-            var div = document.createElement("div");
-            div.id = "svg-sprite-housing";
-            div.innerHTML = xhr.responseText;
-            document.body.insertBefore(div, document.body.childNodes[0]);
+    if (! housing || ! housing.hasAttribute("data-svg-via-ajax")) {
+        console.log("SVG AJAX retires peacefully.");
+        return false;
+    }
+
+    if (! ("themeUrl" in window.apSettings) || ! ("svgSprites" in window.apSettings)) {
+        console.error("SVG AJAX drama: config missing.");
+        return false;
+    }
+
+    var themeUrl = window.apSettings.themeUrl;
+    var svgSpriteRefs = window.apSettings.svgSprites;
+
+    var svgSpriteRef;
+    var requestUrl;
+    var xhr;
+
+    for (var ref in svgSpriteRefs) {
+        if (svgSpriteRefs.hasOwnProperty(ref)) {
+
+            svgSpriteRef = svgSpriteRefs[ref];
+            requestUrl = themeUrl + "/" + svgSpriteRef;
+
+            xhr = new XMLHttpRequest();
+            xhr.open("GET", requestUrl, true);
+            xhr.send();
+            xhr.onloadend = function (event) {
+                if (xhr.status === 200) {
+                    housing.innerHTML = xhr.responseText;
+                }
+                else {
+                    console.error("SVG AJAX drama: Icon sprite not found.");
+                }
+            };
         }
-        else {
-            console.log("Icon sprite not found...");
-        }
-    };
+    }
 
 })(this, this.document);
