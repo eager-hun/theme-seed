@@ -12,13 +12,13 @@ Horizontal sections - often seen as full-width colourful stripes - on the page.
   min-width: $page-min-width;
 
   &.has-bg {
-    @include gap(padding, vertical, $gap-factor-for-page-levels);
+    @include gap(padding, vertical, $stack-gap-factor);
   }
 }
 
 .page-level__content {
   @include fit-content();
-  @include gap(margin, vertical, $gap-factor-for-page-levels);
+  @include gap(margin, vertical, $stack-gap-factor);
 
   max-width: $page-max-width;
 

@@ -1,0 +1,16 @@
+
+.stackable--grid-match {
+  @include gap(margin, vertical, 1);
+}
+
+.stackable--minor {
+  @include gap(margin, vertical, $stack-gap-factor * 0.5);
+}
+
+.stackable {
+  @include gap(margin, vertical, $stack-gap-factor * 0.66);
+}
+
+.stackable--major {
+  @include gap(margin, vertical, $stack-gap-factor);
+}
