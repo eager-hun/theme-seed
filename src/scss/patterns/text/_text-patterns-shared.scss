@@ -1,0 +1,28 @@
+
+// #############################################################################
+// Text-blocks.
+
+.common-text-block {
+  @include common-text-block-base();
+}
+
+// -----------------------------------------------------------------------------
+// Text-blocks that are decorated with an icon.
+
+$text-block-icon-size: 2em;
+$text-block-icon-offset: (4 - ($line-height-default * 2)) * 1em;
+
+.common-text-block--has-icon {
+  padding-left: $text-block-icon-size + ($text-block-icon-offset * 2);
+}
+
+.common-text-block__icon {
+  position: absolute;
+  top: $text-block-icon-offset;
+  left: $text-block-icon-offset;
+
+  height: $text-block-icon-size;
+  width: $text-block-icon-size;
+
+  fill: color(text-faded);
+}

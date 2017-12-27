@@ -8,11 +8,18 @@
 
 .has-bg--blockfill {
   background-color: color(blockfill);
+  color: color(text-strong);
 }
 
 
 // -----------------------------------------------------------------------------
 // Full-fledged color-zones with controlled colors for child elements.
+
+.color-zone {
+  strong {
+    color: inherit;
+  }
+}
 
 .color-zone--brand {
   @include color-zone-brand();

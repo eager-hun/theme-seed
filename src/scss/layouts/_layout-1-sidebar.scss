@@ -5,7 +5,7 @@
     @include fit-content();
   }
   .layout__sidebar {
-    @include gap(margin, top, $stack-gap-factor);
+    @include gap(margin, top, $stack-gap-factor-major);
   }
 
   // ---------------------------------------------------------------------------

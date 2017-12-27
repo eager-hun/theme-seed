@@ -92,6 +92,10 @@ p {
   margin: 1em 0;
 }
 
+strong {
+  color: color(text-strong);
+}
+
 
 // #############################################################################
 // Lists.
@@ -151,9 +155,10 @@ img {
 blockquote {
   @include fit-content();
 
-  padding: 1em;
+  margin: 2em 0 2em 2em;
+  padding: 1.5em 0 1.5em 1.5em;
 
-  background: color(blockfill);
+  border-left: 2px solid color(border);
 }
 
 pre,

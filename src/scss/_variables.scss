@@ -21,7 +21,7 @@ $font-sans:                     "Roboto",
 $font-serif:                    "Times New Roman",
                                 "Liberation Serif",
                                 "serif";
-$font-mono:                     "monospace";
+$font-mono:                     "monospace", "menlo", "monaco";
 
 
 // #############################################################################
@@ -82,7 +82,10 @@ $grid-column-gutters: (
 // #############################################################################
 // Layouts 2.
 
-$stack-gap-factor:              3;
+$stack-gap-factor-grid-match:   1;
+$stack-gap-factor-minor:        1.5;
+$stack-gap-factor:              2;
+$stack-gap-factor-major:        3;
 
 
 // #############################################################################
@@ -121,7 +124,8 @@ $colors: (
   accent-1:                     $prep-color-accent-1,
   accent-2:                     $prep-color-accent-2,
 
-  text:                         #333,
+  text:                         #484848,
+  text-strong:                  #333,
   text-faded:                   #777,
 
   border:                       #cccccc,
