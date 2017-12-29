@@ -20,17 +20,10 @@
 
 @mixin color-zone-brand {
   background-color: color(brand);
+  color: rgba(color(text-invert), 0.95);
 
-  &,
-  & h2,
-  & h3,
-  & .box__title {
-    color: color(text-invert);
-  }
   a {
     @include override-link-color(color(link-invert));
-
-    text-decoration: underline;
   }
 
   -webkit-tap-highlight-color: rgba(color(prim), 0.25);
@@ -50,17 +43,10 @@
 
 @mixin color-zone-accent-1 {
   background-color: color(accent-1);
+  color: rgba(color(text-invert), 0.95);
 
-  &,
-  & h2,
-  & h3,
-  & .box__title {
-    color: color(text-invert);
-  }
   a {
     @include override-link-color(color(link-invert));
-
-    text-decoration: underline;
   }
 
   // This is experimental.
@@ -78,17 +64,10 @@
 
 @mixin color-zone-accent-2 {
   background-color: color(accent-2);
+  color: rgba(color(text-invert), 0.95);
 
-  &,
-  & h2,
-  & h3,
-  & .box__title {
-    color: color(text-invert);
-  }
   a {
     @include override-link-color(color(link-invert));
-
-    text-decoration: underline;
   }
 
   // This is experimental.
@@ -106,16 +85,9 @@
 
 @mixin color-zone-dark {
   background-color: color(bg-dark);
+  color: rgba(color(text-invert), 0.95);
 
-  &,
-  & h2,
-  & h3,
-  & .box__title {
-    color: color(text-invert);
-  }
   a {
     @include override-link-color(color(link-invert));
-
-    text-decoration: underline;
   }
 }

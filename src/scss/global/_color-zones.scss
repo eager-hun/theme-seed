@@ -11,15 +11,8 @@
   color: color(text-strong);
 }
 
-
 // -----------------------------------------------------------------------------
 // Full-fledged color-zones with controlled colors for child elements.
-
-.color-zone {
-  strong {
-    color: inherit;
-  }
-}
 
 .color-zone--brand {
   @include color-zone-brand();
@@ -39,4 +32,22 @@
 
 .color-zone--blockfill {
   background: color(blockfill);
+  color: color(text-strong);
+}
+
+.color-zone--brand,
+.color-zone--accent-1,
+.color-zone--accent-2,
+.color-zone--dark {
+  strong,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .pseudo-heading,
+  .box__title {
+    color: color(text-invert);
+  }
 }

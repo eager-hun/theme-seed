@@ -21,7 +21,7 @@ $font-sans:                     "Roboto",
 $font-serif:                    "Times New Roman",
                                 "Liberation Serif",
                                 "serif";
-$font-mono:                     "monospace", "menlo", "monaco";
+$font-mono:                     "monospace", "Courier New", "menlo", "monaco";
 
 
 // #############################################################################
@@ -125,7 +125,7 @@ $colors: (
   accent-2:                     $prep-color-accent-2,
 
   text:                         #484848,
-  text-strong:                  #333,
+  text-strong:                  #222,
   text-faded:                   #777,
 
   border:                       #cccccc,
@@ -137,9 +137,9 @@ $colors: (
   blockfill:                    $prep-color-blockfill,
 
   link:                         mix($prep-color-nav, white, 90%),
-  link-visited:                 mix($prep-color-accent-1, white, 80%),
-  link-hover:                   mix($prep-color-nav, black, 80%),
-  link-visited-hover:           $prep-color-accent-1,
+  link-visited:                 mix($prep-color-accent-1, white, 90%),
+  link-hover:                   mix($prep-color-nav, black, 85%),
+  link-visited-hover:           mix($prep-color-accent-1, black, 90%),
 
   text-invert:                  white,
   link-invert:                  mix($prep-color-accent-2, white, 10%),

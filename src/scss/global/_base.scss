@@ -59,24 +59,20 @@ h2.underlined,
 
 a {
   text-decoration: none;
+  border-bottom: 1px solid currentColor;
 
   &,
   &:active {
     color: color(link);
   }
   &:focus {
-    outline: 1px dotted color(link);
+    outline: 1px dotted currentColor;
+    outline-offset: 1px;
   }
   &:visited {
     color: color(link-visited);
-
-    &:focus {
-      outline-color: color(link-visited);
-    }
   }
   &:hover {
-    text-decoration: underline;
-
     color: color(link-hover);
   }
   &:visited:hover {
