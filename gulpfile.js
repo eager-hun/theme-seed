@@ -175,7 +175,7 @@ gulp.task('oldschool-js-compile-styleguide', ['clean-styleguide-js'], function()
 // freshly created files. So it's not implemented.
 
 gulp.task('compile-svg-sprites', function() {
-    return gulp.src(paths.source.svgSprite + '/*.svg')
+    return gulp.src(paths.source.svgSprite + '/**/*.svg')
         .pipe(plumber({errorHandler: plumberErrorHandler}))
         .pipe(svgsprite(options.svgSprite))
         .pipe(gulp.dest(paths.output.svgSprite))

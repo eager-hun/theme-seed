@@ -1,26 +1,29 @@
 
+$ul-icon-prefix-icon-size: $line-height-condensed * 1em;
+
 .ul--icon-prefix {
   @include bare-list;
-}
 
-.ul--icon-prefix__li {
-  padding-left: 1.6em;
+  & > li {
+    position: relative;
 
-  line-height: $line-height-condensed;
+    padding-left: $ul-icon-prefix-icon-size + 0.8em;
 
-  li + & {
-    margin-top: 0.75em;
+    line-height: $line-height-condensed;
+
+    & + li {
+      margin-top: 0.75em;
+    }
   }
 }
 
-.ul--icon-prefix__li__icon {
-  display: inline-block;
-  height: 1em;
-  width: 1em;
+.ul--icon-prefix__icon {
+  position: absolute;
+  left: 0;
+  top: 0.05em;
 
-  margin-left: -1.6em;
-  margin-right: 0.6em;
+  height: $ul-icon-prefix-icon-size;
+  width: $ul-icon-prefix-icon-size;
 
-  vertical-align: middle;
   fill: color(brand);
 }

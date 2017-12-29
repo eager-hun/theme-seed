@@ -122,17 +122,22 @@ const options = {
         svg: {
             xmlDeclaration: false,
             doctypeDeclaration: false,
-            dimensionAttributes: true,
-            namespaceIDs: true
+            dimensionAttributes: false,
+            namespaceIDs: true,
+            namespaceClassnames: true,
         },
         shape: {
-            dimension: { maxWidth: 32, maxHeight: 32 },
-            spacing: { padding: 1, box: 'icon' },
+            // Does not seem to have effect on symbol mode:
+            // dimension: { maxWidth: 32, maxHeight: 32 },
+            // spacing: { padding: 1, box: 'icon' },
+
             align: paths.svgSpriteConfigs + '/svg-sprite-alignment.yaml',
-            meta: paths.svgSpriteConfigs + '/svg-sprite-meta.yaml',
             transform: [
                 {'svgo': {}}
             ],
+            id: {
+                separator: '__',
+            }
         },
         mode: {
             css: {
@@ -153,9 +158,11 @@ const options = {
             symbol: {
                 dest: ".",
                 sprite: "svg-sprite.symbol-mode.svg",
-                prefix: "svg-icon-sprite__%s",
                 inline: true,
-                bust: false
+                bust: false,
+                example: {
+                    dest: "svg-sprite.symbol-mode.inventory.html"
+                }
             }
         }
     }

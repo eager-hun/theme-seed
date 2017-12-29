@@ -23,7 +23,7 @@
         data() {
             return {
                 msg: `<strong class="happy-message">Rendering Vue template is successful.</strong>`,
-                iconId: "arrow-right",
+                iconId: "icon-sprite__arrow-right",
                 displayIcon: false
             };
         },

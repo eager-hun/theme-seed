@@ -18,6 +18,7 @@
 @import "global/cheap-grid";
 @import "global/color-zones";
 @import "global/forms";
+@import "global/icons";
 
 @import "layouts/layouts-shared";
 @import "layouts/page-level";
@@ -30,10 +31,8 @@
 
 @import "page-definition/page-definition-default";
 
-@import "patterns/text/text-patterns-shared";
+@import "patterns/text/text-blocks-shared";
 @import "patterns/text/hero-block";
-@import "patterns/text/highlight-block";
-@import "patterns/text/note-block";
 @import "patterns/lists/ul-icon-prefix";
 @import "patterns/box";
 @import "patterns/hero-mosaic";

@@ -1,0 +1,16 @@
+
+.highlight-block,
+.note-block {
+  @include common-text-block-structure();
+
+  background: color(blockfill);
+  color: color(text);
+}
+
+.note-block {
+  @include common-text-block-structure-with-icon();
+
+  & > .svg-icon {
+    fill: color(accent-2);
+  }
+}

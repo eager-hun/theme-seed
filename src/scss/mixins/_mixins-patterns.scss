@@ -31,16 +31,29 @@
   }
 }
 
-@mixin common-text-block-base($background: color(blockfill), $color: color(text-strong)) {
+@mixin common-text-block-structure() {
   @include fit-content();
 
   margin-top: 1em;
   margin-bottom: 1em;
 
   padding: 1em;
+}
 
-  background: $background;
-  color: $color;
+$text-block-icon-size: 2em;
+$text-block-icon-offset: (4 - ($line-height-default * 2)) * 1em;
 
+@mixin common-text-block-structure-with-icon() {
   position: relative;
+
+  padding-left: $text-block-icon-size + ($text-block-icon-offset * 2);
+
+  .svg-icon {
+    position: absolute;
+    top: $text-block-icon-offset;
+    left: $text-block-icon-offset;
+
+    height: $text-block-icon-size;
+    width: $text-block-icon-size;
+  }
 }
