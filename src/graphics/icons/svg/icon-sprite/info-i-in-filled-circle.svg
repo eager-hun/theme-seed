@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="info-i-in-filled-circle.svg"
+   id="svg2">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="22.4"
+     inkscape:cx="11.552899"
+     inkscape:cy="16.238209"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4138" />
+  </sodipodi:namedview>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1020.3622)">
+    <circle
+       cx="16"
+       cy="1036.3622"
+       r="15"
+       style="fill:#000000"
+       id="circle10" />
+    <path
+       style="fill:#ffffff"
+       sodipodi:nodetypes="cssccccssssccc"
+       inkscape:connector-curvature="0"
+       d="m 17.996778,1034.363 0,8.2958 c 0,0.5854 0.537074,1.0496 0.803448,1.2859 0.252486,0.2239 0.63122,0.3353 1.195764,0.4189 l 0,0.9981 -8.00167,0 0,-0.9902 c 0.710909,-0.1672 1.131346,-0.3858 1.348636,-0.5645 0.253184,-0.2082 0.673088,-0.6691 0.673088,-1.3173 l 0,-5.2901 c 0,-0.6482 -0.410644,-1.0639 -0.661927,-1.2859 -0.232957,-0.2058 -0.658636,-0.4182 -1.348636,-0.5646 l 0,-0.9822 z"
+       id="path12" />
+    <circle
+       style="fill:#ffffff"
+       cx="15.745747"
+       cy="1029.0996"
+       r="2.2544644"
+       id="circle14" />
+  </g>
+</svg>

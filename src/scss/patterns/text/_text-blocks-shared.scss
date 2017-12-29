@@ -1,16 +1,63 @@
 
-.highlight-block,
-.note-block {
+// #############################################################################
+// Regular text-blocks in the page content.
+
+.textblock-highlight,
+.textblock-note {
   @include common-text-block-structure();
 
   background: color(blockfill);
   color: color(text);
 }
 
-.note-block {
+.textblock-note {
   @include common-text-block-structure-with-icon();
 
   & > .svg-icon {
     fill: color(accent-2);
   }
+}
+
+
+// #############################################################################
+// Textblocks as system notifications.
+
+.notification {
+  @include common-text-block-structure();
+  @include common-text-block-structure-with-icon();
+
+  margin: 0;
+
+  & + .notification {
+    margin-top: 0.75em;
+  }
+
+  strong,
+  a {
+    color: inherit;
+  }
+
+  & > .svg-icon {
+    fill: currentColor;
+  }
+}
+
+.notification--info {
+  color: mix(color(prim), black, 90%);
+  background-color: mix(color(prim), white, 10%);
+}
+
+.notification--success {
+  color: seagreen;
+  background-color: mix(seagreen, white, 10%);
+}
+
+.notification--warning {
+  color: mix(darkgoldenrod, black, 80%);
+  background-color: mix(darkgoldenrod, white, 15%);
+}
+
+.notification--alert {
+  color: mix(crimson, black, 80%);
+  background-color: mix(crimson, white, 20%);
 }
