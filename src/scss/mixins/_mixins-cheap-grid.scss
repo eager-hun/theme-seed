@@ -77,10 +77,17 @@
 
 
 // -----------------------------------------------------------------------------
-// Layout helper.
+// Squeeze.
 
 @function squeezed-max-width($squeeze-by-cols-per-side, $of-total-cols: $grid-default-column-count) {
   $width-limit: $page-max-width - ($page-max-width / $of-total-cols * $squeeze-by-cols-per-side * 2);
 
   @return $width-limit;
+}
+
+@mixin squeeze() {
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: squeezed-max-width(3, $grid-default-column-count);
 }

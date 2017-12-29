@@ -8,3 +8,10 @@
 .fit-content {
   @include fit-content();
 }
+
+// #############################################################################
+// Squeezing.
+
+.squeeze {
+  @include squeeze();
+}
