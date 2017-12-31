@@ -176,7 +176,7 @@ const jsOldschoolBundles = {
     libs: {
         filename: 'libs',
         files: [
-            paths.source.frontendLibs + '/jquery/dist/jquery.js'
+            // paths.source.frontendLibs + '/foo.js'
         ]
     },
     styleguide: {

@@ -3,7 +3,7 @@
  * Custom script 2.
  */
 
-(function($, window, document, undefined) {
+(function(window, document, undefined) {
   "use strict";
 
   var logMsg = 'Greetings from custom script 2.';
@@ -14,5 +14,5 @@
   // The intentionally missing semicolon can trigger a jshint error report.
   // var seeIfJshintWorks = 'foo'
 
-})(this.jQuery, this, this.document);
+})(this, this.document);
 

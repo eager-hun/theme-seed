@@ -43,7 +43,7 @@ gulp.task('watch', ['compile', 'watchers']);
 gulp.task('compile', [
     'compile-svg-sprites',
     'compile-scss',
-    'oldschool-js-compile-libs',
+    // 'oldschool-js-compile-libs',
     'oldschool-js-compile-custom',
     'oldschool-js-compile-styleguide',
     'webpack'
@@ -138,7 +138,6 @@ const compileJsBundle = function (bundleName) {
     doLivereload = true;
   }
 
-  // Do we need to check for files' length (if they exist) first?
   return gulp.src(jsOldschoolBundles[bundleName].files)
     .pipe(plumber({errorHandler: plumberErrorHandler}))
     .pipe(gulpif(doJsHinting, jshint()))
@@ -153,9 +152,9 @@ const compileJsBundle = function (bundleName) {
     .pipe(gulpif(doLivereload, livereload()));
 };
 
-gulp.task('oldschool-js-compile-libs', ['clean-js-libs'], function() {
-  return compileJsBundle('libs');
-});
+// gulp.task('oldschool-js-compile-libs', ['clean-js-libs'], function() {
+//   return compileJsBundle('libs');
+// });
 
 gulp.task('oldschool-js-compile-custom', ['clean-custom-js'], function() {
   return compileJsBundle('custom');
