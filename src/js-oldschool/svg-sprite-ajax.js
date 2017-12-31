@@ -27,6 +27,15 @@
     var requestUrl;
     var xhr;
 
+    var updateDocument = function() {
+        if (this.status === 200) {
+            housing.innerHTML += this.responseText;
+        }
+        else {
+            console.error("SVG AJAX drama: Icon sprite not found.");
+        }
+    };
+
     for (var ref in svgSpriteRefs) {
         if (svgSpriteRefs.hasOwnProperty(ref)) {
 
@@ -36,14 +45,7 @@
             xhr = new XMLHttpRequest();
             xhr.open("GET", requestUrl, true);
             xhr.send();
-            xhr.onloadend = function (event) {
-                if (xhr.status === 200) {
-                    housing.innerHTML = xhr.responseText;
-                }
-                else {
-                    console.error("SVG AJAX drama: Icon sprite not found.");
-                }
-            };
+            xhr.onloadend = updateDocument;
         }
     }
 
