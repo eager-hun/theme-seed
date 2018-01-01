@@ -25,8 +25,9 @@ const paths = {
     },
     web: {
         // Use leading slash, but not trailing slash!
-        // When used wrapped with the "anypage" project.
-        toGulpfile:     '/anypage-develop/public/themes/theme-seed'
+        // When used wrapped with the "anypage" project, with anypage's default
+        // configuration.
+        toGulpfile:     '/anypage/public/themes/theme-seed'
     },
     // No trailing slash!
     svgSpriteConfigs:   'src/graphics/icons'
