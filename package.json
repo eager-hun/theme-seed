@@ -1,5 +1,5 @@
 {
-  "name": "theme-seed",
+  "name": "frontend-seed",
   "version": "0.0.0",
   "description": "Boilerplate for styling and enhancing web pages.",
   "main": "gulpfile.js",

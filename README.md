@@ -23,7 +23,7 @@ values to reflect your instance's actual paths and domain name scenario.
 
 Then in cli:
 
-    $ cd path/to/theme-seed/
+    $ cd path/to/frontend-seed/
     $ npm install
     $ gulp compile
 

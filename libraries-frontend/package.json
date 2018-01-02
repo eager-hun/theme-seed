@@ -1,7 +1,7 @@
 {
-  "name": "theme-seed-frontend-libraries",
+  "name": "frontend-seed-frontend-libraries",
   "version": "0.0.0",
-  "description": "Asset libraries to be loaded in the browser for the theme-seed project.",
+  "description": "Asset libraries to be loaded in the browser for the frontend-seed project.",
   "author": "Levente",
   "license": "Unlicense",
   "private": true,
