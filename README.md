@@ -1,25 +1,18 @@
-# Theme seed
+# Frontend seed
 
 A boilerplate for styling and enhancing web pages.
 
-Aims to include Sass/CSS, JS, then later SVG, and bitmap image related assets
-and helpers, wrapped up with a build setup.
+Aims to include SASS/CSS, JS, SVG related assets and helpers, wrapped up with
+a build setup.
 
-Current build tool: Gulp with livereload.
+Current build tool: primarily Gulp with livereload — and a Gulp task for
+bundling things with Webpack.
 
-**Note:**
 
-This project has been made a submodule of the "[anypage][anypage]" project, and
-the provided default configuration now assumes that this project is accessed
-via "anypage" as a wrapper around it.
+## Installing and compiling
 
-Sample contents can be accessed and developed by using this project together
-with the "anypage" project.
-
-## Installing external packages and compiling assets
-
-In `gulpfile.js`, update the `paths` (`web`) and `options` (`livereload`)
-values to reflect your instance's actual paths and domain name scenario.
+In `build-setup/gulp-webpack-hybrid/gulp-setup.js`, update the
+paths.web.toGulpfile value to reflect your instance's actual path.
 
 Then in cli:
 
@@ -27,11 +20,26 @@ Then in cli:
     $ npm install
     $ gulp compile
 
-## If you are new to node.js and npm:
+
+## Getting HTML
+
+While HTML markup could very well be produced / managed within this project
+using the the included Vue.js setup, a PHP option, the "[anypage][anypage]"
+project has also been prepared. "Anypage" is a separate git repo, which aims to
+provide a lightweight toolkit for producing and managing not only HTML markup,
+but many aspects of a functioning website.
+
+This project has been made a git submodule of the "[anypage][anypage]" project,
+and the provided default configuration now assumes that this project is accessed
+via "anypage" as a wrapper around it.
+
+
+## Note if you are new to Node.js and NPM
 
 - Learn their specific procedures on your operating system. E.g.:
     - you will not want to get stuck with your `node_modules` directories on
       Windows machines; see: http://stackoverflow.com/q/28175200
+
 
 [anypage]: https://github.com/eager-hun/anypage
 
