@@ -43,7 +43,7 @@ gulp.task('watch', ['compile', 'watchers']);
 gulp.task('compile', [
     'compile-svg-sprites',
     'compile-scss',
-    // 'oldschool-js-compile-libs',
+    'oldschool-js-compile-libs',
     'oldschool-js-compile-custom',
     'oldschool-js-compile-styleguide',
     'webpack'
@@ -130,6 +130,10 @@ gulp.task('compile-scss', ['clean-css'], function () {
 // or remove libraries, you need to relaunch gulp.
 
 const compileJsBundle = function (bundleName) {
+  if ( ! jsOldschoolBundles[bundleName].files.length) {
+    return false;
+  }
+
   let doJsHinting  = false;
   let doLivereload = false;
 
@@ -152,9 +156,9 @@ const compileJsBundle = function (bundleName) {
     .pipe(gulpif(doLivereload, livereload()));
 };
 
-// gulp.task('oldschool-js-compile-libs', ['clean-js-libs'], function() {
-//   return compileJsBundle('libs');
-// });
+gulp.task('oldschool-js-compile-libs', ['clean-js-libs'], function() {
+  return compileJsBundle('libs');
+});
 
 gulp.task('oldschool-js-compile-custom', ['clean-custom-js'], function() {
   return compileJsBundle('custom');
