@@ -108,6 +108,7 @@ dl {
 
 }
 dt {
+  color: color(text-strong);
   font-weight: 700;
 
   dd + & {
@@ -171,7 +172,9 @@ pre {
 }
 
 code {
-
+  // Don't wrap, not even at hyphens.
+  hyphens: none;
+  white-space: nowrap;
 }
 
 pre {
