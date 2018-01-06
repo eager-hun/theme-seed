@@ -12,19 +12,19 @@
   // As the screen grows, time for side-by-side arrangement.
 
   @media (min-width: breakpoint(wide-min)) {
-    @include cheap-grid($wrap: true, $item-classname: layout__element);
+    @include flex-grid($wrap: true, $item-classname: layout__element);
 
     .layout__element {
       flex: 0 0 auto;
     }
 
+    .layout__sidebar {
+      margin-top: 0;
+    }
+
     // The default state assumes that we don't actually have a sidebar.
     .layout__main {
       width: 100%;
-    }
-
-    .layout__sidebar {
-      margin-top: 0;
     }
 
     // But if there is a sidebar, then:
@@ -54,7 +54,7 @@
         order: 2;
 
         // Sending it to the opposite side, thus using all the remaining
-        // available width to contribute to the gap between the items.
+        // available width to contribute to the gap between the elements.
         margin-left: auto;
       }
       .layout__sidebar {
@@ -64,7 +64,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Resize the columns to better suit wider screens.
+  // Shift the proportions of the elements to better suit even wider screens.
 
   @media (min-width: breakpoint(wide-mt-min)) {
     &.has-sidebar {
@@ -83,11 +83,12 @@
 // Sidebar box arrangement.
 
 .sidebar-box-arrangement {
+  // Mostly one col.
   @include grid-wrapping-for-cols(1, $item-classname: box-guide);
 
-  // As the screen grows, time for side-by-side arrangement.
+  // But for a specific width-range (e.g. "phablets"): side-by-side arrangement.
   @media (min-width: breakpoint(narrow-ht-min)) and (max-width: breakpoint(narrow-max)) {
-    @include cheap-grid($wrap: true, $item-classname: box-guide);
+    @include flex-grid($wrap: true, $item-classname: box-guide);
     @include grid-wrapping-for-cols(2, $item-classname: box-guide);
 
     & > .box-guide {
@@ -97,5 +98,3 @@
     }
   }
 }
-
-

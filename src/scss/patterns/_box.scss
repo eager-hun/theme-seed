@@ -31,13 +31,3 @@
 .box__content {
   @include fit-content;
 }
-
-
-// #############################################################################
-// Box behaviors.
-
-.box {
-  &.fill-flex {
-    flex: 1 1 auto;
-  }
-}

@@ -1,6 +1,6 @@
 
-// -----------------------------------------------------------------------------
-// Helper.
+// #############################################################################
+// Helpers.
 
 @mixin make-grid-item-flex-parent() {
   // As a flex parent.
@@ -17,10 +17,24 @@
   }
 }
 
-// -----------------------------------------------------------------------------
+// Wrapping helper.
+
+// Apply on grid root element.
+@mixin grid-wrapping-for-cols($n, $item-classname: flex-grid__item) {
+  &:not(.grid-collapsing) > .#{$item-classname} {
+    @include gap(margin, top, 1);
+
+    // See http://nth-test.com/
+    &:nth-child(-n+#{$n}) {
+      margin-top: 0;
+    }
+  }
+}
+
+// #############################################################################
 // Grid root element.
 
-@mixin cheap-grid($wrap: false, $item-classname: cheap-grid__item) {
+@mixin flex-grid($wrap: false, $item-classname: flex-grid__item) {
   @include gap(margin, horizontal, -0.5);
 
   display: flex;
@@ -40,15 +54,22 @@
     flex: 0 1 auto;
   }
 
-  &.flexboxify-items {
+  // ---------------------------------------------------------------------------
+  // Tiling items.
+
+  &.payload-as-tiles {
     & > .#{$item-classname} {
       @include make-grid-item-flex-parent();
     }
   }
+
+  .tile {
+    flex: 1 1 auto;
+  }
 }
 
 
-// -----------------------------------------------------------------------------
+// #############################################################################
 // Grid item width.
 
 @function grid-item-width($item-width, $of-total-cols: $grid-default-column-count) {
@@ -60,27 +81,11 @@
 }
 
 
-// -----------------------------------------------------------------------------
-// Wrapping helper.
-
-// Apply on grid root element.
-@mixin grid-wrapping-for-cols($n, $item-classname: cheap-grid__item) {
-  &:not(.grid-collapsing) > .#{$item-classname} {
-    @include gap(margin, top, 1);
-
-    // See http://nth-test.com/
-    &:nth-child(-n+#{$n}) {
-      margin-top: 0;
-    }
-  }
-}
-
-
-// -----------------------------------------------------------------------------
+// #############################################################################
 // Squeeze.
 
 @function squeezed-max-width($squeeze-by-cols-per-side, $of-total-cols: $grid-default-column-count) {
-  $width-limit: $page-max-width - ($page-max-width / $of-total-cols * $squeeze-by-cols-per-side * 2);
+  $width-limit: $content-area-max-width - ($content-area-max-width / $of-total-cols * $squeeze-by-cols-per-side * 2);
 
   @return $width-limit;
 }

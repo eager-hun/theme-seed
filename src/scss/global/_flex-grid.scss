@@ -1,36 +1,20 @@
 /**
  * @file
- * Cheap grid.
+ * Flex grid.
  *
- * TODO.
+ * @see
+ * scss/mixins/_mixins-flex-grid.scss
  */
 
-.cheap-grid--fixed {
-  @include cheap-grid($wrap: true);
-}
-
-// In case grids get nested.
-.cheap-grid__item {
-  & > .cheap-grid {
-    flex: 1 1 auto;
-  }
+.flex-grid--permanent {
+  @include flex-grid($wrap: false);
 }
 
 // -----------------------------------------------------------------------------
 // Option to "steer" grid items with classes on them.
 
-// NOTE: this is a "second-best" option, as it has several shortcomings:
-// - due to media-query support not being implemented, these grid-items don't
-//   adapt to screen-width-change, so on mobile they will likely be badly
-//   crammed.
-// - when the grid wraps, there is no solution offered to keep a vertical gap
-//   between the wrapped items.
-
-// A better option might be is to "sculpt" custom grids with the grid-related
-// mixins.
-
-.cheap-grid--fixed {
-  .cheap-grid__item {
+.flex-grid--permanent {
+  .flex-grid__item {
     &.full {
       @include apply-grid-item-width(1, 1);
     }
@@ -53,13 +37,22 @@
 }
 
 // -----------------------------------------------------------------------------
+// In case grids get nested.
+
+.flex-grid__item {
+  & > .flex-grid {
+    flex: 1 1 auto;
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Collapsing grids.
 
-.cheap-grid.grid-collapsing {
+.flex-grid.grid-collapsing {
   margin-left: 0;
   margin-right: 0;
 
-  & > .cheap-grid__item {
+  & > .flex-grid__item {
     padding-left: 0;
     padding-right: 0;
   }
@@ -68,6 +61,6 @@
 // -----------------------------------------------------------------------------
 // Vertical gap between adjacent grid instances.
 
-.cheap-grid + .cheap-grid {
-  @include gap(margin, top, 1);
+.flex-grid + .flex-grid {
+  @include gap(margin, top, $stack-gap-factor-grid-match);
 }

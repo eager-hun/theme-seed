@@ -1,13 +1,13 @@
 
-.cheap-grid--preset-3-cols {
+.flex-grid--preset-3-cols {
   // Initially, on mobile, items are wrapped right at 1 column.
   @include grid-wrapping-for-cols(1);
 
   // As the screen grows, time for side-by-side arrangement.
   @media (min-width: breakpoint(narrow-ht-min)) {
-    @include cheap-grid($wrap: true);
+    @include flex-grid($wrap: true);
 
-    & > .cheap-grid__item {
+    & > .flex-grid__item {
       flex: 1 1 auto;
     }
   }
@@ -16,7 +16,7 @@
   @media (min-width: breakpoint(narrow-ht-min)) and (max-width: breakpoint(wide-lt-max)) {
     @include grid-wrapping-for-cols(2);
 
-    & > .cheap-grid__item {
+    & > .flex-grid__item {
       @include apply-grid-item-width(1, 2);
     }
   }
@@ -25,7 +25,7 @@
   @media (min-width: breakpoint(wide-mt-min)) {
     @include grid-wrapping-for-cols(3);
 
-    & > .cheap-grid__item {
+    & > .flex-grid__item {
       @include apply-grid-item-width(1, 3);
     }
   }

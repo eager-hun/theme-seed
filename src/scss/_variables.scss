@@ -28,14 +28,14 @@ $font-mono:                     "monospace", "Courier New", "menlo", "monaco";
 // Layouts 1.
 
 $page-min-width:                 300px;
-$page-max-width:                1200px;
+$content-area-max-width:        1200px;
 
 
 // #############################################################################
 // Media query breakpoints.
 
 /* LEGEND for the breakpoint variables:
-| <- $page-min-width                                        $page-max-width -> |
+| <- $page-min-width                                $content-area-max-width -> |
 |                                                                              |
 |             <- narrow ->              |              <- wide ->              |
 |                                       |                                      |
@@ -61,7 +61,7 @@ $breakpoints: (
   wide-mt-max:               1099px,
 
   wide-ht-min:               1100px,
-  wide-max:         $page-max-width
+  wide-max:                  $content-area-max-width
 );
 
 @function breakpoint($key) {
@@ -199,4 +199,3 @@ $transition-speed-fast:         125ms;
 $transition-speed-semi-fast:    250ms;
 $transition-speed-semi-slow:    400ms;
 $transition-speed-slow:         700ms;
-

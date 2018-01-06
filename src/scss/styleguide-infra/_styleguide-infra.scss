@@ -10,8 +10,8 @@
     background: darkslategray;
   }
 
-  .cheap-grid + .cheap-grid {
-    @include gap(margin, vertical, 2.5);
+  .flex-grid + .flex-grid {
+    @include gap(margin, vertical, $stack-gap-factor);
   }
 
   .box {
@@ -22,7 +22,7 @@
   }
 
   .column-offset-poc {
-    .cheap-grid__item {
+    .flex-grid__item {
       @include apply-grid-item-width(4, 12);
     }
     .offset-1-of-12-cols {
