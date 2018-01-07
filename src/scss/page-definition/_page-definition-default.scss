@@ -1,35 +1,33 @@
 
+
 // #############################################################################
-// Essentials.
+// Page header (and footer).
 
 .page__header,
 .page__footer {
-  @include gap(padding, vertical, 1.5);
-
-  .page-level__content {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .header__site-slogan {
-    @include gap(margin, top, 0.15);
-  }
+  @include gap(padding, all, 1);
+  @include fit-content();
 }
 
-.page__header {
-  @include color-zone-brand();
-}
-
-.page__footer {
-  @include color-zone-dark();
-}
-
-.header__site-name {
+.page-header__site-name {
   font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: 0.075em;
 }
+
+.page-header__site-tagline {
+  margin-left: 0.75em;
+  font-size: 0.9em;
+
+  font-style: italic;
+}
+
+
+// #############################################################################
+// Page main.
 
 .page__title {
-  @include page-title-appearance;
+  @include page-title-appearance();
 }
 
 .system-notifications {
@@ -38,9 +36,13 @@
 
 
 // #############################################################################
+// Page footer.
+
+// -----------------------------------------------------------------------------
 // Sticky footer.
 
-$footer-height: 150px;
+// Hardcoding values here shamelessly borrowed from several contexts.
+$footer-height: (1.125rem * $line-height-default) + 3rem;
 
 html,
 body {
@@ -48,10 +50,18 @@ body {
 }
 .page__wrap {
   min-height: 100%;
-  margin-bottom: -$footer-height;
+  margin-bottom: $footer-height * -1;
 }
 .footer__room-preserve,
 .page__footer {
   height: $footer-height;
 }
 
+
+// #############################################################################
+// Misc.
+
+#svg-sprite-housing {
+  position: absolute;
+  left: -10000em;
+}
