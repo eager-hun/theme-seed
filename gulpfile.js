@@ -13,13 +13,13 @@ const autoprefixer          = require('gulp-autoprefixer');
 const livereload            = require('gulp-livereload');
 const gulpif                = require('gulp-if');
 const uglify                = require('gulp-uglify');
-const rename                = require('gulp-rename');
 const concat                = require('gulp-concat');
 const jshint                = require('gulp-jshint');
 const svgsprite             = require('gulp-svg-sprite');
 const plumber               = require('gulp-plumber');
 const webpack               = require("webpack");
 const webpackStream         = require("webpack-stream");
+
 
 // -----------------------------------------------------------------------------
 // SETUP.
@@ -30,23 +30,29 @@ const paths                 = setup.paths;
 const options               = setup.options;
 const jsOldschoolBundles    = setup.jsOldschoolBundles;
 
-const webpackConfig         = require("./build-setup/gulp-webpack-hybrid/webpack-config");
+// -----------------------------------------------------------------------------
+// ENV SETUP.
+
+// Default is dev build.
+process.env.NODE_ENV = "dev";
 
 
 // #############################################################################
 // TASKS TO BE CALLED FROM THE CLI.
 
-gulp.task('default', ['watch']);
+gulp.task("default", ["watch"]);
 
-gulp.task('watch', ['compile', 'watchers']);
+gulp.task("watch", ["compile", "watchers"]);
 
-gulp.task('compile', [
-    'compile-svg-sprites',
-    'compile-scss',
-    'oldschool-js-compile-libs',
-    'oldschool-js-compile-custom',
-    'oldschool-js-compile-styleguide',
-    'webpack'
+gulp.task("prod", ["set-prod-env", "compile"]);
+
+gulp.task("compile", [
+    "compile-svg-sprites",
+    "compile-scss",
+    "oldschool-js-compile-libs",
+    "oldschool-js-compile-custom",
+    "oldschool-js-compile-styleguide",
+    "webpack"
 ]);
 
 
@@ -56,6 +62,15 @@ gulp.task('compile', [
 const plumberErrorHandler = function(err) {
     console.log(err);
 };
+
+
+// -----------------------------------------------------------------------------
+// Build variant flow control.
+
+gulp.task("set-prod-env", function() {
+    // Looks like this can update NODE_ENV.
+    return process.env.NODE_ENV = "prod";
+});
 
 // -----------------------------------------------------------------------------
 // Cleaning up old files before saving new ones.
@@ -76,19 +91,17 @@ const announceCleaning = function (paths) {
 const cleanBuiltJsBundle = function (bundleName) {
   if (options.cleaning.enabled) {
     const globs = [
-      paths.output.js + '/' + jsOldschoolBundles[bundleName].filename + '.js',
-      paths.output.js + '/' + jsOldschoolBundles[bundleName].filename + '.min.js',
-      paths.output.js + '/sourcemaps/' + jsOldschoolBundles[bundleName].filename + '.js.map',
-      paths.output.js + '/sourcemaps/' + jsOldschoolBundles[bundleName].filename + '.min.js.map'
+      paths.output.js + '/' + jsOldschoolBundles[bundleName].outFileName + '.js',
+      paths.output.js + '/sourcemaps/' + jsOldschoolBundles[bundleName].outFileName + '.js.map',
     ];
-    del(globs, options.cleaning.delOpts)
+    return del(globs, options.cleaning.delOpts)
       .then(announceCleaning);
   }
 };
 
 gulp.task('clean-css', function () {
   if (options.cleaning.enabled) {
-    del([paths.output.css + '/*'], options.cleaning.delOpts)
+    return del([paths.output.css + "/*"], options.cleaning.delOpts)
       .then(announceCleaning);
   }
 });
@@ -113,6 +126,10 @@ gulp.task('clean-styleguide-js', function () {
 // COMPILING SCSS.
 
 gulp.task('compile-scss', ['clean-css'], function () {
+
+  // Prepare the options according to this. Yes, it's weird a bit...
+  options.sass.outputStyle = options.sass.outputStyle[process.env.NODE_ENV];
+
   return gulp.src(paths.source.scss + '/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass(options.sass)
@@ -134,23 +151,19 @@ const compileJsBundle = function (bundleName) {
     return false;
   }
 
-  let doJsHinting  = false;
-  let doLivereload = false;
+  let isProd = (process.env.NODE_ENV === "prod");
 
-  if (bundleName === 'custom') {
-    doJsHinting  = true;
-    doLivereload = true;
-  }
+  let doJsHint     = ( ! isProd && jsOldschoolBundles[bundleName].lint);
+  let doLivereload = ( ! isProd && ["custom"].includes(bundleName));
+  let doUglify     = ( isProd && jsOldschoolBundles[bundleName].minifyOnBuild);
 
   return gulp.src(jsOldschoolBundles[bundleName].files)
     .pipe(plumber({errorHandler: plumberErrorHandler}))
-    .pipe(gulpif(doJsHinting, jshint()))
-    .pipe(gulpif(doJsHinting, jshint.reporter('default')))
+    .pipe(gulpif(doJsHint, jshint()))
+    .pipe(gulpif(doJsHint, jshint.reporter('default')))
     .pipe(sourcemaps.init())
-    .pipe(concat(jsOldschoolBundles[bundleName].filename + '.js', {newLine: "\n;"}))
-    .pipe(gulp.dest(paths.output.js))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify(options.uglify))
+    .pipe(concat(jsOldschoolBundles[bundleName].outFileName + ".js", {newLine: "\n;"}))
+    .pipe(gulpif(doUglify, uglify(options.uglify)))
     .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
     .pipe(gulp.dest(paths.output.js))
     .pipe(gulpif(doLivereload, livereload()));
@@ -188,10 +201,19 @@ gulp.task('compile-svg-sprites', function() {
 // -----------------------------------------------------------------------------
 // WEBPACK.
 
-gulp.task('webpack', function() {
+gulp.task("webpack", function() {
+    let configFile;
+    if (process.env.NODE_ENV === "prod") {
+        configFile = "./build-setup/gulp-webpack-hybrid/webpack-config-prod";
+    }
+    else {
+        configFile = "./build-setup/gulp-webpack-hybrid/webpack-config-dev";
+    }
+    const webpackConfig = require(configFile);
+
     // If this task was invoked via the Gulp 'watch' task, let's ask webpack to
     // watch, too.
-    if ("seq" in this && this.seq.includes('watch')) {
+    if ("seq" in this && this.seq.includes("watch")) {
         webpackConfig.watch = true;
     }
 
@@ -212,8 +234,8 @@ gulp.task('watchers', function() {
   livereload.listen(options.livereload);
 
   gulp.watch(paths.source.scss      + '/**/*.scss', ['compile-scss']);
-  gulp.watch(paths.source.customJs  + '/**/*.js',   ['oldschool-js-compile-custom']);
   gulp.watch(paths.source.svgSprite + '/**/*.svg',  ['compile-svg-sprites']);
+  gulp.watch(paths.source.customJs  + '/**/*.js',   ['oldschool-js-compile-custom']);
 
   // Extra watchers for various filetypes.
   for (let fileExtension in options.reloadOn) {

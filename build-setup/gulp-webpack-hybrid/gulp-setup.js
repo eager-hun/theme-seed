@@ -58,9 +58,11 @@ const options = {
         // Note that options from
         // https://github.com/sass/node-sass/blob/master/README.md may also apply.
         //
-        // See https://web-design-weekly.com/2014/06/15/different-sass-output-styles/
-        // nested || expanded || compact || compressed
-        outputStyle: 'expanded',
+        // outputStyle's value will be finalized in the gulp task.
+        outputStyle: {
+          dev: "expanded",
+          prod: "compressed",
+        },
         includePaths: [
             paths.source.frontendLibs + '/normalize.css',
             paths.source.frontendLibs + '/prismjs/themes'
@@ -175,24 +177,30 @@ const options = {
 
 const jsOldschoolBundles = {
     libs: {
-        filename: 'libs',
+        outFileName: "libs",
         files: [
-            // paths.source.frontendLibs + '/foo.js'
-        ]
+            // paths.source.frontendLibs + "/foo.min.js"
+        ],
+        lint:           false,
+        minifyOnBuild:  false,
     },
     styleguide: {
-        filename: 'styleguide',
+        outFileName: "styleguide",
         files: [
-            paths.source.frontendLibs + '/prismjs/prism.js'
-        ]
+            paths.source.frontendLibs + "/prismjs/prism.js"
+        ],
+        lint:           false,
+        minifyOnBuild:  true,
     },
     custom: {
-        filename: 'custom',
+        outFileName: "custom",
         files: [
-            paths.source.customJs + '/svg-sprite-ajax.js',
-            paths.source.customJs + '/custom-script-1.js',
-            paths.source.customJs + '/custom-script-2.js'
-        ]
+            paths.source.customJs + "/svg-sprite-ajax.js",
+            paths.source.customJs + "/custom-script-1.js",
+            paths.source.customJs + "/custom-script-2.js"
+        ],
+        lint:           true,
+        minifyOnBuild:  true,
     }
 };
 
