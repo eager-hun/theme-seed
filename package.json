@@ -4,11 +4,15 @@
   "description": "Boilerplate for styling and enhancing web pages.",
   "main": "gulpfile.js",
   "scripts": {
-    "postinstall": "cd libraries-frontend && npm install"
+    "postinstall": "cd libraries-frontend && npm install --no-optional"
   },
   "author": "Levente",
   "license": "Unlicense",
   "private": true,
+  "engines": {
+    "node": ">=8.9.4",
+    "npm": ">=5.6.0"
+  },
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
