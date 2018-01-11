@@ -10,10 +10,10 @@ if (typeof console === "undefined") {
 (function(window, document, undefined) {
   "use strict";
 
-  var logMsg = 'Greetings from custom script 1.';
+  var logMsg = "Greetings from custom script 1.";
   console.log(logMsg);
 
   window.apSettings = window.apSettings || {};
-  window.apSettings.testVariable = 'testVariable works.';
+  window.apSettings.testVariable = "testVariable works.";
 
 })(this, this.document);
