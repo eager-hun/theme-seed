@@ -107,7 +107,7 @@ const options = {
     twig: {
       reloadEnabled: true,
       // Path when used with the Anypage project.
-      pathsToWatch: "../../../private/anypages/templates/**/*.twig"
+      pathsToWatch: "../../../private/templates/**/*.twig"
     },
     svg: {
       reloadEnabled: true,
