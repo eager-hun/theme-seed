@@ -21,13 +21,29 @@
 // -----------------------------------------------------------------------------
 // Misc patterns.
 
-@mixin description-appearance {
-  font-size: 0.9rem;
+@mixin description-appearance($color: color(text-faded), $shrink: true) {
+  @if $shrink == (true) {
+    font-size: 0.9em;
+  }
+
   font-style: italic;
 
-  p {
+  &,
+  & strong {
+    color: $color;
+  }
+
+  p,
+  ul,
+  ol {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
     line-height: $line-height-condensed;
-    margin: 0.5em 0;
+  }
+  em {
+    // To make it stand out in an all-italic text.
+    font-style: normal;
   }
 }
 

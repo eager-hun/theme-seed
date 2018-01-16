@@ -28,14 +28,14 @@
 @import "layouts/preset-4-col-grid";
 @import "layouts/layout-1-sidebar";
 
-@import "page-definition/page-definition-default";
-
+@import "patterns/text/titles";
 @import "patterns/text/text-blocks-shared";
 @import "patterns/text/hero-block";
 @import "patterns/lists/ul-icon-prefix";
 @import "patterns/box";
 @import "patterns/hero-mosaic";
 
+@import "page-definition/page-definition-default";
 
 // See: http://csswizardry.com/2013/04/shame-css/
 @import "shame";

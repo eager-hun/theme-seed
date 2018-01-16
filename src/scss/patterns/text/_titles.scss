@@ -1,0 +1,28 @@
+
+
+// #############################################################################
+// Titles with descriptions appended.
+
+.title-w-desc {
+  // The top margin of the whole structure will be provided by the heading being
+  // used.
+  // The bottom margin under the structure however is hardcoded.
+  margin-bottom: 2.25em;
+
+  // The style of the heading should be left alone as much as possible.
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .pseudo-heading {
+    // This will be the gap between the heading and the description.
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+.twd__description {
+  @include description-appearance();
+}
