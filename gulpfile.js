@@ -128,7 +128,10 @@ gulp.task("clean-styleguide-js", function () {
 gulp.task("compile-scss", ["clean-css"], function () {
 
   // Prepare the options according to this. Yes, it's weird a bit...
-  options.sass.outputStyle = options.sass.outputStyle[process.env.NODE_ENV];
+  if (typeof options.sass.outputStyle === 'object') {
+    // Pick the value corresponding to the current NODE_ENV.
+    options.sass.outputStyle = options.sass.outputStyle[process.env.NODE_ENV];
+  }
 
   return gulp.src(paths.source.scss + "/*.scss")
     .pipe(sourcemaps.init())
