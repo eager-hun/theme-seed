@@ -1,5 +1,5 @@
 
-$ul-icon-prefix-icon-size: $line-height-condensed * 1em;
+$ul-icon-prefix-icon-size: 24px;
 
 .ul--icon-prefix {
   @include bare-list;
@@ -7,12 +7,12 @@ $ul-icon-prefix-icon-size: $line-height-condensed * 1em;
   & > li {
     position: relative;
 
-    padding-left: $ul-icon-prefix-icon-size + 0.8em;
+    padding-left: calc(#{$ul-icon-prefix-icon-size} + 0.65em);
 
     line-height: $line-height-condensed;
 
     & + li {
-      margin-top: 0.75em;
+      margin-top: 0.65em;
     }
   }
 }
@@ -20,10 +20,14 @@ $ul-icon-prefix-icon-size: $line-height-condensed * 1em;
 .ul--icon-prefix__icon {
   position: absolute;
   left: 0;
-  top: 0.05em;
+  top: 0.02em;
 
   height: $ul-icon-prefix-icon-size;
   width: $ul-icon-prefix-icon-size;
 
   fill: color(brand);
+
+  ul.icons--green & {
+    fill: green;
+  }
 }

@@ -4,4 +4,7 @@
   height: 1em;
 
   fill: currentColor;
+
+  // Clearer rendering in Firefox when positioned absolutely.
+  transform: scale(1);
 }

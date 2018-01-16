@@ -12,37 +12,12 @@
    width="24"
    height="24"
    viewBox="0 0 24 24"
-   id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="arrow-right.svg">
-  <defs
-     id="defs4" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="5.6568543"
-     inkscape:cx="22.122862"
-     inkscape:cy="13.753477"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     units="px"
-     inkscape:window-width="1685"
-     inkscape:window-height="1028"
-     inkscape:window-x="235"
-     inkscape:window-y="24"
-     inkscape:window-maximized="0">
-    <inkscape:grid
-       type="xygrid"
-       id="grid4230" />
-  </sodipodi:namedview>
+   sodipodi:docname="checkmark.svg"
+   id="svg2">
   <metadata
-     id="metadata7">
+     id="metadata9">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -53,21 +28,47 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="15.839192"
+     inkscape:cx="9.9188958"
+     inkscape:cy="15.242387"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4138" />
+  </sodipodi:namedview>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1028.3622)">
-    <rect
-       id="rect4137"
-       width="14"
-       height="8"
-       x="0.99999994"
-       y="1036.3622" />
     <path
-       d="m 23,1040.3593 -10.005861,-9.9968 0.01,20.0063 z"
-       id="path4139"
+       d="m 1,1041.7348 3.4193424,-3.4743 4.1438279,4.1746 L 19.571459,1031.4206 23,1034.8952 8.5723721,1049.3038 Z"
+       id="path4140"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="ccccccc" />
   </g>
 </svg>
