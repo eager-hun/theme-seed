@@ -87,7 +87,8 @@ const options = {
     css: {
       reloadEnabled: true,
       pathsToWatch: [
-        "../../app-assets/**/*.css" // Path when used with the Anypage project.
+        // Path when used with the Anypage project.
+        "../../app-assets/**/*.css"
       ]
     },
     html: {
@@ -96,8 +97,8 @@ const options = {
     },
     php: {
       reloadEnabled: true,
-      // Paths when used with the Anypage project.
       pathsToWatch: [
+        // Paths when used with the Anypage project.
         "../../../index.php",
         "../../../private/anypages/**/*.php",
         "../../../private/app/**/*.php",
@@ -115,8 +116,12 @@ const options = {
     },
     md: {
       reloadEnabled: true,
-      // Path when used with the Anypage project.
-      pathsToWatch: "../../../private/anypages/**/*.md"
+      pathsToWatch: [
+        "README.md",
+        // Paths when used with the Anypage project.
+        "../../../private/anypages/**/*.md",
+        "../../../README.md"
+      ]
     }
   },
   svgSprite: {

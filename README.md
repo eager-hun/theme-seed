@@ -36,10 +36,11 @@ via "anypage" as a wrapper around it.
 
 ## Note if you are new to Node.js and NPM
 
-- Learn their specific procedures on your operating system. E.g.:
-    - you will not want to get stuck with your `node_modules` directories on
-      Windows machines; see: http://stackoverflow.com/q/28175200
+Learn their specific procedures on your operating system. E.g.:
+
+- you will [not want to get stuck with your `node_modules` folders][rimraf] on
+  Windows machines.
 
 
 [anypage]: https://github.com/eager-hun/anypage
-
+[rimraf]: http://stackoverflow.com/q/28175200
