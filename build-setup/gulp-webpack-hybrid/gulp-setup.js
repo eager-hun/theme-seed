@@ -27,7 +27,7 @@ const paths = {
     // Use leading slash, but not trailing slash!
     // When used wrapped with the "anypage" project, with anypage's default
     // configuration.
-    toGulpfile: "/anypage/public/themes/frontend-seed"
+    toGulpfile: "/public/themes/frontend-seed"
   },
   // No trailing slash!
   svgSpriteConfigs: "src/graphics/icons"
