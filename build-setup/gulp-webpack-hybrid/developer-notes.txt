@@ -50,3 +50,12 @@ On WEBPACK:
     https://webpack.js.org/guides/integrations/#gulp
     https://github.com/shama/webpack-stream
     https://vue-loader.vuejs.org/en/
+
+
+################################################################################
+On ESLINT:
+
+    https://eslint.org/docs/user-guide/configuring
+    https://eslint.org/docs/rules/
+
+

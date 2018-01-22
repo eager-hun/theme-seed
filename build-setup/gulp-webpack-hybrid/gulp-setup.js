@@ -75,6 +75,10 @@ const options = {
     flexbox: "no-2009",
     cascade: true
   },
+  eslint: {
+    useEslintrc: true,
+    configFile: '.eslintrc'
+  },
   uglify: {
     mangle: false
   },
@@ -187,6 +191,7 @@ const jsOldschoolBundles = {
       // paths.source.frontendLibs + "/foo.min.js"
     ],
     lint: false,
+    babel: false,
     minifyOnBuild: false,
   },
   styleguide: {
@@ -195,6 +200,7 @@ const jsOldschoolBundles = {
       paths.source.frontendLibs + "/prismjs/prism.js"
     ],
     lint: false,
+    babel: false,
     minifyOnBuild: true,
   },
   custom: {
@@ -205,6 +211,7 @@ const jsOldschoolBundles = {
       paths.source.customJs + "/custom-script-2.js"
     ],
     lint: true,
+    babel: true,
     minifyOnBuild: true,
   }
 };

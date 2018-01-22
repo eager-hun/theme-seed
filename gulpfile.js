@@ -14,7 +14,8 @@ const livereload            = require("gulp-livereload");
 const gulpif                = require("gulp-if");
 const uglify                = require("gulp-uglify");
 const concat                = require("gulp-concat");
-const jshint                = require("gulp-jshint");
+const eslint                = require("gulp-eslint");
+const babel                 = require("gulp-babel");
 const svgsprite             = require("gulp-svg-sprite");
 const plumber               = require("gulp-plumber");
 const webpack               = require("webpack");
@@ -156,16 +157,18 @@ const compileJsBundle = function (bundleName) {
 
   let isProd = (process.env.NODE_ENV === "prod");
 
-  let doJsHint     = ( ! isProd && jsOldschoolBundles[bundleName].lint);
-  let doLivereload = ( ! isProd && ["custom"].includes(bundleName));
+  let doEsLint     = ( ! isProd && jsOldschoolBundles[bundleName].lint);
+  let doTranspile  = jsOldschoolBundles[bundleName].babel;
   let doUglify     = ( isProd && jsOldschoolBundles[bundleName].minifyOnBuild);
+  let doLivereload = ( ! isProd && ["custom"].includes(bundleName));
 
   return gulp.src(jsOldschoolBundles[bundleName].files)
     .pipe(plumber({errorHandler: plumberErrorHandler}))
-    .pipe(gulpif(doJsHint, jshint()))
-    .pipe(gulpif(doJsHint, jshint.reporter("default")))
+    .pipe(gulpif(doEsLint, eslint()))
+    .pipe(gulpif(doEsLint, eslint.format()))
     .pipe(sourcemaps.init())
     .pipe(concat(jsOldschoolBundles[bundleName].outFileName + ".js", {newLine: "\n;"}))
+    .pipe(gulpif(doTranspile, babel()))
     .pipe(gulpif(doUglify, uglify(options.uglify)))
     .pipe(sourcemaps.write("./sourcemaps", options.sourcemaps.js))
     .pipe(gulp.dest(paths.output.js))
