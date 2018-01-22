@@ -3,7 +3,7 @@
  * Custom script 2.
  */
 
-(function(window, document, undefined) {
+(function() {
   "use strict";
 
   var logMsg = "Greetings from custom script 2.";
@@ -11,8 +11,9 @@
 
   console.log(window.apSettings.testVariable);
 
-  // The intentionally missing semicolon can trigger a jshint error report.
-  // var seeIfJshintWorks = "foo"
+  var interpolateString = '---> works';
+  var es6template = `ESNext transcompiler ${interpolateString}.`;
+  console.log(es6template);
 
-})(this, this.document);
+})();
 

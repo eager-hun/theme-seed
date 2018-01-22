@@ -5,7 +5,7 @@
  * See https://css-tricks.com/ajaxing-svg-sprite/
  */
 
-(function(window, document, undefined) {
+(function(window, document) {
   "use strict";
 
   var housing = document.getElementById("svg-sprite-housing");

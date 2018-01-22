@@ -7,7 +7,7 @@ if (typeof console === "undefined") {
   this.console = { log: function() {} };
 }
 
-(function(window, document, undefined) {
+(function() {
   "use strict";
 
   var logMsg = "Greetings from custom script 1.";
@@ -16,4 +16,4 @@ if (typeof console === "undefined") {
   window.apSettings = window.apSettings || {};
   window.apSettings.testVariable = "testVariable works.";
 
-})(this, this.document);
+})();
