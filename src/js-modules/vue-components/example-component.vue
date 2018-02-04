@@ -2,10 +2,10 @@
   <div class="example-vue-component">
     <p><strong>Example Vue component</strong></p>
     <ul class="bare-list">
-      <li v-html="msg"></li>
+      <li v-html="msg"/>
       <li v-if="displayIcon">
         <svg class="icon-sample">
-          <use v-bind:xlink:href="iconHref"/>
+          <use :xlink:href="iconHref"/>
         </svg>
         <span>SVG icon system rulez.</span>
       </li>
@@ -18,7 +18,7 @@
 
 <script>
   export default {
-    name: "example-component",
+    name: "ExampleComponent",
     data() {
       return {
         msg: `<strong class="happy-message">Rendering Vue template is successful.</strong>`,
