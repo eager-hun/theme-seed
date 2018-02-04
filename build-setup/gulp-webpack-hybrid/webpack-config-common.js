@@ -56,6 +56,12 @@ module.exports = {
         ]
       },
       {
+        test: /\.(js|vue)$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {}
+      },
+      {
         test: /\.(jpg|woff|woff2)$/,
         use: {
           loader: "file-loader",

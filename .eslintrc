@@ -3,7 +3,10 @@
     "es6": true,
     "browser": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "plugin:vue/recommended",
+    "eslint:recommended"
+  ],
   "rules": {
     "no-console": "off"
   }
