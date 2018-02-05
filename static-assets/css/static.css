@@ -5,8 +5,12 @@
 
 /*
 Just to see that it works.
-html {
-  border-top: 1em solid slategray;
-}
 */
+body::before {
+  content: "This part is coming from `static.css`.";
 
+  display: block;
+  padding: 0.75em;
+
+  background: gold;
+}
