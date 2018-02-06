@@ -28,6 +28,13 @@ html {
   }
 }
 
+@media (max-resolution: 1.4dppx) {
+  // For when one has a non-retina display attached to a Mac.
+  body {
+    @include font-smoothing(on);
+  }
+}
+
 
 // #############################################################################
 // Headings.
