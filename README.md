@@ -34,13 +34,12 @@ and the provided default configuration now assumes that this project is accessed
 via "anypage" as a wrapper around it.
 
 
-## Note if you are new to Node.js and NPM
+## Platform compatibility
 
-Learn their specific procedures on your operating system. E.g.:
+I've seen this project work well on Ubuntu and MacOS platforms.
 
-- you will [not want to get stuck with your `node_modules` folders][rimraf] on
-  Windows machines.
+I however don't test on, and don't maintain any Windows compatibility, so it's
+possible that the current composition of tooling doesn't play nice on Windows.
 
 
 [anypage]: https://github.com/eager-hun/anypage
-[rimraf]: http://stackoverflow.com/q/28175200
