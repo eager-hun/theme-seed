@@ -22,7 +22,7 @@
 // Apply on grid root element.
 @mixin grid-wrapping-for-cols($n, $item-classname: flex-grid__item) {
   &:not(.grid-collapsing) > .#{$item-classname} {
-    @include gap(margin, top, 1);
+    @include vari-gap(margin, top, 1);
 
     // See http://nth-test.com/
     &:nth-child(-n+#{$n}) {
@@ -35,7 +35,7 @@
 // Grid root element.
 
 @mixin flex-grid($wrap: false, $item-classname: flex-grid__item) {
-  @include gap(margin, horizontal, -0.5);
+  @include vari-gap(margin, horizontal, -0.5);
 
   display: flex;
   flex-direction: row;
@@ -49,7 +49,7 @@
   }
 
   & > .#{$item-classname} {
-    @include gap(padding, horizontal, 0.5);
+    @include vari-gap(padding, horizontal, 0.5);
 
     flex: 0 1 auto;
   }

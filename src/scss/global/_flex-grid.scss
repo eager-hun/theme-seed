@@ -62,5 +62,5 @@
 // Vertical gap between adjacent grid instances.
 
 .flex-grid + .flex-grid {
-  @include gap(margin, top, $stack-gap-factor-grid-match);
+  @include vari-gap(margin, top, $stack-gap-factor-grid-match);
 }

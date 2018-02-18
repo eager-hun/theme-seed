@@ -4,7 +4,7 @@
  */
 
 .box {
-  @include gap(padding, all, 1);
+  @include vari-gap(padding, all, 1);
 
   &:not(.color-zone) {
     background: color(blockfill);

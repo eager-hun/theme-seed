@@ -6,7 +6,7 @@
   @include headings-base;
   @include heading-aftereffects(h1);
 
-  @include gap(margin, bottom, $stack-gap-factor-major);
+  @include vari-gap(margin, bottom, $stack-gap-factor-major);
 
   margin-top: 0;
 }

@@ -5,7 +5,7 @@
 
 .page__header,
 .page__footer {
-  @include gap(padding, all, 1);
+  @include vari-gap(padding, all, 1);
   @include fit-content();
 }
 

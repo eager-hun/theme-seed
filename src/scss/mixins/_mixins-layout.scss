@@ -25,7 +25,7 @@
   }
 }
 
-@mixin gap($implemented-as, $applied-at: all, $multiplier: 1, $gap-map: $grid-column-gutters) {
+@mixin vari-gap($implemented-as, $applied-at: all, $multiplier: 1, $gap-map: $grid-column-gutters) {
   @if $applied-at == (all) {
     @each $breakpoint, $gap in $gap-map {
       @if $breakpoint == (initial) {

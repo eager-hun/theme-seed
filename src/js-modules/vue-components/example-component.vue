@@ -41,8 +41,8 @@
 
 <style lang="scss">
   .example-vue-component {
-    @include gap(margin, vertical, 1);
-    @include gap(padding, all, 1);
+    @include vari-gap(margin, vertical, 1);
+    @include vari-gap(padding, all, 1);
     @include fit-content();
 
     background: color(blockfill);

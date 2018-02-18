@@ -11,7 +11,7 @@
   }
 
   .flex-grid + .flex-grid {
-    @include gap(margin, vertical, $stack-gap-factor);
+    @include vari-gap(margin, vertical, $stack-gap-factor);
   }
 
   .box {
