@@ -1,6 +1,17 @@
 
 
 // #############################################################################
+// Meta-page for checking systems' wiring — custom rules.
+
+.meta-check-systems-wiring--css-bg-image {
+  padding-bottom: 66.7%;
+
+  background: url('#{$bg-image-path-gulp}/for-demo/photo-1-700.jpg') scroll no-repeat center center;
+  background-size: cover;
+}
+
+
+// #############################################################################
 // Grid-demo custom rules.
 
 .styles-demo-grid-palette {

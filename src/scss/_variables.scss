@@ -192,6 +192,15 @@ $colors: (
 
 
 // #############################################################################
+// Asset paths.
+// NOTE: asset paths may vary, depending on whether they are handled via Gulp or
+// via Webpack.
+
+// Relative path from the gulp-generated .css files' location to the images.
+$bg-image-path-gulp:            '../../../static-assets/images';
+
+
+// #############################################################################
 // CSS effects.
 
 $transition-easing-default:     ease-in-out;
