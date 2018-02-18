@@ -1,0 +1,17 @@
+
+/**
+ * Color retriever SASS function.
+ *
+ * Usage example:
+ *
+ * @code
+ *   .foo {
+ *     border-color: color(bar);
+ *   }
+ * @endcode
+ *
+ * NOTE: in the stylesheets, use only this way to define colors.
+ */
+@function color($key) {
+  @return map-get($colors, $key);
+}

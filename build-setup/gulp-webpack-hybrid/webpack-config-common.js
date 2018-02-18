@@ -40,7 +40,7 @@ module.exports = {
                     options: {
                       resources: [
                         path.resolve(rootPath, "src/scss/_variables.scss"),
-                        path.resolve(rootPath, "src/scss/mixins/_mixins.scss")
+                        path.resolve(rootPath, "src/scss/sass-tools/_sass-tools.scss")
                       ]
                     }
                   }

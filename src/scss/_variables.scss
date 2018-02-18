@@ -35,7 +35,10 @@ $content-area-max-width:        1200px;
 // #############################################################################
 // Media query breakpoints.
 
-/* LEGEND for the breakpoint variables:
+/**
+|
+| LEGEND for the breakpoint variables:
+|
 | <- $page-min-width                                $content-area-max-width -> |
 |                                                                              |
 |             <- narrow ->              |              <- wide ->              |
@@ -46,6 +49,7 @@ $content-area-max-width:        1200px;
 */
 
 $breakpoints: (
+
   initial:                      0,
   narrow-lt-max:              419px,
 
@@ -115,9 +119,21 @@ $prep-color-blockfill:          #eeeeee;
 $prep-color-nav:                $prep-color-prim;
 $prep-color-action:             $prep-color-accent-1;
 
-// READY TO USE COLOR MAP.
-// In the stylesheets, use only this map to refer to colors. It's awesome power.
-// In SASS, only with this one can you have 'variable variable names'.
+/**
+ * READY TO USE COLOR MAP.
+ * In the stylesheets, use only this map to refer to colors. It's awesome power.
+ * In SASS, only with this one can you have 'variable variable names'.
+ *
+ * Usage example:
+ *
+ * @code
+ *   .foo {
+ *     border-color: color(bar);
+ *   }
+ * @endcode
+ *
+ * Find the color() function declaration in ./sass-tools/_functions-color.scss.
+*/
 
 $colors: (
   brand:                        $color-brand,
@@ -150,54 +166,20 @@ $colors: (
   column-demo-green:            desaturate(palegreen, 10%)
 );
 
-/**
- * Color retriever function.
- *
- * Usage example:
- * 
- * @code
- *   .foo {
- *     border-color: color(bar);
- *   }
- * @endcode
- *
- * NOTE: in the stylesheets, use only this way to define colors.
- */
-@function color($key) {
-  @return map-get($colors, $key);
-}
-
-/**
- * Sass-map debugger function.
- *
- * See http://www.sitepoint.com/debugging-sass-maps/ .
- *
- * Usage:
- *
- * @code
- *   @include debug-map($map-to-inspect);
- * @endcode
- *
- * then look in the generated .css file.
- */
-@mixin debug-map($map) {
-  @at-root {
-    __properties__ {
-      @each $key, $value in $map {
-        #{$key}: inspect($value);
-      }
-    }
-  }
-}
-
 
 // #############################################################################
 // Asset paths.
+
 // NOTE: asset paths may vary, depending on whether they are handled via Gulp or
 // via Webpack.
 
+// The scenarios I can right now imagine happening are:
+// - from gulp-generated CSS/JS to static assets,
+// - from webpack-generated CSS/JS to webpack-managed dump of assets,
+// - from webpack-generated CSS/JS to static assets (don't know how to do that)
+
 // Relative path from the gulp-generated .css files' location to the images.
-$bg-image-path-gulp:            '../../../static-assets/images';
+$path-from-gulp-to-static-assets-images:    '../../../static-assets/images';
 
 
 // #############################################################################

@@ -1,0 +1,23 @@
+
+/**
+ * SASS-map debugger function.
+ *
+ * See http://www.sitepoint.com/debugging-sass-maps/ .
+ *
+ * Usage:
+ *
+ * @code
+ *   @include debug-map($map-to-inspect);
+ * @endcode
+ *
+ * then look in the generated .css file.
+ */
+@mixin debug-map($map) {
+  @at-root {
+    __properties__ {
+      @each $key, $value in $map {
+        #{$key}: inspect($value);
+      }
+    }
+  }
+}

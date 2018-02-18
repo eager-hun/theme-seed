@@ -31,6 +31,9 @@
  * @endcode
  */
 
+@import 'functions-color';
+@import 'functions-misc';
+
 @import "mixins-flex-grid";
 @import "mixins-color-zones";
 @import "mixins-layout";
