@@ -43,21 +43,21 @@
 }
 
 .notification--info {
-  color: mix(color(prim), black, 90%);
-  background-color: mix(color(prim), white, 10%);
+  color: color(info);
+  background-color: color(info-light);
 }
 
 .notification--success {
-  color: seagreen;
-  background-color: mix(seagreen, white, 10%);
+  color: color(success);
+  background-color: color(success-light);
 }
 
 .notification--warning {
-  color: mix(darkgoldenrod, black, 80%);
-  background-color: mix(darkgoldenrod, white, 15%);
+  color: color(warning);
+  background-color: color(warning-light);
 }
 
 .notification--alert {
-  color: mix(crimson, black, 80%);
-  background-color: mix(crimson, white, 20%);
+  color: color(alert);
+  background-color: color(alert-light);
 }
