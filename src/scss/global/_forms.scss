@@ -82,8 +82,8 @@ textarea
 
   background: white;
   border: 1px solid $form-widget-color;
-  border-radius: 0;
-  box-shadow: rgba(color(shadow), 0.25) 0 0 0.5em inset;
+  border-radius: $form-widget-border-radius;
+  box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset;
   color: color(text);
 
   font-family: $font-sans;
@@ -104,6 +104,8 @@ textarea
   padding-bottom: 0;
 }
 
+$btn-shdw-size: $form-widget-oneliner-height;
+
 .button {
   @include strip-button();
 
@@ -112,11 +114,39 @@ textarea
   padding-right: 0.75em;
 
   background: color(prim);
-  border: 1px solid color(prim);
-  color: white;
+  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.5) inset,
+              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
+              0 0 2px 1px white,
+              0 3px 12px -2px black;
+  border: 1px solid transparent;
+  border-radius: $form-widget-border-radius;
+  cursor: pointer;
+
+  &,
+  &:hover,
+  &:visited,
+  &:visited:hover
+  {
+    color: white;
+  }
 
   font-family: $font-sans;
   font-weight: 700;
+
+  text-shadow: 0 0 2px rgba(black, 0.33);
+  user-select: none;
+}
+
+.button__text {
+  display: block;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.5) inset,
+              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
+              0 0 3px 1px white,
+              0 3px 12px 0 mix(color(prim), black, 50%);
 }
 
 .input--oneliner,
@@ -165,13 +195,23 @@ textarea[disabled]
   box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
 }
 
+.input--oneliner[readonly],
+textarea[readonly]
+{
+  box-shadow: none;
+}
+
 .input--oneliner.has-error,
 textarea.has-error
 {
-  &,
+
+  border-color: $form-widget-color-error;
+  box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
+              0 0 0.4em color(alert);
+
   &:focus {
-    border-color: $form-widget-color-error;
-    box-shadow: color(alert) 0 0 0.4em;
+    box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
+                0 0 0.4em 3px mix(color(alert), white, 50%);
     outline: none;
   }
 }
@@ -180,10 +220,11 @@ textarea.has-error
 // #############################################################################
 // Arrangements.
 
-.label--above {
-  display: block;
-  margin-bottom: 0.2em;
+.label--above,
+.widget-container.with-blank-label::before {
+  @include form-above-widget-label-appearance();
 }
+
 
 fieldset {
   @include vari-gap('padding', 'all');
@@ -193,12 +234,54 @@ fieldset {
   }
 }
 
-.widget-container__helptext {
-  @include description-appearance($shrink: true);
+.widget-container__helptext,
+.widget-container__errortext {
   @include fit-content();
+  @include description-appearance($shrink: true);
+
+  margin-top: 0.5em;
 }
 
-.widget-container + .widget-container {
+.widget-container__errortext {
+  margin-top: 0.65em;
+
+  color: color(alert);
+
+  & + .widget-container__helptext {
+    margin-top: 0.4em;
+  }
+}
+
+.widget-container:not(:first-child) {
   margin-top: $form-items-vertical-gap;
 }
 
+@media (min-width: breakpoint(wide-mt-min)) {
+  .form-arrangement {
+    @include flex-grid($wrap: true, $item-classname: widget-container)
+  }
+
+  .widget-container.width--half {
+    width: 50%;
+  }
+
+  .widget-container.width--full {
+    width: 100%;
+
+    .input--oneliner,
+    textarea
+    {
+      max-width: none;
+    }
+  }
+
+  .width--half:first-child + .width--half {
+    margin-top: 0;
+  }
+
+  .widget-container.with-blank-label::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+  }
+}

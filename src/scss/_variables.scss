@@ -208,9 +208,10 @@ $transition-speed-slow:         700ms;
 // Forms.
 
 $form-input-max-width:              28em;
-$form-widget-oneliner-height:       2.6em;
-$form-items-vertical-gap:           1.5em;
+$form-widget-oneliner-height:       2.4em;
+$form-items-vertical-gap:           2em;
 
 $form-widget-color:                 silver;
 $form-widget-color-interaction:     color(prim);
 $form-widget-color-error:           color(alert);
+$form-widget-border-radius:         3px;

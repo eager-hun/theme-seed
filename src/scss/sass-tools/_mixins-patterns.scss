@@ -27,6 +27,7 @@
   }
 
   font-style: italic;
+  line-height: $line-height-condensed;
 
   &,
   & strong {
@@ -45,6 +46,16 @@
     // To make it stand out in an all-italic text.
     font-style: normal;
   }
+}
+
+@mixin form-above-widget-label-appearance() {
+  display: block;
+  margin-bottom: 0.5em;
+
+  font-size: 1em;
+  font-family: $font-sans;
+
+  line-height: 1;
 }
 
 @mixin common-text-block-structure() {
