@@ -1,6 +1,204 @@
 /**
  * @file
  * Forms.
- *
- * TODO.
  */
+
+/*
+NOTES:
+
+https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/The_native_form_widgets
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form-associated_content
+https://www.wufoo.com/html5/
+https://github.com/cbracco/html5-test-page
+
+Input widgets:
+
+Text-ish:
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="week"],
+  input[type="time"],
+  select,
+  datalist,
+
+Button-ish:
+
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  input[type="color"],
+  a.button,
+
+Other:
+
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="file"],
+  input[type="range"],
+  input[type="image"],
+  input[type="hidden"],
+  textarea,
+  progress,
+  meter,
+
+States:
+
+- initial:
+  - empty,
+  - with placeholder
+- error
+- disabled
+- readonly
+
+ */
+
+
+// #############################################################################
+// Widgets and buttons.
+
+label {
+  user-select: none;
+}
+
+.input--oneliner,
+textarea
+{
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+
+  display: block;
+  width: 100%;
+  max-width: $form-input-max-width;
+
+  background: white;
+  border: 1px solid $form-widget-color;
+  border-radius: 0;
+  box-shadow: rgba(color(shadow), 0.25) 0 0 0.5em inset;
+  color: color(text);
+
+  font-family: $font-sans;
+  font-weight: 400;
+  font-style: normal;
+
+  transition: border-color $transition-speed-fast $transition-easing-default;
+
+  &:focus {
+    border-color: $form-widget-color-interaction;
+
+    outline: none;
+  }
+}
+
+.input--oneliner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.button {
+  @include strip-button();
+
+  display: inline-block;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+
+  background: color(prim);
+  border: 1px solid color(prim);
+  color: white;
+
+  font-family: $font-sans;
+  font-weight: 700;
+}
+
+.input--oneliner,
+.button--oneliner
+{
+  height: $form-widget-oneliner-height;
+  line-height: $form-widget-oneliner-height;
+  vertical-align: middle;
+
+  white-space: nowrap;
+}
+.button--oneliner {
+  padding-top: 0;
+  padding-bottom: 0;
+
+
+  .button__text {
+    position: relative;
+    top: -0.05em;
+
+    display: inline-block;
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+textarea {
+  line-height: $line-height-condensed;
+
+  min-height: $form-widget-oneliner-height * 2.15;
+
+  padding-top: calc((#{$form-widget-oneliner-height} - (#{$line-height-condensed} * 1em)) / 2);
+  padding-bottom: calc((#{$form-widget-oneliner-height} - (#{$line-height-condensed} * 1em)) / 2);
+}
+
+// -----------------------------------------------------------------------------
+// Non-default states.
+
+.input--oneliner[disabled],
+textarea[disabled]
+{
+  background: whitesmoke;
+  border-color: lighten($form-widget-color, 15%);
+  box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
+}
+
+.input--oneliner.has-error,
+textarea.has-error
+{
+  &,
+  &:focus {
+    border-color: $form-widget-color-error;
+    box-shadow: color(alert) 0 0 0.4em;
+    outline: none;
+  }
+}
+
+
+// #############################################################################
+// Arrangements.
+
+.label--above {
+  display: block;
+  margin-bottom: 0.2em;
+}
+
+fieldset {
+  @include vari-gap('padding', 'all');
+
+  &:not(:first-child) {
+    margin-top: $form-items-vertical-gap;
+  }
+}
+
+.widget-container__helptext {
+  @include description-appearance($shrink: true);
+  @include fit-content();
+}
+
+.widget-container + .widget-container {
+  margin-top: $form-items-vertical-gap;
+}
+
