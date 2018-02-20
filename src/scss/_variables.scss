@@ -215,3 +215,38 @@ $form-widget-color:                 silver;
 $form-widget-color-interaction:     color(prim);
 $form-widget-color-error:           color(alert);
 $form-widget-border-radius:         3px;
+
+$button-colors: (
+  primary: (
+    background-color:               color(prim),
+    background-color-hover:         mix(color(prim), black, 73%),
+    background-color-disabled:      mix(color(prim), white, 50%),
+    color:                          white,
+    color-disabled:                 white,
+    text-shadow-color:              rgba(black, 0.33)
+  ),
+  accent-1: (
+    background-color:               color(accent-1),
+    background-color-hover:         mix(color(accent-1), black, 80%),
+    background-color-disabled:      mix(color(accent-1), white, 50%),
+    color:                          white,
+    color-disabled:                 white,
+    text-shadow-color:              rgba(black, 0.33)
+  ),
+  accent-2: (
+    background-color:               color(accent-2),
+    background-color-hover:         mix(color(accent-2), black, 80%),
+    background-color-disabled:      mix(color(accent-2), white, 50%),
+    color:                          white,
+    color-disabled:                 white,
+    text-shadow-color:              rgba(black, 0.33)
+  ),
+  gray: (
+    background-color:               darken(whitesmoke, 3%),
+    background-color-hover:         darken(whitesmoke, 10%),
+    background-color-disabled:      whitesmoke,
+    color:                          color(text),
+    color-disabled:                 lighten(color(text), 33%),
+    text-shadow-color:              rgba(white, 0.75)
+  )
+);
