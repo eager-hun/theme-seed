@@ -58,12 +58,11 @@ textarea
 }
 
 textarea {
+  @include widget-vertical-padding-to-match-oneliners($line-height-condensed);
+
   line-height: $line-height-condensed;
 
   min-height: $form-widget-oneliner-height * 2.15;
-
-  padding-top: calc((#{$form-widget-oneliner-height} - (#{$line-height-condensed} * 1em)) / 2);
-  padding-bottom: calc((#{$form-widget-oneliner-height} - (#{$line-height-condensed} * 1em)) / 2);
 }
 
 // -----------------------------------------------------------------------------
@@ -73,6 +72,7 @@ $btn-shdw-size: $form-widget-oneliner-height;
 
 .button {
   @include strip-button();
+  @include widget-vertical-padding-to-match-oneliners($line-height-condensed);
 
   display: inline-block;
   padding-left: $form-widget-side-padding;
@@ -88,7 +88,11 @@ $btn-shdw-size: $form-widget-oneliner-height;
 
   font-family: $font-sans;
   font-weight: 700;
+  line-height: $line-height-condensed;
+  min-height: $form-widget-oneliner-height;
+
   text-align: center;
+  vertical-align: top;
 
   transition: background-color $transition-speed-fast, $transition-easing-default,
               box-shadow $transition-speed-fast, $transition-easing-default;
