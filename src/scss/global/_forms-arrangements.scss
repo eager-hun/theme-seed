@@ -1,0 +1,75 @@
+
+.label--above,
+.widget-container.with-blank-label::before {
+  @include form-above-widget-label-appearance();
+}
+
+
+fieldset {
+  @include vari-gap('padding', 'all');
+
+  &:not(:first-child) {
+    margin-top: $form-items-vertical-gap;
+  }
+}
+
+.widget-container__helptext,
+.widget-container__errortext {
+  @include fit-content();
+  @include description-appearance($shrink: true);
+
+  margin-top: 0.5em;
+}
+
+.widget-container__errortext {
+  margin-top: 0.65em;
+
+  color: color(alert);
+
+  & + .widget-container__helptext {
+    margin-top: 0.4em;
+  }
+}
+
+.widget-container:not(:first-child) {
+  margin-top: $form-items-vertical-gap;
+}
+
+.widget-container {
+  .button + .button {
+    margin-left: 0.5em;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Horizontally arranged fields, when the screen is large enough.
+
+@media (min-width: breakpoint(wide-mt-min)) {
+  .form-arrangement {
+    @include flex-grid($wrap: true, $item-classname: widget-container)
+  }
+
+  .widget-container.width--half {
+    width: 50%;
+  }
+
+  .widget-container.width--full {
+    width: 100%;
+
+    .input--oneliner,
+    textarea
+    {
+      max-width: none;
+    }
+  }
+
+  .width--half:first-child + .width--half {
+    margin-top: 0;
+  }
+
+  .widget-container.with-blank-label::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+  }
+}

@@ -3,78 +3,26 @@
  * Forms.
  */
 
-/*
-NOTES:
-
-https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/The_native_form_widgets
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form-associated_content
-https://www.wufoo.com/html5/
-https://github.com/cbracco/html5-test-page
-
-Input widgets:
-
-Text-ish:
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="url"],
-  input[type="number"],
-  input[type="datetime-local"],
-  input[type="date"],
-  input[type="month"],
-  input[type="week"],
-  input[type="time"],
-  select,
-  datalist,
-
-Button-ish:
-
-  button,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  input[type="color"],
-  a.button,
-
-Other:
-
-  input[type="checkbox"],
-  input[type="radio"],
-  input[type="file"],
-  input[type="range"],
-  input[type="image"],
-  input[type="hidden"],
-  textarea,
-  progress,
-  meter,
-
-States:
-
-- initial:
-  - empty,
-  - with placeholder
-- error
-- disabled
-- readonly
-
- */
-
 
 // #############################################################################
-// Widgets and buttons.
+// Labels.
 
 label {
   user-select: none;
 }
 
+
+// #############################################################################
+// Widgets and buttons.
+
+// -----------------------------------------------------------------------------
+// Basic widgets foundation.
+
 .input--oneliner,
 textarea
 {
-  padding-left: 0.75em;
-  padding-right: 0.75em;
+  padding-left: $form-widget-side-padding;
+  padding-right: $form-widget-side-padding;
 
   display: block;
   width: 100%;
@@ -100,81 +48,13 @@ textarea
 }
 
 .input--oneliner {
+  // Note: inputs don't need any line-height declaration.
+  height: $form-widget-oneliner-height;
+
   padding-top: 0;
   padding-bottom: 0;
-}
-
-$btn-shdw-size: $form-widget-oneliner-height;
-
-.button {
-  @include strip-button();
-
-  display: inline-block;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-
-  background: color(prim);
-  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.3) inset,
-              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
-              0 0 2px 1px white,
-              0 3px 10px -3px black;
-  border: 1px solid transparent;
-  border-radius: $form-widget-border-radius;
-  cursor: pointer;
-
-  &,
-  &:hover,
-  &:visited,
-  &:visited:hover
-  {
-    color: white;
-  }
-
-  font-family: $font-sans;
-  font-weight: 700;
-
-  text-shadow: 0 0 2px rgba(black, 0.33);
-  transition: background-color $transition-speed-fast, $transition-easing-default,
-              box-shadow $transition-speed-fast, $transition-easing-default;
-  user-select: none;
-}
-
-.button__text {
-  display: block;
-}
-
-.button:focus {
-  outline: none;
-  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.3) inset,
-              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
-              0 0 2px 1px white,
-              0 2px 10px 0 mix(color(prim), black, 50%);
-}
-
-.input--oneliner,
-.button--oneliner
-{
-  height: $form-widget-oneliner-height;
-  line-height: $form-widget-oneliner-height;
-  vertical-align: middle;
 
   white-space: nowrap;
-}
-.button--oneliner {
-  padding-top: 0;
-  padding-bottom: 0;
-
-
-  .button__text {
-    position: relative;
-    top: -0.05em;
-
-    display: inline-block;
-    width: 100%;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 
 textarea {
@@ -187,39 +67,66 @@ textarea {
 }
 
 // -----------------------------------------------------------------------------
-// Non-default states.
+// Buttons foundation.
 
-.input--oneliner[disabled],
-textarea[disabled]
-{
-  background: whitesmoke;
-  border-color: lighten($form-widget-color, 15%);
-  box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
+$btn-shdw-size: $form-widget-oneliner-height;
+
+.button {
+  @include strip-button();
+
+  display: inline-block;
+  padding-left: $form-widget-side-padding;
+  padding-right: $form-widget-side-padding;
+
+  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.3) inset,
+              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
+              0 0 2px 1px white,
+              0 3px 10px -3px black;
+  border: 1px solid transparent;
+  border-radius: $form-widget-border-radius;
+  cursor: pointer;
+
+  font-family: $font-sans;
+  font-weight: 700;
+  text-align: center;
+
+  transition: background-color $transition-speed-fast, $transition-easing-default,
+              box-shadow $transition-speed-fast, $transition-easing-default;
+  user-select: none;
 }
 
-.input--oneliner[readonly],
-textarea[readonly]
-{
-  box-shadow: none;
+.button:not(:disabled):hover,
+.button:focus {
+  outline: none;
+  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.3) inset,
+              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
+              0 0 2px 1px white,
+              0 2px 10px 0 mix(color(prim), black, 50%);
 }
 
-.input--oneliner.has-error,
-textarea.has-error
-{
+// "Button oneliner" is a button that's matching "oneliner inputs".
+.button--oneliner {
+  height: $form-widget-oneliner-height;
 
-  border-color: $form-widget-color-error;
-  box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
-              0 0 0.4em color(alert);
+  // Note: buttons do need the line-height-hack.
+  // (Also need to distract the border-width for better vertical alignment.
+  line-height: calc(#{$form-widget-oneliner-height} - 2px);
 
-  &:focus {
-    box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
-                0 0 0.4em 3px mix(color(alert), white, 50%);
-    outline: none;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  white-space: nowrap;
+
+  .button__text {
+    display: inline-block;
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-
-// #############################################################################
+// -----------------------------------------------------------------------------
 // Button color variants.
 
 @each $name, $data in $button-colors {
@@ -232,7 +139,7 @@ textarea.has-error
     &:visited,
     &:visited:hover
     {
-      color:                map-get($data, color);
+      color:              map-get($data, color);
     }
 
     &:hover,
@@ -252,81 +159,43 @@ textarea.has-error
 }
 
 
-
 // #############################################################################
-// Arrangements.
+// Non-default states.
 
-.label--above,
-.widget-container.with-blank-label::before {
-  @include form-above-widget-label-appearance();
-}
+// -----------------------------------------------------------------------------
+// Disabled.
 
-
-fieldset {
-  @include vari-gap('padding', 'all');
-
-  &:not(:first-child) {
-    margin-top: $form-items-vertical-gap;
-  }
-}
-
-.widget-container__helptext,
-.widget-container__errortext {
-  @include fit-content();
-  @include description-appearance($shrink: true);
-
-  margin-top: 0.5em;
-}
-
-.widget-container__errortext {
-  margin-top: 0.65em;
-
-  color: color(alert);
-
-  & + .widget-container__helptext {
-    margin-top: 0.4em;
-  }
-}
-
-.widget-container:not(:first-child) {
-  margin-top: $form-items-vertical-gap;
-}
-
-.widget-container {
-  .button + .button {
-    margin-left: 0.5em;
-  }
+.input--oneliner:disabled,
+textarea:disabled
+{
+  background: whitesmoke;
+  border-color: lighten($form-widget-color, 15%);
+  box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
 }
 
 // -----------------------------------------------------------------------------
-// Horizontally arranged fields, when the screen is large enough.
+// Readonly.
 
-@media (min-width: breakpoint(wide-mt-min)) {
-  .form-arrangement {
-    @include flex-grid($wrap: true, $item-classname: widget-container)
-  }
+.input--oneliner[readonly],
+textarea[readonly]
+{
+  box-shadow: none;
+}
 
-  .widget-container.width--half {
-    width: 50%;
-  }
+// -----------------------------------------------------------------------------
+// Error.
 
-  .widget-container.width--full {
-    width: 100%;
+.input--oneliner.has-error,
+textarea.has-error
+{
 
-    .input--oneliner,
-    textarea
-    {
-      max-width: none;
-    }
-  }
+  border-color: $form-widget-color-error;
+  box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
+              0 0 0.4em color(alert);
 
-  .width--half:first-child + .width--half {
-    margin-top: 0;
-  }
-
-  .widget-container.with-blank-label::before {
-    content: '';
-    width: 1em;
-    height: 1em;
+  &:focus {
+    box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
+                0 0 0.4em 3px mix(color(alert), white, 50%);
+    outline: none;
   }
 }
