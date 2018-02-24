@@ -207,15 +207,38 @@ $transition-speed-slow:         700ms;
 // #############################################################################
 // Forms.
 
-$form-input-max-width:              28em;
-$form-widget-oneliner-height:       2.4em;
-$form-widget-side-padding:          0.75em;
-$form-items-vertical-gap:           2em;
+$form-font-size: (
+  smallforms:                             0.833rem,   // 15px
+  default:                                1rem,       // 18px
+  bigforms:                               1.3333rem   // 24px
+);
 
-$form-widget-color:                 silver;
-$form-widget-color-interaction:     color(prim);
-$form-widget-color-error:           color(alert);
-$form-widget-border-radius:         3px;
+$form-widget-oneliner-height: (
+  smallforms:                             2.1333em,   // 32px
+  default:                                2.3333em,   // 42px
+  bigforms:                               2.5em       // 60px
+);
+
+$form-items-vertical-gap: (
+  smallforms:                             1.4666em,   // 22px
+  default:                                2em,        // 36px
+  bigforms:                               2.5em       // 60px
+);
+
+$form-widget-side-padding:                0.75em;
+
+$form-input-max-width: (
+  smallforms:                             32em,
+  default:                                28em,
+  bigforms:                               24em,
+);
+
+$form-widget-border-color:                silver;
+$form-widget-border-color-interaction:    color(prim);
+$form-widget-border-color-error:          color(alert);
+$form-widget-border-radius:               3px;
+
+$form-arrangement-layout-update-bkp:      wide-mt-min;
 
 $button-colors: (
   primary: (

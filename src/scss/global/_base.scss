@@ -23,7 +23,7 @@ html {
 }
 
 @media(min-width: breakpoint(wide-ht-min)) {
-  body {
+  html {
      font-size: 100% * ($font-size-bigscreen / 16px);
   }
 }

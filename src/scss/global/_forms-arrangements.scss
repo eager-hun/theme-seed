@@ -7,10 +7,6 @@
 
 fieldset {
   @include vari-gap('padding', 'all');
-
-  &:not(:first-child) {
-    margin-top: $form-items-vertical-gap;
-  }
 }
 
 .widget-container__helptext,
@@ -31,8 +27,9 @@ fieldset {
   }
 }
 
-.widget-container:not(:first-child) {
-  margin-top: $form-items-vertical-gap;
+.widget-container:not(:first-child),
+fieldset:not(:first-child) {
+  margin-top: map-get($form-items-vertical-gap, default);
 }
 
 .widget-container {
@@ -44,7 +41,7 @@ fieldset {
 // -----------------------------------------------------------------------------
 // Horizontally arranged fields, when the screen is large enough.
 
-@media (min-width: breakpoint(wide-mt-min)) {
+@media (min-width: breakpoint($form-arrangement-layout-update-bkp)) {
   .form-arrangement {
     @include flex-grid($wrap: true, $item-classname: widget-container)
   }
@@ -63,7 +60,7 @@ fieldset {
     }
   }
 
-  .width--half:first-child + .width--half {
+  .widget-container.width--half:first-child + .width--half {
     margin-top: 0;
   }
 

@@ -1,0 +1,58 @@
+
+@mixin widget-vertical-padding-to-match-oneliners($widget-height, $line-height) {
+  padding-top: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
+  padding-bottom: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
+}
+
+@function button-inset-box-shadows() {
+  // These inset shadows add a vertical linear-gradient-like color shift,
+  // but with the added benefit that the bg-color remains transitionable.
+  @return (
+    0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.66) inset,
+    0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.25) inset
+  );
+}
+
+@mixin form-size-variant-updates($size-variant) {
+
+  // Extract variable from map, so that we can use it in calc().
+  $oneliner-height: map-get($form-widget-oneliner-height, $size-variant);
+
+  font-size: map-get($form-font-size, $size-variant);
+
+  .input--oneliner,
+  textarea
+  {
+    max-width: map-get($form-input-max-width, $size-variant);
+  }
+  .input--oneliner,
+  .button--oneliner {
+    height: $oneliner-height;
+  }
+  .button {
+    min-height: $oneliner-height;
+  }
+  textarea,
+  .button {
+    @include widget-vertical-padding-to-match-oneliners(
+        $oneliner-height,
+        $line-height-condensed
+    );
+  }
+  .button--oneliner {
+    line-height: calc(#{$oneliner-height} - 2px);
+
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .widget-container:not(:first-child),
+  fieldset:not(:first-child) {
+    margin-top: map-get($form-items-vertical-gap, $size-variant);
+  }
+
+  @media (min-width: breakpoint($form-arrangement-layout-update-bkp)) {
+    .widget-container.width--half:first-child + .width--half {
+      margin-top: 0;
+    }
+  }
+}

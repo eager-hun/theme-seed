@@ -1,5 +1,0 @@
-
-@mixin widget-vertical-padding-to-match-oneliners($line-height) {
-  padding-top: calc(((#{$form-widget-oneliner-height} - (#{$line-height} * 1em)) / 2) - 1px);
-  padding-bottom: calc(((#{$form-widget-oneliner-height} - (#{$line-height} * 1em)) / 2) - 1px);
-}

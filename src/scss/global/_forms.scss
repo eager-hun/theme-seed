@@ -3,6 +3,9 @@
  * Forms.
  */
 
+form {
+  font-size: map-get($form-font-size, default);
+}
 
 // #############################################################################
 // Labels.
@@ -15,6 +18,9 @@ label {
 // #############################################################################
 // Widgets and buttons.
 
+// Extract variable from map, so that we can use it in calc().
+$oneliner-height: map-get($form-widget-oneliner-height, default);
+
 // -----------------------------------------------------------------------------
 // Basic widgets foundation.
 
@@ -26,10 +32,10 @@ textarea
 
   display: block;
   width: 100%;
-  max-width: $form-input-max-width;
+  max-width: map-get($form-input-max-width, default);
 
   background: white;
-  border: 1px solid $form-widget-color;
+  border: 1px solid $form-widget-border-color;
   border-radius: $form-widget-border-radius;
   box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset;
   color: color(text);
@@ -41,7 +47,7 @@ textarea
   transition: border-color $transition-speed-fast $transition-easing-default;
 
   &:focus {
-    border-color: $form-widget-color-interaction;
+    border-color: $form-widget-border-color-interaction;
 
     outline: none;
   }
@@ -49,7 +55,7 @@ textarea
 
 .input--oneliner {
   // Note: inputs don't need any line-height declaration.
-  height: $form-widget-oneliner-height;
+  height: $oneliner-height;
 
   padding-top: 0;
   padding-bottom: 0;
@@ -58,67 +64,74 @@ textarea
 }
 
 textarea {
-  @include widget-vertical-padding-to-match-oneliners($line-height-condensed);
+  @include widget-vertical-padding-to-match-oneliners(
+    $oneliner-height,
+    $line-height-condensed
+  );
 
   line-height: $line-height-condensed;
 
-  min-height: $form-widget-oneliner-height * 2.15;
+  min-height: $oneliner-height * 2.15;
 }
 
 // -----------------------------------------------------------------------------
 // Buttons foundation.
 
-$btn-shdw-size: $form-widget-oneliner-height;
+$btn-shdw-size: $oneliner-height * 0.5;
 
 .button {
   @include strip-button();
-  @include widget-vertical-padding-to-match-oneliners($line-height-condensed);
+  @include widget-vertical-padding-to-match-oneliners(
+    $oneliner-height,
+    $line-height-condensed
+  );
 
   display: inline-block;
   padding-left: $form-widget-side-padding;
   padding-right: $form-widget-side-padding;
 
-  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.3) inset,
-              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
-              0 0 2px 1px white,
-              0 3px 10px -3px black;
   border: 1px solid transparent;
   border-radius: $form-widget-border-radius;
-  cursor: pointer;
 
   font-family: $font-sans;
   font-weight: 700;
   line-height: $line-height-condensed;
-  min-height: $form-widget-oneliner-height;
+  min-height: $oneliner-height;
 
   text-align: center;
   vertical-align: top;
 
   transition: background-color $transition-speed-fast, $transition-easing-default,
               box-shadow $transition-speed-fast, $transition-easing-default;
-  user-select: none;
-}
 
-.button:not(:disabled):hover,
-.button:focus {
-  outline: none;
-  box-shadow: 0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.3) inset,
-              0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.3) inset,
-              0 0 2px 1px white,
-              0 2px 10px 0 mix(color(prim), black, 50%);
+  cursor: pointer;
+  user-select: none;
+
+
+  box-shadow: button-inset-box-shadows(),
+              0 0 3px -1px white,
+              0 5px 7px -3px color(shadow);
+
+  &:not(:disabled):hover,
+  &:focus {
+    box-shadow: button-inset-box-shadows(),
+                0 0 3px -1px white,
+                0 8px 8px -3px color(shadow);
+  }
 }
 
 // "Button oneliner" is a button that's matching "oneliner inputs".
 .button--oneliner {
-  height: $form-widget-oneliner-height;
+  height: $oneliner-height;
 
   // Note: buttons do need the line-height-hack.
   // (Also need to distract the border-width for better vertical alignment.
-  line-height: calc(#{$form-widget-oneliner-height} - 2px);
+  line-height: calc(#{$oneliner-height} - 2px);
 
   padding-top: 0;
   padding-bottom: 0;
 
+  max-width: 100%;
   white-space: nowrap;
 
   .button__text {
@@ -151,6 +164,9 @@ $btn-shdw-size: $form-widget-oneliner-height;
       background-color:   map-get($data, background-color-hover);
       color:              map-get($data, color);
     }
+    &:focus {
+      outline: none;
+    }
 
     &:disabled,
     &:disabled:hover {
@@ -173,7 +189,7 @@ $btn-shdw-size: $form-widget-oneliner-height;
 textarea:disabled
 {
   background: whitesmoke;
-  border-color: lighten($form-widget-color, 15%);
+  border-color: lighten($form-widget-border-color, 15%);
   box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
 }
 
@@ -193,7 +209,7 @@ textarea[readonly]
 textarea.has-error
 {
 
-  border-color: $form-widget-color-error;
+  border-color: $form-widget-border-color-error;
   box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
               0 0 0.4em color(alert);
 
