@@ -17,10 +17,12 @@
 @import "global/base";
 @import "global/flex-grid";
 @import "global/color-zones";
-@import "global/forms";
-@import "global/forms-arrangements";
-@import "global/forms-size-variants";
 @import "global/icons";
+
+@import "forms/forms";
+@import "forms/forms-arrangements";
+@import "forms/forms-small";
+@import "forms/forms-big";
 
 @import "layouts/layouts-shared";
 @import "layouts/page-level";

@@ -4,7 +4,6 @@
   @include form-above-widget-label-appearance();
 }
 
-
 fieldset {
   @include vari-gap('padding', 'all');
 }
@@ -53,10 +52,6 @@ fieldset:not(:first-child) {
     }
   }
 
-  .widget-container.width--half {
-    width: 50%;
-  }
-
   .widget-container.width--full {
     width: 100%;
 
@@ -65,6 +60,10 @@ fieldset:not(:first-child) {
     {
       max-width: none;
     }
+  }
+
+  .widget-container.width--half {
+    width: 50%;
   }
 
   .widget-container.with-blank-label::before {
