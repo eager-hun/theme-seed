@@ -27,23 +27,30 @@ fieldset {
   }
 }
 
-.widget-container:not(:first-child),
-fieldset:not(:first-child) {
-  margin-top: map-get($form-items-vertical-gap, default);
-}
-
 .widget-container {
   .button + .button {
     margin-left: 0.5em;
   }
 }
 
+.widget-container:not(:first-child),
+fieldset:not(:first-child) {
+  margin-top: map-get($form-items-vertical-gap, default);
+}
+
+
 // -----------------------------------------------------------------------------
 // Horizontally arranged fields, when the screen is large enough.
 
 @media (min-width: breakpoint($form-arrangement-layout-update-bkp)) {
   .form-arrangement {
-    @include flex-grid($wrap: true, $item-classname: widget-container)
+    @include flex-grid($wrap: true, $item-classname: widget-container);
+
+    margin-top: map-get($form-items-vertical-gap, default) * -1;
+
+    .widget-container {
+      margin-top: map-get($form-items-vertical-gap, default);
+    }
   }
 
   .widget-container.width--half {
@@ -58,10 +65,6 @@ fieldset:not(:first-child) {
     {
       max-width: none;
     }
-  }
-
-  .widget-container.width--half:first-child + .width--half {
-    margin-top: 0;
   }
 
   .widget-container.with-blank-label::before {

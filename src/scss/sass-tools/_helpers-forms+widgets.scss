@@ -51,8 +51,12 @@
   }
 
   @media (min-width: breakpoint($form-arrangement-layout-update-bkp)) {
-    .widget-container.width--half:first-child + .width--half {
-      margin-top: 0;
+    .form-arrangement {
+      margin-top: map-get($form-items-vertical-gap, $size-variant) * -1;
+
+      .widget-container {
+        margin-top: map-get($form-items-vertical-gap, $size-variant);
+      }
     }
   }
 }

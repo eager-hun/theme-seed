@@ -221,14 +221,14 @@ $form-widget-oneliner-height: (
 
 $form-items-vertical-gap: (
   smallforms:                             1.4666em,   // 22px
-  default:                                2em,        // 36px
-  bigforms:                               2.5em       // 60px
+  default:                                1.4444em,   // 26px
+  bigforms:                               1.3333em    // 32px
 );
 
 $form-widget-side-padding:                0.75em;
 
 $form-input-max-width: (
-  smallforms:                             32em,
+  smallforms:                             34em,
   default:                                28em,
   bigforms:                               24em,
 );
