@@ -258,8 +258,9 @@ $form-colors-default: (
   border-color-focus-error:               color(alert),
   border-color-disabled:                  lighten(silver, 15%),
 
-  value-color:                            color(text),
+  value-color:                            color(text-strong),
 
+  label-color:                            color(text-strong),
   helptext-color:                         color(text-faded),
   errortext-color:                        color(alert),
 );
@@ -290,6 +291,7 @@ $form-colors-in-color-zones: (
     inset-box-shadow-color-error:           rgba(color(warning), 0.75),
     focus-box-shadow-color-error:           mix(color(warning), white, 66%),
 
+    label-color:                            white,
     helptext-color:                         rgba(white, 0.8),
     errortext-color:                        gold,
   ),
@@ -308,6 +310,7 @@ $form-colors-in-color-zones: (
     inset-box-shadow-color-error:           rgba(color(warning), 0.75),
     focus-box-shadow-color-error:           mix(color(warning), white, 42%),
 
+    label-color:                            white,
     helptext-color:                         rgba(white, 0.8),
     errortext-color:                        gold
   ),
@@ -326,6 +329,7 @@ $form-colors-in-color-zones: (
     inset-box-shadow-color-error:           rgba(color(warning), 0.75),
     focus-box-shadow-color-error:           mix(color(warning), white, 42%),
 
+    label-color:                            white,
     helptext-color:                         rgba(white, 0.8),
     errortext-color:                        gold
   ),
@@ -342,6 +346,7 @@ $form-colors-in-color-zones: (
     inset-box-shadow-color-error:           rgba(color(warning), 0.75),
     focus-box-shadow-color-error:           mix(color(warning), white, 60%),
 
+    label-color:                            white,
     helptext-color:                         rgba(white, 0.6),
     errortext-color:                        gold
   ),

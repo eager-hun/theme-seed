@@ -12,19 +12,19 @@ form {
 // Labels.
 
 label {
+  color: map-get($form-colors-default, label-color);
+
+  font-family: $font-sans;
+
   user-select: none;
 }
 
 
 // #############################################################################
-// Widgets and buttons.
+// Widgets.
 
 // Extract variable from map, so that we can use it in calc().
 $oneliner-height: map-get($form-widget-oneliner-height, default);
-
-
-// -----------------------------------------------------------------------------
-// Basic widgets foundation.
 
 .input--oneliner,
 textarea
@@ -91,110 +91,6 @@ textarea {
   line-height: $line-height-condensed;
 
   min-height: $oneliner-height * 2.15;
-}
-
-// -----------------------------------------------------------------------------
-// Buttons foundation.
-
-$btn-shdw-size: $oneliner-height * 0.5;
-
-.button {
-  @include strip-button();
-  @include widget-vertical-padding-to-match-oneliners(
-    $oneliner-height,
-    $line-height-condensed
-  );
-
-  display: inline-block;
-  padding-left: $form-widget-side-padding;
-  padding-right: $form-widget-side-padding;
-
-  border: 1px solid transparent;
-  border-radius: $form-widget-border-radius;
-
-  font-family: $font-sans;
-  font-weight: 700;
-  line-height: $line-height-condensed;
-  min-height: $oneliner-height;
-
-  text-align: center;
-  vertical-align: top;
-
-  transition: background-color $transition-speed-fast, $transition-easing-default,
-              box-shadow $transition-speed-fast, $transition-easing-default;
-
-  cursor: pointer;
-  user-select: none;
-
-
-  box-shadow: button-inset-box-shadows(),
-              0 0 3px -1px white,
-              0 5px 7px -3px color(shadow);
-
-  &:not(:disabled):hover,
-  &:focus {
-    box-shadow: button-inset-box-shadows(),
-                0 0 3px -1px white,
-                0 8px 8px -3px color(shadow);
-  }
-}
-
-// "Button oneliner" is a button that's matching "oneliner inputs".
-.button--oneliner {
-  height: $oneliner-height;
-
-  // Note: buttons do need the line-height-hack.
-  // (Also need to distract the border-width for better vertical alignment.
-  line-height: calc(#{$oneliner-height} - 2px);
-
-  padding-top: 0;
-  padding-bottom: 0;
-
-  max-width: 100%;
-  white-space: nowrap;
-
-  .button__text {
-    display: inline-block;
-    width: 100%;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-// -----------------------------------------------------------------------------
-// Button color variants.
-
-@each $name, $data in $button-colors {
-  .button--#{$name} {
-    background-color:     map-get($data, background-color);
-    text-shadow:          0 1px 3px map-get($data, text-shadow-color);
-
-    &,
-    &:hover,
-    &:visited,
-    &:visited:hover
-    {
-      color:              map-get($data, color);
-    }
-
-    &:hover,
-    &:focus {
-      background-color:   map-get($data, background-color-hover);
-      color:              map-get($data, color);
-    }
-    &:focus {
-      outline: none;
-    }
-
-    &:disabled,
-    &:disabled:hover {
-      background-color:   map-get($data, background-color-disabled);
-      color:              map-get($data, color-disabled);
-      text-shadow: none;
-      cursor: auto;
-    }
-  }
 }
 
 

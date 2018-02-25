@@ -78,6 +78,13 @@
   $color-defs: map-get($form-colors-in-color-zones, $color-zone);
 
   .color-zone--#{$color-zone} {
+
+    @if map-has-key($color-defs, label-color) {
+      label {
+        color: map-get($color-defs, label-color);
+      }
+    }
+
     .input--oneliner,
     textarea {
 
