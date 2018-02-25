@@ -52,7 +52,14 @@ fieldset:not(:first-child) {
 
     .widget-container {
       margin-top: map-get($form-items-vertical-gap, default);
+
+      // Make .widget-container default to 50% even without corresponding class.
+      width: 50%;
     }
+  }
+
+  .widget-container.width--half {
+    width: 50%;
   }
 
   .widget-container.width--full {
@@ -63,10 +70,6 @@ fieldset:not(:first-child) {
     {
       max-width: none;
     }
-  }
-
-  .widget-container.width--half {
-    width: 50%;
   }
 
   .widget-container.with-blank-label::before {
