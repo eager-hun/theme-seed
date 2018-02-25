@@ -1,8 +1,10 @@
 
+
 @mixin widget-vertical-padding-to-match-oneliners($widget-height, $line-height) {
   padding-top: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
   padding-bottom: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
 }
+
 
 @function button-inset-box-shadows() {
   // These inset shadows add a vertical linear-gradient-like color shift,
@@ -12,6 +14,16 @@
     0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.25) inset
   );
 }
+
+
+@function input-inset-box-shadow($color) {
+  @return (0 0 0.5em $color inset);
+}
+
+@function input-focus-box-shadow($color) {
+  @return (0 0 0 $form-widget-focus-outline-width $color);
+}
+
 
 @mixin form-size-variant-updates($size-variant) {
 
@@ -59,4 +71,133 @@
       }
     }
   }
+}
+
+
+@mixin form-widgets-in-color-zone($color-zone) {
+  $color-defs: map-get($form-colors-in-color-zones, $color-zone);
+
+  .color-zone--#{$color-zone} {
+    .input--oneliner,
+    textarea {
+
+      @if map-has-key($color-defs, background-color) {
+        background-color: map-get($color-defs, background-color);
+      }
+      @if map-has-key($color-defs, value-color) {
+        color: map-get($color-defs, value-color);
+      }
+      @if map-has-key($color-defs, border-color) {
+        border-color: map-get($color-defs, border-color);
+      }
+      @if map-has-key($color-defs, inset-box-shadow-color) {
+        $initial-inset-box-shadow: input-inset-box-shadow(
+          map-get(
+            $color-defs,
+            inset-box-shadow-color
+          )
+        );
+        box-shadow: $initial-inset-box-shadow;
+
+        // @techdebt: focus box shadow override will work only if inset was
+        // overridden too...
+        // Reason: we need to rely on $initial-inset-box-shadow in this
+        // declaration...
+        @if map-has-key($color-defs, focus-box-shadow-color) {
+          &:focus {
+            $initial-focus-box-shadow: input-focus-box-shadow(
+              map-get(
+                $color-defs,
+                focus-box-shadow-color
+              )
+            );
+            box-shadow: $initial-inset-box-shadow, $initial-focus-box-shadow;
+          }
+        }
+      }
+
+      &:focus {
+        @if map-has-key($color-defs, border-color-focus) {
+          border-color: map-get($color-defs, border-color-focus);
+        }
+      }
+
+      &.has-error {
+        @if map-has-key($color-defs, background-color-error) {
+          background-color: map-get($color-defs, background-color-error);
+        }
+        @if map-has-key($color-defs, border-color-error) {
+          border-color: map-get($color-defs, border-color-error);
+        }
+        @if map-has-key($color-defs, border-color-focus-error) {
+          &:focus {
+            border-color: map-get($color-defs, border-color-focus-error);
+          }
+        }
+
+        @if map-has-key($color-defs, inset-box-shadow-color-error) {
+          $error-inset-box-shadow: input-inset-box-shadow(
+            map-get(
+              $color-defs,
+              inset-box-shadow-color-error
+            )
+          );
+          box-shadow: $error-inset-box-shadow;
+
+          &:focus {
+            $error-focus-box-shadow: input-focus-box-shadow(
+              map-get(
+                $color-defs,
+                focus-box-shadow-color-error
+              )
+            );
+            box-shadow: $error-inset-box-shadow, $error-focus-box-shadow;
+          }
+
+        }
+      }
+
+      &:disabled {
+        @if map-has-key($color-defs, background-color-disabled) {
+          background-color: map-get($color-defs, background-color-disabled);
+        }
+        @if map-has-key($color-defs, border-color-disabled) {
+          border-color: map-get($color-defs, border-color-disabled);
+        }
+      }
+
+      &[readonly] {
+        @if map-has-key($color-defs, inset-box-shadow-color) {
+          box-shadow: none;
+
+          $focus-box-shadow-for-disabled: input-focus-box-shadow(
+            map-get(
+              $color-defs,
+              focus-box-shadow-color
+            )
+          );
+          &:focus {
+            box-shadow: $focus-box-shadow-for-disabled;
+          }
+        }
+      }
+    }
+
+    @if map-has-key($color-defs, helptext-color) {
+      .widget-container__helptext {
+        color: map-get($color-defs, helptext-color);
+      }
+    }
+
+    @if map-has-key($color-defs, errortext-color) {
+      .widget-container__errortext {
+        color: map-get($color-defs, errortext-color);
+      }
+    }
+  }
+
+}
+
+@mixin button-in-color-zone($color-zone) {
+
 }

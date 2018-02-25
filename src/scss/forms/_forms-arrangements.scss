@@ -11,7 +11,10 @@ fieldset {
 .widget-container__helptext,
 .widget-container__errortext {
   @include fit-content();
-  @include description-appearance($shrink: true);
+  @include description-appearance(
+    $color: map-get($form-colors-default, helptext-color),
+    $shrink: true
+  );
 
   margin-top: 0.5em;
 }
@@ -19,7 +22,7 @@ fieldset {
 .widget-container__errortext {
   margin-top: 0.65em;
 
-  color: color(alert);
+  color: map-get($form-colors-default, errortext-color);
 
   & + .widget-container__helptext {
     margin-top: 0.4em;

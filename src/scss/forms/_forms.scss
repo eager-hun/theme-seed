@@ -22,6 +22,7 @@ label {
 // Extract variable from map, so that we can use it in calc().
 $oneliner-height: map-get($form-widget-oneliner-height, default);
 
+
 // -----------------------------------------------------------------------------
 // Basic widgets foundation.
 
@@ -35,20 +36,37 @@ textarea
   width: 100%;
   max-width: map-get($form-input-max-width, default);
 
-  background: white;
-  border: 1px solid $form-widget-border-color;
+  background: map-get($form-colors-default, background-color);
+
+  border: 1px solid map-get($form-colors-default, border-color);
   border-radius: $form-widget-border-radius;
-  box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset;
-  color: color(text);
+
+  $inset-box-shadow: input-inset-box-shadow(
+    map-get(
+      $form-colors-default,
+      inset-box-shadow-color
+    )
+  );
+  box-shadow: $inset-box-shadow;
+
+  color: map-get($form-colors-default, value-color);
 
   font-family: $font-sans;
   font-weight: 400;
   font-style: normal;
 
-  transition: border-color $transition-speed-fast $transition-easing-default;
+  transition: all $transition-speed-fast $transition-easing-default;
 
   &:focus {
-    border-color: $form-widget-border-color-interaction;
+    border-color: map-get($form-colors-default, border-color-focus);
+
+    $focus-box-shadow: input-focus-box-shadow(
+      map-get(
+        $form-colors-default,
+        focus-box-shadow-color
+      )
+    );
+    box-shadow: $inset-box-shadow, $focus-box-shadow;
 
     outline: none;
   }
@@ -189,8 +207,8 @@ $btn-shdw-size: $oneliner-height * 0.5;
 .input--oneliner:disabled,
 textarea:disabled
 {
-  background: whitesmoke;
-  border-color: lighten($form-widget-border-color, 15%);
+  background: map-get($form-colors-default, background-color-disabled);
+  border-color: map-get($form-colors-default, border-color-disabled);
   box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
 }
 
@@ -201,6 +219,16 @@ textarea:disabled
 textarea[readonly]
 {
   box-shadow: none;
+
+  &:focus {
+    $focus-box-shadow: input-focus-box-shadow(
+      map-get(
+        $form-colors-default,
+        focus-box-shadow-color
+      )
+    );
+    box-shadow: $focus-box-shadow;
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -209,14 +237,28 @@ textarea[readonly]
 .input--oneliner.has-error,
 textarea.has-error
 {
+  background-color: map-get($form-colors-default, background-color-error);
+  border-color: map-get($form-colors-default, border-color-error);
 
-  border-color: $form-widget-border-color-error;
-  box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
-              0 0 0.4em color(alert);
+  $inset-box-shadow: input-inset-box-shadow(
+    map-get(
+      $form-colors-default,
+      inset-box-shadow-color-error
+    )
+  );
+  box-shadow: $inset-box-shadow;
 
   &:focus {
-    box-shadow: 0 0 0.5em rgba(color(shadow), 0.25) inset,
-                0 0 0.4em 3px mix(color(alert), white, 50%);
+    border-color: map-get($form-colors-default, border-color-focus-error);
+
+    $focus-box-shadow: input-focus-box-shadow(
+      map-get(
+        $form-colors-default,
+        focus-box-shadow-color-error
+      )
+    );
+    box-shadow: $inset-box-shadow, $focus-box-shadow;
+
     outline: none;
   }
 }

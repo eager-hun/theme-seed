@@ -22,7 +22,7 @@
   background-color: color(brand);
   color: rgba(color(text-invert), 0.95);
 
-  a {
+  a:not(.button) {
     @include override-link-color(color(link-invert));
   }
 
@@ -45,7 +45,7 @@
   background-color: color(accent-1);
   color: rgba(color(text-invert), 0.95);
 
-  a {
+  a:not(.button) {
     @include override-link-color(color(link-invert));
   }
 
@@ -66,7 +66,7 @@
   background-color: color(accent-2);
   color: rgba(color(text-invert), 0.95);
 
-  a {
+  a:not(.button) {
     @include override-link-color(color(link-invert));
   }
 
@@ -87,7 +87,7 @@
   background-color: color(bg-dark);
   color: rgba(color(text-invert), 0.95);
 
-  a {
+  a:not(.button) {
     @include override-link-color(color(link-invert));
   }
 }

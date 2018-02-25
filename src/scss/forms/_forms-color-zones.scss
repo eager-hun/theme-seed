@@ -1,0 +1,4 @@
+
+@each $color-zone in map-keys($form-colors-in-color-zones) {
+  @include form-widgets-in-color-zone($color-zone);
+}

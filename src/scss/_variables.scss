@@ -207,6 +207,9 @@ $transition-speed-slow:         700ms;
 // #############################################################################
 // Forms.
 
+// -----------------------------------------------------------------------------
+// Forms' and widgets' dimensions.
+
 $form-font-size: (
   smallforms:                             0.833rem,   // 15px
   default:                                1rem,       // 18px
@@ -225,20 +228,136 @@ $form-items-vertical-gap: (
   bigforms:                               1.3333em    // 32px
 );
 
-$form-widget-side-padding:                0.75em;
-
 $form-input-max-width: (
   smallforms:                             34em,
   default:                                28em,
   bigforms:                               24em,
 );
 
-$form-widget-border-color:                silver;
-$form-widget-border-color-interaction:    color(prim);
-$form-widget-border-color-error:          color(alert);
+$form-widget-side-padding:                0.75em;
 $form-widget-border-radius:               3px;
-
+$form-widget-focus-outline-width:         3px;
 $form-arrangement-layout-update-bkp:      wide-mt-min;
+
+// -----------------------------------------------------------------------------
+// Widgets' colors.
+
+$form-colors-default: (
+  background-color:                       white,
+  background-color-error:                 mix(color(alert), white, 7%),
+  background-color-disabled:              whitesmoke,
+
+  inset-box-shadow-color:                 rgba(color(shadow), 0.25),
+  focus-box-shadow-color:                 mix(color(prim), white, 50%),
+  inset-box-shadow-color-error:           rgba(saturate(color(alert), 100%), 0.5),
+  focus-box-shadow-color-error:           mix(color(alert), white, 50%),
+
+  border-color:                           silver,
+  border-color-focus:                     color(prim),
+  border-color-error:                     color(alert),
+  border-color-focus-error:               color(alert),
+  border-color-disabled:                  lighten(silver, 15%),
+
+  value-color:                            color(text),
+
+  helptext-color:                         color(text-faded),
+  errortext-color:                        color(alert),
+);
+
+/**
+ * NOTE:
+ * you need to provide only overrides to the default (in theory (see below)).
+ *
+ * NOTE:
+ * if you override any box shadow:
+ * - always declare both `inset` and `focus`
+ *
+ * NOTE:
+ * if you override initial-state values, also redeclare error-state-rules,
+ * otherwise error-state-rules would be overwritten, due to specificity.
+ */
+$form-colors-in-color-zones: (
+  brand: (
+    background-color-error:                 color(warning-light),
+    background-color-disabled:              lighten(silver, 10%),
+
+    border-color-error:                     gold,
+    border-color-focus-error:               mix(color(warning), white, 80%),
+    border-color-disabled:                  darken(silver, 10%),
+
+    inset-box-shadow-color:                 rgba(color(shadow), 0.5),
+    focus-box-shadow-color:                 mix(color(prim), white, 50%),
+    inset-box-shadow-color-error:           rgba(color(warning), 0.75),
+    focus-box-shadow-color-error:           mix(color(warning), white, 66%),
+
+    helptext-color:                         rgba(white, 0.8),
+    errortext-color:                        gold,
+  ),
+  accent-1: (
+    background-color-error:                 color(warning-light),
+    background-color-disabled:              lighten(silver, 10%),
+
+    border-color:                           lighten(silver, 15%),
+    border-color-focus:                     color(accent-1),
+    border-color-error:                     gold,
+    border-color-focus-error:               mix(color(warning), white, 80%),
+    border-color-disabled:                  darken(silver, 10%),
+
+    inset-box-shadow-color:                 rgba(color(shadow), 0.5),
+    focus-box-shadow-color:                 rgba(white, 0.6),
+    inset-box-shadow-color-error:           rgba(color(warning), 0.75),
+    focus-box-shadow-color-error:           mix(color(warning), white, 42%),
+
+    helptext-color:                         rgba(white, 0.8),
+    errortext-color:                        gold
+  ),
+  accent-2: (
+    background-color-error:                 color(warning-light),
+    background-color-disabled:              lighten(silver, 10%),
+
+    border-color:                           lighten(silver, 15%),
+    border-color-focus:                     color(accent-2),
+    border-color-error:                     gold,
+    border-color-focus-error:               mix(color(warning), white, 80%),
+    border-color-disabled:                  darken(silver, 10%),
+
+    inset-box-shadow-color:                 rgba(color(shadow), 0.5),
+    focus-box-shadow-color:                 rgba(white, 0.6),
+    inset-box-shadow-color-error:           rgba(color(warning), 0.75),
+    focus-box-shadow-color-error:           mix(color(warning), white, 42%),
+
+    helptext-color:                         rgba(white, 0.8),
+    errortext-color:                        gold
+  ),
+  dark: (
+    background-color-error:                 color(warning-light),
+    background-color-disabled:              lighten(silver, 10%),
+
+    border-color-error:                     gold,
+    border-color-focus-error:               mix(color(warning), white, 80%),
+    border-color-disabled:                  darken(silver, 5%),
+
+    inset-box-shadow-color:                 rgba(color(shadow), 0.75),
+    focus-box-shadow-color:                 mix(color(prim), white, 50%),
+    inset-box-shadow-color-error:           rgba(color(warning), 0.75),
+    focus-box-shadow-color-error:           mix(color(warning), white, 60%),
+
+    helptext-color:                         rgba(white, 0.6),
+    errortext-color:                        gold
+  ),
+  blockfill: (
+    border-color-disabled:                  darken(silver, 10%),
+
+    inset-box-shadow-color:                 rgba(color(shadow), 0.25),
+    focus-box-shadow-color:                 mix(color(prim), white, 50%),
+    inset-box-shadow-color-error:           rgba(saturate(color(alert), 100%), 0.5),
+    focus-box-shadow-color-error:           mix(color(alert), white, 50%),
+  ),
+);
+
+
+// -----------------------------------------------------------------------------
+// Buttons' colors:
 
 $button-colors: (
   primary: (
