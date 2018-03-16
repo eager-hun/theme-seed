@@ -73,8 +73,7 @@ fieldset:not(:first-child) {
   }
 
   .widget-container.with-blank-label::before {
-    content: '';
+    content: '\00a0';
     width: 1em;
-    height: 1em;
   }
 }

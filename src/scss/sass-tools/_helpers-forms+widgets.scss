@@ -37,13 +37,16 @@
   {
     max-width: map-get($form-input-max-width, $size-variant);
   }
+
   .input--oneliner,
   .button--oneliner {
     height: $oneliner-height;
   }
+
   .button {
     min-height: $oneliner-height;
   }
+
   textarea,
   .button {
     @include widget-vertical-padding-to-match-oneliners(
@@ -51,12 +54,17 @@
         $line-height-condensed
     );
   }
+
   .button--oneliner {
     line-height: calc(#{$oneliner-height} - 2px);
 
     padding-top: 0;
     padding-bottom: 0;
   }
+
+  // ---------------------------------------------------------------------------
+  // Form arrangements.
+
   .widget-container:not(:first-child),
   fieldset:not(:first-child) {
     margin-top: map-get($form-items-vertical-gap, $size-variant);

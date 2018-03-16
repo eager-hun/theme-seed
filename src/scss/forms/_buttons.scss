@@ -110,7 +110,7 @@ $oneliner-height-small: map-get($form-widget-oneliner-height, smallforms);
 
 $button-icon-size-small: 1.25em;
 
-.button.button--small {
+.button.button--size-small {
   @include widget-vertical-padding-to-match-oneliners(
     $oneliner-height-small,
     $line-height-condensed
@@ -123,7 +123,7 @@ $button-icon-size-small: 1.25em;
 
 // @techdebt
 .form--small .button,
-.button.button.button--small {
+form .button.button--size-small {
   .button__icon {
     top: calc(((#{$oneliner-height-small} - #{$button-icon-size-small}) * 0.5) - 2px);
 
@@ -162,7 +162,7 @@ $button-icon-size-default: 1.35em;
 
 // @techdebt
 .button,
-.button.button.button--size-default {
+form .button.button--size-default {
   .button__icon {
     top: calc(((#{$oneliner-height-default} - #{$button-icon-size-default}) * 0.5) - 2px);
 
@@ -189,7 +189,7 @@ $oneliner-height-big: map-get($form-widget-oneliner-height, bigforms);
 
 $button-icon-size-big: 1.5em;
 
-.button.button--big {
+.button.button--size-big {
   @include widget-vertical-padding-to-match-oneliners(
       $oneliner-height-big,
       $line-height-condensed
@@ -202,7 +202,7 @@ $button-icon-size-big: 1.5em;
 
 // @techdebt
 .form--big .button,
-.button.button.button--big {
+form .button.button--size-big {
   .button__icon {
     top: calc(((#{$oneliner-height-big} - #{$button-icon-size-big}) * 0.5) - 2px);
 
