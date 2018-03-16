@@ -278,6 +278,14 @@ $form-colors-default: (
  * otherwise error-state-rules would be overwritten, due to specificity.
  */
 $form-colors-in-color-zones: (
+  blockfill: (
+    border-color-disabled:                  darken(silver, 10%),
+
+    inset-box-shadow-color:                 rgba(color(shadow), 0.25),
+    focus-box-shadow-color:                 mix(color(prim), white, 50%),
+    inset-box-shadow-color-error:           rgba(saturate(color(alert), 100%), 0.5),
+    focus-box-shadow-color-error:           mix(color(alert), white, 50%),
+  ),
   brand: (
     background-color-error:                 color(warning-light),
     background-color-disabled:              lighten(silver, 10%),
@@ -295,44 +303,6 @@ $form-colors-in-color-zones: (
     helptext-color:                         rgba(white, 0.8),
     errortext-color:                        gold,
   ),
-  accent-1: (
-    background-color-error:                 color(warning-light),
-    background-color-disabled:              lighten(silver, 10%),
-
-    border-color:                           lighten(silver, 15%),
-    border-color-focus:                     color(accent-1),
-    border-color-error:                     gold,
-    border-color-focus-error:               mix(color(warning), white, 80%),
-    border-color-disabled:                  darken(silver, 10%),
-
-    inset-box-shadow-color:                 rgba(color(shadow), 0.5),
-    focus-box-shadow-color:                 rgba(white, 0.6),
-    inset-box-shadow-color-error:           rgba(color(warning), 0.75),
-    focus-box-shadow-color-error:           mix(color(warning), white, 42%),
-
-    label-color:                            white,
-    helptext-color:                         rgba(white, 0.8),
-    errortext-color:                        gold
-  ),
-  accent-2: (
-    background-color-error:                 color(warning-light),
-    background-color-disabled:              lighten(silver, 10%),
-
-    border-color:                           lighten(silver, 15%),
-    border-color-focus:                     color(accent-2),
-    border-color-error:                     gold,
-    border-color-focus-error:               mix(color(warning), white, 80%),
-    border-color-disabled:                  darken(silver, 10%),
-
-    inset-box-shadow-color:                 rgba(color(shadow), 0.5),
-    focus-box-shadow-color:                 rgba(white, 0.6),
-    inset-box-shadow-color-error:           rgba(color(warning), 0.75),
-    focus-box-shadow-color-error:           mix(color(warning), white, 42%),
-
-    label-color:                            white,
-    helptext-color:                         rgba(white, 0.8),
-    errortext-color:                        gold
-  ),
   dark: (
     background-color-error:                 color(warning-light),
     background-color-disabled:              lighten(silver, 10%),
@@ -349,15 +319,7 @@ $form-colors-in-color-zones: (
     label-color:                            white,
     helptext-color:                         rgba(white, 0.6),
     errortext-color:                        gold
-  ),
-  blockfill: (
-    border-color-disabled:                  darken(silver, 10%),
-
-    inset-box-shadow-color:                 rgba(color(shadow), 0.25),
-    focus-box-shadow-color:                 mix(color(prim), white, 50%),
-    inset-box-shadow-color-error:           rgba(saturate(color(alert), 100%), 0.5),
-    focus-box-shadow-color-error:           mix(color(alert), white, 50%),
-  ),
+  )
 );
 
 
