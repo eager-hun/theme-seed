@@ -1,8 +1,7 @@
 
 // Extract variable from map, so that we can use it in calc().
 $oneliner-height: map-get($form-widget-oneliner-height, default);
-
-$btn-shdw-size: $oneliner-height * 0.5;
+$btn-shdw-size:   $oneliner-height * 0.5;
 
 .button {
   @include strip-button();
@@ -26,8 +25,9 @@ $btn-shdw-size: $oneliner-height * 0.5;
   text-align: center;
   vertical-align: top;
 
-  transition: background-color $transition-speed-fast, $transition-easing-default,
-  box-shadow $transition-speed-fast, $transition-easing-default;
+  transition:
+    background-color $transition-speed-fast, $transition-easing-default,
+    box-shadow $transition-speed-fast, $transition-easing-default;
 
   cursor: pointer;
   user-select: none;
@@ -42,6 +42,11 @@ $btn-shdw-size: $oneliner-height * 0.5;
     0 0 3px -1px white,
     0 8px 8px -3px color(shadow);
   }
+}
+
+.button__text {
+  position: relative;
+  top: -0.025em;
 }
 
 
@@ -74,41 +79,88 @@ $btn-shdw-size: $oneliner-height * 0.5;
 
 // -----------------------------------------------------------------------------
 // With icon.
-// More declarations at the size variants.
+// Buttons with icons match the height of oneliners, but can tolerate if their
+// texts break onto multiple lines: the flexbox setup adapts to the change.
 
 $button-icon-size-default: 1.35em;
 
 .button--icon-prefix,
 .button--icon-suffix {
-  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
 
-  .button__icon {
-    position: absolute;
+  padding: 0;
+
+  .button__icon-nest {
+    flex: 1 1 auto;
+
+    // When the button text breaks onto multiple lines, this makes the icon-nest
+    // follow the height-change.
+    align-self: stretch;
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+    // This is the the single source of truth about this button's height.
+    min-height: calc(#{$oneliner-height} - 2px);
+
+    padding: 0 $form-widget-side-padding * 0.75;
+
+    background: rgba(white, 0.15);
+
+    @if $form-widget-border-radius > (0) {
+      border-top-left-radius: $form-widget-border-radius - 1px;
+      border-bottom-left-radius: $form-widget-border-radius - 1px;
+    }
   }
-}
 
-.button--icon-prefix {
   .button__icon {
-    left: $form-widget-side-padding;
+    flex: 1 1 auto;
+    width: $button-icon-size-default;
+    height: $button-icon-size-default;
+  }
+
+  .button__text {
+    flex: 0 1 auto;
+
+    @include widget-vertical-padding-to-match-oneliners(
+        $oneliner-height,
+        $line-height-condensed
+    );
+
+    padding-left: $form-widget-side-padding;
+    padding-right: $form-widget-side-padding;
   }
 }
 
 .button--icon-suffix {
-  .button__icon {
-    right: $form-widget-side-padding;
+  .button__text {
+    order: 1;
+  }
+  .button__icon-nest {
+    order: 2;
+
+    @if $form-widget-border-radius > (0) {
+      border-radius: 0;
+      border-top-right-radius: $form-widget-border-radius - 1px;
+      border-bottom-right-radius: $form-widget-border-radius - 1px;
+    }
   }
 }
 
 
 // #############################################################################
-// Size variants.
+// Button size variants.
 
 // -----------------------------------------------------------------------------
 // Small.
 
-$oneliner-height-small: map-get($form-widget-oneliner-height, smallforms);
-
-$button-icon-size-small: 1.25em;
+$oneliner-height-small:  map-get($form-widget-oneliner-height, smallforms);
+$button-icon-size-small: 1.2em;
 
 .button.button--size-small {
   @include widget-vertical-padding-to-match-oneliners(
@@ -121,32 +173,34 @@ $button-icon-size-small: 1.25em;
   font-size: map-get($form-font-size, smallforms);
 }
 
-// @techdebt
 .form--small .button,
 form .button.button--size-small {
-  .button__icon {
-    top: calc(((#{$oneliner-height-small} - #{$button-icon-size-small}) * 0.5) - 2px);
+  &.button--icon-prefix,
+  &.button--icon-suffix
+  {
+    min-height: 0;
+    padding: 0;
 
+    .button__icon-nest {
+      min-height: calc(#{$oneliner-height-small} - 2px);
+    }
+    .button__text {
+      @include widget-vertical-padding-to-match-oneliners(
+        $oneliner-height-small,
+        $line-height-condensed
+      );
+    }
+  }
+  .button__icon {
     height: $button-icon-size-small;
     width: $button-icon-size-small;
-  }
-  &.button--icon-prefix {
-    .button__text {
-      margin-left: $button-icon-size-small + ($form-widget-side-padding * 0.75);
-    }
-  }
-  &.button--icon-suffix {
-    .button__text {
-      margin-right: $button-icon-size-small + ($form-widget-side-padding * 0.75);
-    }
   }
 }
 
 // -----------------------------------------------------------------------------
 // Default.
 
-$oneliner-height-default: map-get($form-widget-oneliner-height, default);
-
+$oneliner-height-default:  map-get($form-widget-oneliner-height, default);
 $button-icon-size-default: 1.35em;
 
 .button.button--size-default {
@@ -160,23 +214,25 @@ $button-icon-size-default: 1.35em;
   font-size: map-get($form-font-size, default);
 }
 
-// @techdebt
-.button,
 form .button.button--size-default {
-  .button__icon {
-    top: calc(((#{$oneliner-height-default} - #{$button-icon-size-default}) * 0.5) - 2px);
+  &.button--icon-prefix,
+  &.button--icon-suffix
+  {
+    min-height: 0;
+    padding: 0;
 
-    height: $button-icon-size-default;
-    width: $button-icon-size-default;
-  }
-  &.button--icon-prefix {
-    .button__text {
-      margin-left: $button-icon-size-default + ($form-widget-side-padding * 0.75);
+    .button__icon-nest {
+      min-height: calc(#{$oneliner-height-default} - 2px);
     }
-  }
-  &.button--icon-suffix {
     .button__text {
-      margin-right: $button-icon-size-default + ($form-widget-side-padding * 0.75);
+      @include widget-vertical-padding-to-match-oneliners(
+          $oneliner-height-default,
+          $line-height-condensed
+      );
+    }
+    .button__icon {
+      height: $button-icon-size-default;
+      width: $button-icon-size-default;
     }
   }
 }
@@ -185,14 +241,13 @@ form .button.button--size-default {
 // -----------------------------------------------------------------------------
 // Big.
 
-$oneliner-height-big: map-get($form-widget-oneliner-height, bigforms);
-
+$oneliner-height-big:  map-get($form-widget-oneliner-height, bigforms);
 $button-icon-size-big: 1.5em;
 
 .button.button--size-big {
   @include widget-vertical-padding-to-match-oneliners(
-      $oneliner-height-big,
-      $line-height-condensed
+    $oneliner-height-big,
+    $line-height-condensed
   );
 
   min-height: $oneliner-height-big;
@@ -200,30 +255,33 @@ $button-icon-size-big: 1.5em;
   font-size: map-get($form-font-size, bigforms);
 }
 
-// @techdebt
 .form--big .button,
 form .button.button--size-big {
-  .button__icon {
-    top: calc(((#{$oneliner-height-big} - #{$button-icon-size-big}) * 0.5) - 2px);
+  &.button--icon-prefix,
+  &.button--icon-suffix
+  {
+    min-height: 0;
+    padding: 0;
 
+    .button__icon-nest {
+      min-height: calc(#{$oneliner-height-big} - 2px);
+    }
+    .button__text {
+      @include widget-vertical-padding-to-match-oneliners(
+          $oneliner-height-big,
+          $line-height-condensed
+      );
+    }
+  }
+  .button__icon {
     height: $button-icon-size-big;
     width: $button-icon-size-big;
-  }
-  &.button--icon-prefix {
-    .button__text {
-      margin-left: $button-icon-size-big + ($form-widget-side-padding * 0.75);
-    }
-  }
-  &.button--icon-suffix {
-    .button__text {
-      margin-right: $button-icon-size-big + ($form-widget-side-padding * 0.75);
-    }
   }
 }
 
 
 // #############################################################################
-// Color variants.
+// Button color variants.
 
 @each $name, $data in $button-colors {
   .button--#{$name} {
