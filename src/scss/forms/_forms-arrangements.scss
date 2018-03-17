@@ -58,10 +58,6 @@ fieldset:not(:first-child) {
     }
   }
 
-  .widget-container.width--half {
-    width: 50%;
-  }
-
   .widget-container.width--full {
     width: 100%;
 
@@ -71,6 +67,19 @@ fieldset:not(:first-child) {
       max-width: none;
     }
   }
+
+  .widget-container.width--two-thirds {
+    width: 66.66666%;
+  }
+
+  .widget-container.width--half {
+    width: 50%;
+  }
+
+  .widget-container.width--third {
+    width: 33.33333%;
+  }
+
 
   .widget-container.with-blank-label::before {
     content: '\00a0';
