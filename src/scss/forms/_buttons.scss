@@ -174,6 +174,7 @@ $button-icon-size-small: 1.2em;
 }
 
 .form--small .button,
+.button.button--size-small,
 form .button.button--size-small {
   &.button--icon-prefix,
   &.button--icon-suffix
@@ -214,6 +215,7 @@ $button-icon-size-default: 1.35em;
   font-size: map-get($form-font-size, default);
 }
 
+.button.button--size-default,
 form .button.button--size-default {
   &.button--icon-prefix,
   &.button--icon-suffix
@@ -256,6 +258,7 @@ $button-icon-size-big: 1.5em;
 }
 
 .form--big .button,
+.button.button--size-big,
 form .button.button--size-big {
   &.button--icon-prefix,
   &.button--icon-suffix
@@ -312,5 +315,14 @@ form .button.button--size-big {
       text-shadow: none;
       cursor: auto;
     }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Manual button-color-adjustments.
+
+.button--gray {
+  .button__icon-nest {
+    background-color: rgba(white, 0.4);
   }
 }

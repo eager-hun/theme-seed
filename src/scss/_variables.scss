@@ -352,8 +352,8 @@ $button-colors: (
     text-shadow-color:              rgba(black, 0.33)
   ),
   gray: (
-    background-color:               darken(whitesmoke, 3%),
-    background-color-hover:         darken(whitesmoke, 10%),
+    background-color:               darken(whitesmoke, 10%),
+    background-color-hover:         darken(whitesmoke, 6%),
     background-color-disabled:      whitesmoke,
     color:                          color(text),
     color-disabled:                 lighten(color(text), 33%),
