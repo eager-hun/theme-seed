@@ -11,12 +11,10 @@ form {
 // #############################################################################
 // Labels.
 
-label {
+.label {
   color: map-get($form-colors-default, label-color);
 
   font-family: $font-sans;
-
-  user-select: none;
 }
 
 

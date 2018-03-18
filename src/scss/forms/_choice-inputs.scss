@@ -1,0 +1,95 @@
+
+$input-size: 20px;
+
+.label--choice-input {
+  display: block;
+
+  min-height: $input-size;
+
+  font-size: 0.9em;
+
+  &.choice-input--inline {
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  & + .label--choice-input:not(.choice-input--inline) {
+    margin-top: 0.75em;
+  }
+}
+
+.label--choice-input {
+  position: relative;
+
+  padding-left: $input-size * 1.6;
+
+  line-height: $line-height-condensed;
+
+  .input-nest {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    height: $input-size;
+    width: $input-size;
+
+    overflow: hidden;
+
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      opacity: 0;
+    }
+  }
+  .pseudo-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: $input-size;
+    width: $input-size;
+
+    border: 1px solid gray;
+    cursor: pointer;
+  }
+
+  input:checked + .pseudo-input {
+    &::before {
+      content: '';
+
+      flex: 0 0 auto;
+
+      height: $input-size * 0.6;
+      width: $input-size * 0.6;
+
+      background: color(prim);
+    }
+  }
+
+  [type="checkbox"] + .pseudo-input {
+    border-radius: $form-widget-border-radius;
+
+    &::before {
+      border-radius: $form-widget-border-radius - 1px;
+    }
+  }
+
+  [type="radio"] + .pseudo-input {
+    &,
+    &::before {
+      border-radius: 100%;
+    }
+  }
+
+  input[disabled] + .pseudo-input {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
