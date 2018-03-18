@@ -35,13 +35,13 @@ $input-size: map-get($enhanced-choice-input-size, default);
 
     @include input-look-and-feel();
 
-    &::before {
+    svg {
       content: '';
 
       display: block; // IE11 needs this declared.
 
-      background: transparent;
-      transition: background $transition-speed-fast $transition-easing-default;
+      fill: transparent;
+      transition: fill $transition-speed-fast $transition-easing-default;
     }
   }
 
@@ -57,24 +57,20 @@ $input-size: map-get($enhanced-choice-input-size, default);
   [type="checkbox"] + .pseudo-input {
     border-radius: $form-widget-border-radius;
 
-    &::before {
-      height: 50%;
-      width: 50%;
-      transform: translate(50%, 50%);
-
-      border-radius: $form-widget-border-radius * 0.33;
+    svg {
+      height: 90%;
+      width: 90%;
+      transform: translate(5%, 5%);
     }
   }
 
   [type="radio"] + .pseudo-input {
     border-radius: 100%;
 
-    &::before {
+    svg {
       height: 50%;
       width: 50%;
       transform: translate(50%, 50%);
-
-      border-radius: 100%;
     }
   }
 }
@@ -111,8 +107,8 @@ $input-size: map-get($enhanced-choice-input-size, default);
   // Checked.
 
   input:checked + .pseudo-input {
-    &::before {
-      background: color(prim);
+    svg {
+      fill: color(prim);
     }
   }
 
@@ -125,8 +121,8 @@ $input-size: map-get($enhanced-choice-input-size, default);
   }
 
   input:disabled:checked + .pseudo-input {
-    &::before {
-      background: darkgray;
+    svg {
+      fill: darkgray;
     }
   }
 
@@ -137,8 +133,8 @@ $input-size: map-get($enhanced-choice-input-size, default);
   }
 
   input.has-error:checked + .pseudo-input {
-    &::before {
-      background: color(alert);
+    svg {
+      fill: color(alert);
     }
   }
 
