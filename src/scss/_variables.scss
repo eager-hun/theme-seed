@@ -222,6 +222,12 @@ $form-widget-oneliner-height: (
   bigforms:                               2.5em       // 60px
 );
 
+$enhanced-choice-input-size: (
+  smallforms:                             18px,
+  default:                                22px,
+  bigforms:                               28px
+);
+
 $form-items-vertical-gap: (
   smallforms:                             1.4666em,   // 22px
   default:                                1.4444em,   // 26px

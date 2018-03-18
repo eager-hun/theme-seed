@@ -1,5 +1,101 @@
 
 
+@function input-inset-box-shadow($color, $extent: 0.35em) {
+  @return (0 0 $extent $color inset);
+}
+
+
+@function input-focus-box-shadow($color) {
+  @return (0 0 0 $form-widget-focus-outline-width $color);
+}
+
+
+$input-inset-box-shadow: input-inset-box-shadow(
+  map-get(
+    $form-colors-default,
+    inset-box-shadow-color
+  )
+);
+
+@mixin input-look-and-feel() {
+  background: map-get($form-colors-default, background-color);
+  border: 1px solid map-get($form-colors-default, border-color);
+  border-radius: $form-widget-border-radius;
+  box-shadow: $input-inset-box-shadow;
+
+  color: map-get($form-colors-default, value-color);
+
+  font-family: $font-sans;
+  font-weight: 400;
+  font-style: normal;
+
+  transition: all $transition-speed-fast $transition-easing-default;
+}
+
+@mixin input-look-and-feel-focus() {
+  border-color: map-get($form-colors-default, border-color-focus);
+
+  $focus-box-shadow: input-focus-box-shadow(
+    map-get(
+      $form-colors-default,
+      focus-box-shadow-color
+    )
+  );
+  box-shadow: $input-inset-box-shadow, $focus-box-shadow;
+
+  outline: none;
+}
+
+
+@mixin input-look-and-feel-disabled() {
+  background: map-get($form-colors-default, background-color-disabled);
+  border-color: map-get($form-colors-default, border-color-disabled);
+  box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
+}
+
+
+@mixin input-look-and-feel-readonly() {
+  box-shadow: none;
+
+  &:focus {
+    $focus-box-shadow: input-focus-box-shadow(
+        map-get(
+            $form-colors-default,
+            focus-box-shadow-color
+        )
+    );
+    box-shadow: $focus-box-shadow;
+  }
+}
+
+$inset-box-shadow-has-error: input-inset-box-shadow(
+  map-get(
+    $form-colors-default,
+    inset-box-shadow-color-error
+  )
+);
+
+@mixin input-look-and-feel-has-error() {
+  background-color: map-get($form-colors-default, background-color-error);
+  border-color: map-get($form-colors-default, border-color-error);
+  box-shadow: $inset-box-shadow-has-error;
+}
+
+@mixin input-look-and-feel-has-error-focus() {
+  border-color: map-get($form-colors-default, border-color-focus-error);
+
+  $focus-box-shadow: input-focus-box-shadow(
+      map-get(
+          $form-colors-default,
+          focus-box-shadow-color-error
+      )
+  );
+  box-shadow: $inset-box-shadow-has-error, $focus-box-shadow;
+
+  outline: none;
+}
+
+
 @mixin widget-vertical-padding-to-match-oneliners($widget-height, $line-height) {
   padding-top: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
   padding-bottom: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
@@ -13,15 +109,6 @@
     0 $btn-shdw-size $btn-shdw-size $btn-shdw-size * -1 rgba(white, 0.66) inset,
     0 $btn-shdw-size * -1 $btn-shdw-size $btn-shdw-size * -1 rgba(black, 0.25) inset
   );
-}
-
-
-@function input-inset-box-shadow($color) {
-  @return (0 0 0.5em $color inset);
-}
-
-@function input-focus-box-shadow($color) {
-  @return (0 0 0 $form-widget-focus-outline-width $color);
 }
 
 

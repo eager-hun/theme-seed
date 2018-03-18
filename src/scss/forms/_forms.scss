@@ -15,6 +15,8 @@ form {
   color: map-get($form-colors-default, label-color);
 
   font-family: $font-sans;
+
+  user-select: none;
 }
 
 
@@ -34,39 +36,10 @@ textarea
   width: 100%;
   max-width: map-get($form-input-max-width, default);
 
-  background: map-get($form-colors-default, background-color);
-
-  border: 1px solid map-get($form-colors-default, border-color);
-  border-radius: $form-widget-border-radius;
-
-  $inset-box-shadow: input-inset-box-shadow(
-    map-get(
-      $form-colors-default,
-      inset-box-shadow-color
-    )
-  );
-  box-shadow: $inset-box-shadow;
-
-  color: map-get($form-colors-default, value-color);
-
-  font-family: $font-sans;
-  font-weight: 400;
-  font-style: normal;
-
-  transition: all $transition-speed-fast $transition-easing-default;
+  @include input-look-and-feel();
 
   &:focus {
-    border-color: map-get($form-colors-default, border-color-focus);
-
-    $focus-box-shadow: input-focus-box-shadow(
-      map-get(
-        $form-colors-default,
-        focus-box-shadow-color
-      )
-    );
-    box-shadow: $inset-box-shadow, $focus-box-shadow;
-
-    outline: none;
+    @include input-look-and-feel-focus();
   }
 }
 
@@ -101,9 +74,7 @@ textarea {
 .input--oneliner:disabled,
 textarea:disabled
 {
-  background: map-get($form-colors-default, background-color-disabled);
-  border-color: map-get($form-colors-default, border-color-disabled);
-  box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
+  @include input-look-and-feel-disabled();
 }
 
 // -----------------------------------------------------------------------------
@@ -112,17 +83,7 @@ textarea:disabled
 .input--oneliner[readonly],
 textarea[readonly]
 {
-  box-shadow: none;
-
-  &:focus {
-    $focus-box-shadow: input-focus-box-shadow(
-      map-get(
-        $form-colors-default,
-        focus-box-shadow-color
-      )
-    );
-    box-shadow: $focus-box-shadow;
-  }
+  @include input-look-and-feel-readonly();
 }
 
 // -----------------------------------------------------------------------------
@@ -131,28 +92,9 @@ textarea[readonly]
 .input--oneliner.has-error,
 textarea.has-error
 {
-  background-color: map-get($form-colors-default, background-color-error);
-  border-color: map-get($form-colors-default, border-color-error);
-
-  $inset-box-shadow: input-inset-box-shadow(
-    map-get(
-      $form-colors-default,
-      inset-box-shadow-color-error
-    )
-  );
-  box-shadow: $inset-box-shadow;
+  @include input-look-and-feel-has-error();
 
   &:focus {
-    border-color: map-get($form-colors-default, border-color-focus-error);
-
-    $focus-box-shadow: input-focus-box-shadow(
-      map-get(
-        $form-colors-default,
-        focus-box-shadow-color-error
-      )
-    );
-    box-shadow: $inset-box-shadow, $focus-box-shadow;
-
-    outline: none;
+    @include input-look-and-feel-has-error-focus();
   }
 }

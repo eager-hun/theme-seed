@@ -1,29 +1,9 @@
 
-$input-size: 20px;
+$input-size: map-get($enhanced-choice-input-size, default);
 
-.label--choice-input {
-  display: block;
-
-  min-height: $input-size;
-
-  font-size: 0.9em;
-
-  &.choice-input--inline {
-    display: inline-block;
-    margin-right: 1em;
-  }
-
-  & + .label--choice-input:not(.choice-input--inline) {
-    margin-top: 0.75em;
-  }
-}
-
-.label--choice-input {
+.enhanced-choice {
   position: relative;
-
-  padding-left: $input-size * 1.6;
-
-  line-height: $line-height-condensed;
+  padding-left: $input-size * 1.5;
 
   .input-nest {
     position: absolute;
@@ -34,8 +14,6 @@ $input-size: 20px;
     height: $input-size;
     width: $input-size;
 
-    overflow: hidden;
-
     input {
       position: absolute;
       top: 0;
@@ -44,52 +22,179 @@ $input-size: 20px;
       opacity: 0;
     }
   }
+
   .pseudo-input {
     position: absolute;
     top: 0;
     left: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     height: $input-size;
     width: $input-size;
 
-    border: 1px solid gray;
     cursor: pointer;
-  }
 
-  input:checked + .pseudo-input {
+    @include input-look-and-feel();
+
     &::before {
       content: '';
 
-      flex: 0 0 auto;
+      display: block; // IE11 needs this declared.
 
-      height: $input-size * 0.6;
-      width: $input-size * 0.6;
-
-      background: color(prim);
+      background: transparent;
+      transition: background $transition-speed-fast $transition-easing-default;
     }
   }
+
+  .label-text {
+    display: inline-block;
+    font-size: 0.9em;
+    line-height: $line-height-condensed;
+    vertical-align: top;
+  }
+
+  // Specifics of checkbox vs radio.
 
   [type="checkbox"] + .pseudo-input {
     border-radius: $form-widget-border-radius;
 
     &::before {
-      border-radius: $form-widget-border-radius - 1px;
+      height: 50%;
+      width: 50%;
+      transform: translate(50%, 50%);
+
+      border-radius: $form-widget-border-radius * 0.33;
     }
   }
 
   [type="radio"] + .pseudo-input {
-    &,
+    border-radius: 100%;
+
     &::before {
+      height: 50%;
+      width: 50%;
+      transform: translate(50%, 50%);
+
       border-radius: 100%;
     }
   }
+}
 
-  input[disabled] + .pseudo-input {
-    opacity: 0.5;
+
+// #############################################################################
+// Arrangement variants.
+
+.enhanced-choice--inline {
+  display: inline-block;
+  margin-right: $input-size;
+}
+
+.enhanced-choice--stacked {
+  display: block;
+
+  & + .enhanced-choice--stacked {
+    margin-top: 0.75em;
+  }
+}
+
+
+// #############################################################################
+// States.
+
+.enhanced-choice {
+
+  // Focus.
+
+  input:focus + .pseudo-input {
+    @include input-look-and-feel-focus();
+  }
+
+  // Checked.
+
+  input:checked + .pseudo-input {
+    &::before {
+      background: color(prim);
+    }
+  }
+
+  // Disabled.
+
+  input:disabled + .pseudo-input {
+    @include input-look-and-feel-disabled();
+
     cursor: default;
+  }
+
+  input:disabled:checked + .pseudo-input {
+    &::before {
+      background: darkgray;
+    }
+  }
+
+  // Has error.
+
+  input.has-error + .pseudo-input {
+    @include input-look-and-feel-has-error();
+  }
+
+  input.has-error:checked + .pseudo-input {
+    &::before {
+      background: color(alert);
+    }
+  }
+
+  input.has-error:focus + .pseudo-input {
+    @include input-look-and-feel-has-error-focus();
+  }
+}
+
+
+// #############################################################################
+// Size variants.
+
+// NOTE: so far, size variants are implemented only when the widget inherits
+// the size from its parent form.
+// Direct control of the widget size (by adding a class) is not implemented.
+
+// -----------------------------------------------------------------------------
+// Small.
+
+$choice-input-size-small: map-get($enhanced-choice-input-size, smallforms);
+
+.form--small {
+  .enhanced-choice {
+    padding-left: $choice-input-size-small * 1.5;
+
+    .pseudo-input {
+      height: $choice-input-size-small;
+      width: $choice-input-size-small;
+    }
+
+    .label-text {
+      font-size: 1em;
+    }
+  }
+
+  .enhanced-choice--inline {
+    margin-right: $choice-input-size-small;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Big.
+
+$choice-input-size-big: map-get($enhanced-choice-input-size, bigforms);
+
+.form--big {
+  .enhanced-choice {
+    padding-left: $choice-input-size-big * 1.5;
+
+    .pseudo-input {
+      height: $choice-input-size-big;
+      width: $choice-input-size-big;
+    }
+  }
+
+  .enhanced-choice--inline {
+    margin-right: $choice-input-size-big;
   }
 }
