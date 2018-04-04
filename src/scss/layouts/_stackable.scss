@@ -3,10 +3,6 @@
   @include vari-gap(margin, vertical, $stack-gap-factor-grid-match);
 }
 
-.stackable--minor {
-  @include vari-gap(margin, vertical, $stack-gap-factor-minor);
-}
-
 .stackable {
   @include vari-gap(margin, vertical, $stack-gap-factor);
 }

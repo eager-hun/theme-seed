@@ -2,6 +2,8 @@
 .hero-block {
   @include vari-gap(margin, bottom, $stack-gap-factor);
 
+  margin-top: -0.55rem;
+
   font-size: 1.25em;
   line-height: 1.85;
 
