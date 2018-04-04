@@ -154,7 +154,7 @@ $input-size: map-get($enhanced-choice-input-size, default);
 // -----------------------------------------------------------------------------
 // Small.
 
-$choice-input-size-small: map-get($enhanced-choice-input-size, smallforms);
+$choice-input-size-small: map-get($enhanced-choice-input-size, small);
 
 .form--small {
   .enhanced-choice {
@@ -178,7 +178,7 @@ $choice-input-size-small: map-get($enhanced-choice-input-size, smallforms);
 // -----------------------------------------------------------------------------
 // Big.
 
-$choice-input-size-big: map-get($enhanced-choice-input-size, bigforms);
+$choice-input-size-big: map-get($enhanced-choice-input-size, big);
 
 .form--big {
   .enhanced-choice {

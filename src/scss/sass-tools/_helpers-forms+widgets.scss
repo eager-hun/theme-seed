@@ -1,14 +1,13 @@
 
+// #############################################################################
 
 @function input-inset-box-shadow($color, $extent: 0.35em) {
   @return (0 0 $extent $color inset);
 }
 
-
 @function input-focus-box-shadow($color) {
   @return (0 0 0 $form-widget-focus-outline-width $color);
 }
-
 
 $input-inset-box-shadow: input-inset-box-shadow(
   map-get(
@@ -16,6 +15,8 @@ $input-inset-box-shadow: input-inset-box-shadow(
     inset-box-shadow-color
   )
 );
+
+// #############################################################################
 
 @mixin input-look-and-feel() {
   background: map-get($form-colors-default, background-color);
@@ -32,6 +33,8 @@ $input-inset-box-shadow: input-inset-box-shadow(
   transition: all $transition-speed-fast $transition-easing-default;
 }
 
+// -----------------------------------------------------------------------------
+
 @mixin input-look-and-feel-focus() {
   border-color: map-get($form-colors-default, border-color-focus);
 
@@ -46,6 +49,7 @@ $input-inset-box-shadow: input-inset-box-shadow(
   outline: none;
 }
 
+// -----------------------------------------------------------------------------
 
 @mixin input-look-and-feel-disabled() {
   background: map-get($form-colors-default, background-color-disabled);
@@ -53,6 +57,7 @@ $input-inset-box-shadow: input-inset-box-shadow(
   box-shadow: rgba(color(shadow), 0.1) 0 0 0.5em inset;
 }
 
+// -----------------------------------------------------------------------------
 
 @mixin input-look-and-feel-readonly() {
   box-shadow: none;
@@ -68,12 +73,16 @@ $input-inset-box-shadow: input-inset-box-shadow(
   }
 }
 
+// -----------------------------------------------------------------------------
+
 $inset-box-shadow-has-error: input-inset-box-shadow(
   map-get(
     $form-colors-default,
     inset-box-shadow-color-error
   )
 );
+
+// -----------------------------------------------------------------------------
 
 @mixin input-look-and-feel-has-error() {
   background-color: map-get($form-colors-default, background-color-error);
@@ -96,11 +105,15 @@ $inset-box-shadow-has-error: input-inset-box-shadow(
 }
 
 
+// #############################################################################
+
 @mixin widget-vertical-padding-to-match-oneliners($widget-height, $line-height) {
   padding-top: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
   padding-bottom: calc(((#{$widget-height} - (#{$line-height} * 1em)) / 2) - 1px);
 }
 
+
+// #############################################################################
 
 @function button-inset-box-shadows() {
   // These inset shadows add a vertical linear-gradient-like color shift,
@@ -111,6 +124,8 @@ $inset-box-shadow-has-error: input-inset-box-shadow(
   );
 }
 
+
+// #############################################################################
 
 @mixin form-size-variant-updates($size-variant) {
 
@@ -168,6 +183,51 @@ $inset-box-shadow-has-error: input-inset-box-shadow(
   }
 }
 
+// -----------------------------------------------------------------------------
+
+@mixin button-size-variant-updates($size-variant) {
+  $variant-oneliner-height:  map-get($form-widget-oneliner-height, $size-variant);
+  $button-icon-size-variant: map-get($button-icon-size, $size-variant);
+
+  .button.button--size-#{$size-variant} {
+    @include widget-vertical-padding-to-match-oneliners(
+        $variant-oneliner-height,
+        $line-height-condensed
+    );
+
+    min-height: $variant-oneliner-height;
+
+    font-size: map-get($form-font-size, $size-variant);
+  }
+
+  .form--#{$size-variant} .button,
+  .button.button--size-#{$size-variant},
+  form .button.button--size-#{$size-variant} {
+    &.button--icon-prefix,
+    &.button--icon-suffix
+    {
+      min-height: 0;
+      padding: 0;
+
+      .button__icon-nest {
+        min-height: calc(#{$variant-oneliner-height} - 2px);
+      }
+      .button__text {
+        @include widget-vertical-padding-to-match-oneliners(
+            $variant-oneliner-height,
+            $line-height-condensed
+        );
+      }
+    }
+    .button__icon {
+      height: $button-icon-size-variant;
+      width: $button-icon-size-variant;
+    }
+  }
+}
+
+
+// #############################################################################
 
 @mixin form-widgets-in-color-zone($color-zone) {
   $color-defs: map-get($form-colors-in-color-zones, $color-zone);
@@ -299,6 +359,8 @@ $inset-box-shadow-has-error: input-inset-box-shadow(
   }
 
 }
+
+// -----------------------------------------------------------------------------
 
 @mixin button-in-color-zone($color-zone) {
 

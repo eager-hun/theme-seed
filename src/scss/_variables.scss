@@ -211,39 +211,45 @@ $transition-speed-slow:         700ms;
 // Forms' and widgets' dimensions.
 
 $form-font-size: (
-  smallforms:                             0.833rem,   // 15px
+  small:                                  0.833rem,   // 15px
   default:                                1rem,       // 18px
-  bigforms:                               1.3333rem   // 24px
+  big:                                    1.3333rem   // 24px
 );
 
 $form-widget-oneliner-height: (
-  smallforms:                             2.1333em,   // 32px
+  small:                                  2.1333em,   // 32px
   default:                                2.3333em,   // 42px
-  bigforms:                               2.5em       // 60px
+  big:                                    2.5em       // 60px
 );
 
 $enhanced-choice-input-size: (
-  smallforms:                             18px,
+  small:                                  18px,
   default:                                22px,
-  bigforms:                               28px
+  big:                                    28px
 );
 
 $form-items-vertical-gap: (
-  smallforms:                             1.4666em,   // 22px
+  small:                                  1.4666em,   // 22px
   default:                                1.4444em,   // 26px
-  bigforms:                               1.3333em    // 32px
+  big:                                    1.3333em    // 32px
 );
 
 $form-input-max-width: (
-  smallforms:                             34em,
+  small:                                  34em,
   default:                                28em,
-  bigforms:                               24em,
+  big:                                    24em,
 );
 
 $form-widget-side-padding:                0.75em;
 $form-widget-border-radius:               3px;
 $form-widget-focus-outline-width:         3px;
 $form-arrangement-layout-update-bkp:      wide-mt-min;
+
+$button-icon-size: (
+  small: 1.2em,
+  default: 1.35em,
+  big: 1.5em
+);
 
 // -----------------------------------------------------------------------------
 // Widgets' colors.
