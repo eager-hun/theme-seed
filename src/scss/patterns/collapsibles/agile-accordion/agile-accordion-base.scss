@@ -1,0 +1,16 @@
+
+.aaccdn__item {
+
+  .item__body {
+    .has-external-js & {
+      display: none;
+    }
+  }
+
+  &[data-initially-open],
+  &.is-open {
+    .item__body {
+      display: block;
+    }
+  }
+}

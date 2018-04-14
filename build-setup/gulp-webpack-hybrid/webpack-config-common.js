@@ -15,7 +15,10 @@ module.exports = {
       path.resolve(rootPath, "src"),
       "node_modules",
       "libraries-frontend/node_modules"
-    ]
+    ],
+    alias: {
+      vue: 'vue/dist/vue.js'
+    }
   },
   module: {
     rules: [
