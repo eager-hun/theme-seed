@@ -1,6 +1,24 @@
 
-.aaccdn__item {
 
+// #############################################################################
+// Hiding half-prepared widget.
+
+.accdn[v-cloak] {
+  display: block;
+
+  .has-external-js & {
+    display: none;
+  }
+}
+
+
+// #############################################################################
+// Basic item visibility rules.
+
+// -----------------------------------------------------------------------------
+// Visibility of items.
+
+.accdn__item {
   .item__body {
     .has-external-js & {
       display: none;
@@ -12,5 +30,47 @@
     .item__body {
       display: block;
     }
+  }
+}
+
+.accdn--tabs {
+  .item__head {
+    display: none;
+  }
+
+  [data-initially-open],
+  .is-open {
+    .item__body {
+      display: none;
+    }
+  }
+
+  .is-active {
+    .item__body {
+      display: block;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Visibility of tab bar.
+
+.accdn__tabs {
+  display: none;
+
+  .accdn--tabs & {
+    display: table;
+  }
+}
+
+
+// #############################################################################
+// Tabs styles.
+
+.accdn__tab {
+  display: table-cell;
+
+  &.is-active {
+    outline: 2px solid green;
   }
 }
