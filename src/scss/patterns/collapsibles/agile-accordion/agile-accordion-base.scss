@@ -19,7 +19,7 @@
 // Visibility of items.
 
 .accdn__item {
-  .item__body {
+  .accdn__body {
     .has-external-js & {
       display: none;
     }
@@ -27,26 +27,26 @@
 
   &[data-initially-open],
   &.is-open {
-    .item__body {
+    .accdn__body {
       display: block;
     }
   }
 }
 
 .accdn--tabs {
-  .item__head {
+  .accdn__head {
     display: none;
   }
 
   [data-initially-open],
   .is-open {
-    .item__body {
+    .accdn__body {
       display: none;
     }
   }
 
   .is-active {
-    .item__body {
+    .accdn__body {
       display: block;
     }
   }
@@ -69,8 +69,4 @@
 
 .accdn__tab {
   display: table-cell;
-
-  &.is-active {
-    outline: 2px solid green;
-  }
 }

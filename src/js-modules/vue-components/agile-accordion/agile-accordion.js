@@ -5,7 +5,7 @@ module.exports = {
       type: Object,
       default() {
         return {
-          tabsAt: 700,
+          tabsAt: 750,
           exclusiveItems: false,
         }
       }

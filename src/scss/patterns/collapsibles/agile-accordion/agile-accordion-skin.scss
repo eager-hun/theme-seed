@@ -1,0 +1,116 @@
+
+
+// #############################################################################
+// Vars.
+
+$color-green: #24a8a8;
+$color-blue: #5a5aa6;
+
+
+// #############################################################################
+// Accordion appearance.
+
+button {
+  .accdn__head &,
+  .accdn__tab & {
+    display: block;
+    width: 100%;
+
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+
+    transition: 100ms background ease-in-out;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .accdn__head & {
+    position: relative;
+
+    padding: 0.75em 0.75em 0.75em 40px;
+
+    background: $color-green;
+    color: white;
+  }
+
+  .accdn__tab & {
+    padding: 0.75em 1em;
+
+    background: darken(whitesmoke, 5%);
+
+    &:focus {
+      background: darken(whitesmoke, 15%);
+    }
+  }
+
+  .accdn__tab.is-active & {
+    background: $color-blue;
+    color: white;
+
+    &:focus {
+      background: mix($color-blue, black, 65%);
+    }
+  }
+}
+
+// Tiny arrow in front of accdn__heads' text.
+.accdn__marker {
+  background: transparent;
+  border-radius: 50%;
+  display: block;
+  height: 20px;
+  left: 10px;
+  margin-top: -10px;
+  position: absolute;
+  top: 50%;
+  width: 20px;
+
+  transition: 100ms background ease-in-out, 100ms transform ease-in-out;
+
+  &::after {
+    border: 8px solid transparent;
+    border-left: 12px solid white;
+    border-right: none;
+    content: '';
+    display: block;
+    left: 6px;
+    position: absolute;
+    top: 2px;
+  }
+
+  // Arrow points downwards.
+  .accdn__item.is-open & {
+    transform: rotate(90deg);
+  }
+
+  .accdn__head button:focus & {
+    background: rgba(black, 0.33);
+  }
+}
+
+.accdn__body {
+  padding: 1em 1em 1em 40px;
+
+  background: whitesmoke;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+  // In tabs mode.
+  .accdn--tabs & {
+    padding-left: 1em;
+  }
+  .accdn--tabs & {
+    box-shadow: $color-blue 0 0 0 3px inset;
+  }
+}
