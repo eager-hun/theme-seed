@@ -1,12 +1,15 @@
 
+const ally = require('ally.js');
+
 module.exports = {
   props: {
     'settings': {
       type: Object,
       default() {
         return {
-          tabsAt: 750,
+          tabsAt: 820,
           exclusiveItems: false,
+          batchControls: false
         }
       }
     },
@@ -25,11 +28,12 @@ module.exports = {
   data() {
     return {
       exclusiveItems: this.settings.exclusiveItems,
+      batchControls: this.settings.batchControls,
       itemsCount: Object.keys(this.itemsData).length,
-      currentlyActiveItem: undefined,
-      currentlyOpenItems: [],
       currentMode: 'accordion',
       currentModeClass: '',
+      currentlyOpenItems: [],
+      currentlyActiveItem: undefined,
     }
   },
 
@@ -41,7 +45,7 @@ module.exports = {
     },
 
     /**
-     * Mark the first open item, or, if none open, mark the first as active.
+     * Translate the itemsData prop to relevant Vue component data.
      */
     determineInitialItemStates() {
       let openItems = [];
@@ -104,12 +108,12 @@ module.exports = {
 
         this.openItem(index);
 
-        this.debugState();
+        // this.debugState();
       }
       else {
         this.closeItem(index);
 
-        this.debugState();
+        // this.debugState();
       }
     },
 
@@ -125,6 +129,33 @@ module.exports = {
 
       // The last opened item becomes "currently active".
       this.currentlyActiveItem = index;
+
+      // If tabs mode, focus the first focusable item in content.
+      if (this.currentMode === 'tabs') {
+        const itemRef = `item_${index}`;
+
+        if (this.$refs[itemRef] && this.$refs[itemRef].id) {
+          const itemBodySelector = `#${this.$refs[itemRef].id} .accdn__body`;
+          this.$nextTick(() => this.focusFirstFocusable(itemBodySelector));
+        }
+      }
+    },
+
+    /**
+     * See https://allyjs.io/api/query/focusable.html
+     *
+     * @param selector
+     */
+    focusFirstFocusable(selector) {
+      var focusables = ally.query.focusable({
+        context: selector,
+        includeContext: false,
+        strategy: 'all',
+      });
+
+      if (focusables.length) {
+        focusables[0].focus();
+      }
     },
 
     /**
@@ -146,7 +177,9 @@ module.exports = {
     },
 
     /**
-     * Close items; (except for the one whose index is passed in).
+     * Close items.
+     *
+     * If an index is passed in, make that an exception: don't close that one.
      *
      * @param index
      */
@@ -156,18 +189,28 @@ module.exports = {
           this.closeItem(i);
         }
       }
+    },
+
+    batchOpen() {
+      this.currentlyOpenItems = [...Array(this.itemsCount).keys()];
+      this.currentlyActiveItem = 0;
+    },
+
+    batchClose() {
+      this.closeItems();
+      this.currentlyActiveItem = 0;
     }
   },
 
   created() {
-    console.log('settings: ', this.settings);
+    // console.log('settings: ', this.settings);
 
     this.determineInitialItemStates();
     this.determineMode();
   },
 
   mounted() {
-    this.debugState();
+    // this.debugState();
 
     window.addEventListener("resize", () => {
       this.determineMode();
