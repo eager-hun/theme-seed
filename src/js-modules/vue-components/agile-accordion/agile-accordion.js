@@ -99,7 +99,8 @@ module.exports = {
      * @param index
      */
     toggleItem(index) {
-      if ((this.currentMode === 'accordion' && ! this.currentlyOpenItems.includes(index))
+      // When in accordion mode, check if it's not already among the opened ones.
+      if ((this.currentMode === 'accordion' && this.currentlyOpenItems.indexOf(index) === -1)
           || (this.currentMode === 'tabs' && this.currentlyActiveItem !== index)) {
         if (this.exclusiveItems) {
           // Close the rest.
@@ -123,7 +124,8 @@ module.exports = {
      * @param index
      */
     openItem(index) {
-      if ( ! this.currentlyOpenItems.includes(index)) {
+      // If it's not already among the opened ones.
+      if (this.currentlyOpenItems.indexOf(index) === -1) {
         this.currentlyOpenItems.push(index);
       }
 
@@ -174,7 +176,12 @@ module.exports = {
     // Batch ops.
 
     batchOpen() {
-      this.currentlyOpenItems = [...Array(this.itemsCount).keys()];
+      const openItemsArray = []
+      for (var i = 0; i < this.itemsCount; i++) {
+        openItemsArray.push(i);
+      }
+      this.currentlyOpenItems = openItemsArray;
+
       this.currentlyActiveItem = 0;
     },
 
