@@ -1,28 +1,20 @@
+/**
+ * @file
+ *
+ * JS bundler entry.
+ */
 
-console.log("webpack here goes!");
+// const vueMode = "runtime";
+const vueMode = "compiler";
 
-import Vue from "vue";
-
-window.Vue = Vue;
-
-
-// #############################################################################
-// Vue components.
-
-import exampleComponent from "./vue-components/example-component.vue";
-Vue.component('example-vue-component', exampleComponent);
-
-import agileAccordion from "./vue-components/agile-accordion/agile-accordion";
-Vue.component('agile-accordion', agileAccordion);
+console.log("Vue mode:", vueMode);
 
 
 // #############################################################################
-// Initializing global Vue app.
+// Vue apps.
 
-const globalVueAppMount = document.getElementById('vue-app');
+require("./vue-apps-for-runtime");
 
-if (globalVueAppMount) {
-  new Vue({
-    'el': globalVueAppMount
-  });
+if (vueMode === "compiler") {
+  require("./vue-apps-for-compiler");
 }

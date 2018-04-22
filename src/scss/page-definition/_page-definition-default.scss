@@ -48,13 +48,12 @@ html,
 body {
   height: 100%;
 }
-#vue-app,
+
 .page__wrap {
-  min-height: 100vh;
-}
-.page__wrap {
+  min-height: 100%;
   margin-bottom: $footer-height * -1;
 }
+
 .footer__room-preserve,
 .page__footer {
   height: $footer-height;

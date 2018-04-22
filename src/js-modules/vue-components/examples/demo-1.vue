@@ -1,36 +1,50 @@
 <template>
-  <div class="example-vue-component">
-    <p><strong>Example Vue component</strong></p>
-    <ul class="bare-list">
-      <li v-html="msg"/>
-      <li v-if="displayIcon">
-        <svg class="icon-sample">
-          <use :xlink:href="iconHref"/>
-        </svg>
-        <span>SVG icon system rulez.</span>
-      </li>
-      <li v-else>
-        <em>Page settings not available for checking SVG icons.</em>
-      </li>
-    </ul>
+  <div class="demo-1-vue-component">
+    <p><strong>{{ componentTitle }}</strong></p>
+
+    <p class="happy-message">{{ successMessage }}</p>
+
+    <p v-if="displayIcon">
+      <svg class="icon-sample">
+        <use :xlink:href="iconHref"/>
+      </svg>
+      <span>SVG icon system rulez.</span>
+    </p>
+    <p v-else>
+      <em>Page settings not available for checking SVG icons.</em>
+    </p>
+
   </div>
 </template>
 
 <script>
   export default {
-    name: "ExampleComponent",
+    name: "DemoComponent1",
+
+    props: {
+      componentTitle: {
+        type: String,
+        default: "Demo 1 Vue component"
+      },
+      successMessage: {
+        type: String,
+        default: "Rendered successfully."
+      }
+    },
+
     data() {
       return {
-        msg: `<strong class="happy-message">Rendering Vue template is successful.</strong>`,
         iconId: "icon-sprite__arrow-right",
         displayIcon: false
       };
     },
+
     computed: {
       iconHref() {
         return `#${this.iconId}`
       }
     },
+
     created() {
       if ("apSettings" in window) {
         this.displayIcon = true;
@@ -40,7 +54,7 @@
 </script>
 
 <style lang="scss">
-  .example-vue-component {
+  .demo-1-vue-component {
     @include vari-gap(margin, vertical, 1);
     @include vari-gap(padding, all, 1);
     @include fit-content();
@@ -49,6 +63,7 @@
 
     .happy-message {
       color: color(accent-2);
+      font-weight: 700;
     }
 
     .icon-sample {
