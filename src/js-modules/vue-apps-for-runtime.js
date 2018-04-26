@@ -31,23 +31,6 @@ if (demo1MountEl) {
 }
 
 // -----------------------------------------------------------------------------
-// Agile accordions, runtime-mode implementation.
-
-const agileAccordionElements = document.querySelectorAll('.agile-accordion-runtime');
-
-agileAccordionElements.forEach(element => {
-  new Vue({
-    el: element,
-    render: h => h(vueComponents.agileAccordionRuntime, {
-      props: {
-        items: element.dataset.items ? JSON.parse(element.dataset.items) : undefined,
-        settings: element.dataset.settings ? JSON.parse(element.dataset.settings) : undefined,
-      }
-    })
-  });
-});
-
-// -----------------------------------------------------------------------------
 // Vue studies.
 
 const exampleVueApp1El = document.getElementById('example-vue-app-1');
@@ -65,3 +48,9 @@ if (exampleVueApp1El) {
     })
   });
 }
+
+// -----------------------------------------------------------------------------
+// Agile accordions, runtime-mode implementation.
+
+import initAgileAccordionsRuntime from "../libs-custom/agile-accordion/runtime/init";
+initAgileAccordionsRuntime(Vue, vueComponents);

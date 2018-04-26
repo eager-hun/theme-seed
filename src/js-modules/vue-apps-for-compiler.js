@@ -16,8 +16,12 @@ registerVueComponents(Vue);
 
 const compilerDependentVueApps = document.querySelectorAll('.vue-compiler-dependent-app');
 
-compilerDependentVueApps.forEach(element => {
+let element;
+
+for (var i = 0; i < compilerDependentVueApps.length; i++) {
+  element = compilerDependentVueApps[i];
+
   new Vue({
     el: element,
   });
-});
+}
