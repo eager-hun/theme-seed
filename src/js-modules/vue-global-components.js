@@ -7,8 +7,9 @@
 import demo1 from "./vue-components/examples/demo-1.vue";
 import exampleVueComponent1 from "./vue-components/examples/example-component-1.vue";
 import exampleVueComponent2 from "./vue-components/examples/example-component-2.vue";
-import agileAccordionPe from "./vue-components/agile-accordion/pe/agile-accordion-pe";
-import agileAccordionRuntime from "./vue-components/agile-accordion/runtime/agile-accordion-runtime.vue";
+
+import agileAccordionPe from "../libs-custom/agile-accordion/pe/agile-accordion-pe";
+import agileAccordionRuntime from "../libs-custom/agile-accordion/runtime/agile-accordion-runtime.vue";
 
 export const vueComponents = {
   demo1,

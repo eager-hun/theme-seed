@@ -1,0 +1,7 @@
+<div
+    class="agile-accordion-runtime"
+    data-items="{{ items | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    {% if settings is defined %}
+        data-settings="{{ settings | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    {% endif %}
+></div>

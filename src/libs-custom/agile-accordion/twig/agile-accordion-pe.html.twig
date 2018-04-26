@@ -1,0 +1,88 @@
+
+{% set items_data = {} %}
+
+{% for key, item in items %}
+    {% set item_def = {
+        isOpen: item.initially_open | default(false)
+    } %}
+
+    {% set items_data = items_data | merge({ (key): item_def }) %}
+{% endfor %}
+
+<agile-accordion-pe
+    inline-template
+    :items-data="{{ items_data | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    {% if settings is defined %}
+        :settings="{{ settings | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    {% endif %}
+>
+    <div
+        class="accdn"
+        :class="currentModeClass"
+        v-cloak
+    >
+        <div
+            class="accdn__batch-controls"
+            v-if="batchControls && ! exclusiveItems"
+        >
+            <button
+                class="accdn__batch-open"
+                @click="batchOpen"
+                :disabled="currentlyOpenItems.length === itemsCount"
+            >Open all</button>
+            <button
+                class="accdn__batch-close"
+                @click="batchClose"
+                :disabled="currentlyOpenItems.length === 0"
+            >Close all</button>
+        </div>
+
+        <div class="accdn__tabs">
+            {% for item in items %}
+                <div
+                    class="accdn__tab"
+                    :class="{ 'is-active': currentlyActiveItem === {{ loop.index0 }} }"
+                >
+                    <button
+                        @click="toggleItem({{ loop.index0 }})"
+                        ref="tab_{{ loop.index0 }}_button"
+                    >
+                        <span class="text" v-pre>
+                            {{ item.title }}
+                        </span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% for item in items %}
+            <div
+                class="accdn__item"
+                :class="{
+                    'is-open': currentlyOpenItems.indexOf({{ loop.index0 }}) !== -1,
+                    'is-active': currentlyActiveItem === {{ loop.index0 }}
+                }"
+                ref="item_{{ loop.index0 }}"
+                {% if item.id is defined %}id="{{ item.id }}"{% endif %}
+                {% if item.initially_open | default is not empty %}data-initially-open{% endif %}
+            >
+                <div class="accdn__head">
+                    <button
+                        type="button"
+                        @click="toggleItem({{ loop.index0 }})"
+                    >
+                        <span class="accdn__marker"></span>
+                        <span class="text" v-pre>
+                            {{ item.title }}
+                        </span>
+                    </button>
+                </div>
+
+                <div class="accdn__body" v-pre>
+                    {{ item.content | raw }}
+                </div>
+
+            </div>
+        {% endfor  %}
+    </div>
+</agile-accordion-pe>
