@@ -47,3 +47,14 @@
     }
   }
 }
+
+
+// #############################################################################
+// Vue-studies helpers.
+
+.highlight-vue-compiler-apps {
+  .vue-compiler-dependent-app {
+    outline: 10px solid rgba(color(prim), 0.2);
+    outline-offset: 10px;
+  }
+}
