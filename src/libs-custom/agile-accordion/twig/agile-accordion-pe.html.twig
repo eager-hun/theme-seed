@@ -1,17 +1,21 @@
 
-{% set items_data = {} %}
+{# Twig doesn't seem to have unset() functionality, so let's create a copy
+ of the items' definitions with only the interesting bits, and leaving the
+ lengthy, unneccessary payloads out. #}
 
+{% set lean_items = {} %}
 {% for key, item in items %}
-    {% set item_def = {
-        isOpen: item.initially_open | default(false)
-    } %}
-
-    {% set items_data = items_data | merge({ (key): item_def }) %}
+    {% set lean_item = {} %}
+    {% set lean_item = lean_item | merge({ id: item.id }) %}
+    {% if item.is_open is defined %}
+        {% set lean_item = lean_item | merge({ is_open: item.is_open }) %}
+    {% endif %}
+    {% set lean_items = lean_items | merge({ (key): lean_item }) %}
 {% endfor %}
 
 <agile-accordion-pe
     inline-template
-    :items-data="{{ items_data | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    :items="{{ lean_items | json_encode(constant('JSON_FORCE_OBJECT')) }}"
     {% if settings is defined %}
         :settings="{{ settings | json_encode(constant('JSON_FORCE_OBJECT')) }}"
     {% endif %}
