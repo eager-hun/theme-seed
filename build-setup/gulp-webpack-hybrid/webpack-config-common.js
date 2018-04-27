@@ -59,11 +59,14 @@ module.exports = {
           }
         ]
       },
+      // See https://github.com/webpack-contrib/eslint-loader#errors-and-warning
       {
         test: /\.(js|vue)$/,
         exclude: /node_modules/,
         loader: "eslint-loader",
-        options: {}
+        options: {
+          failOnError: false,
+        }
       },
       {
         test: /\.(jpg|woff|woff2)$/,
