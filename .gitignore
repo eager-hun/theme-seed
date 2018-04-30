@@ -10,3 +10,6 @@ node_modules
 /built/*
 !/built/.gitkeep
 
+# COPIED-IN DEPENDENCY FILES.
+/src/scss/dependencies/*
+!/src/scss/dependencies/README.md

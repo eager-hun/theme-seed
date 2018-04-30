@@ -2,11 +2,14 @@
 // #############################################################################
 // GULP WIRING.
 
+const fs = require("fs");
+
 // -----------------------------------------------------------------------------
 // PLUGINS.
 
 const gulp                  = require("gulp");
 const del                   = require("del");
+const rename                = require("gulp-rename");
 const sourcemaps            = require("gulp-sourcemaps");
 const sass                  = require("gulp-sass");
 const autoprefixer          = require("gulp-autoprefixer");
@@ -41,6 +44,8 @@ process.env.NODE_ENV = "dev";
 // #############################################################################
 // TASKS TO BE CALLED FROM THE CLI.
 
+gulp.task("pre-build", ["copy-in-css"]);
+
 gulp.task("default", ["watch"]);
 
 gulp.task("watch", ["compile", "watchers"]);
@@ -64,13 +69,46 @@ const plumberErrorHandler = function(err) {
   console.log(err);
 };
 
-
 // -----------------------------------------------------------------------------
 // Build variant flow control.
 
 gulp.task("set-prod-env", function() {
   // Looks like this can update NODE_ENV.
   return process.env.NODE_ENV = "prod";
+});
+
+// -----------------------------------------------------------------------------
+// Copying in CSS files as SCSS.
+// See https://github.com/sass/sass/issues/556
+// See https://www.bountysource.com/issues/395327-importing-css-as-sass-files
+
+gulp.task("copy-in-css", function() {
+  try {
+    if (fs.statSync(__dirname + "/libraries-frontend/node_modules/normalize.css/normalize.css")) {
+      gulp.src(__dirname + "/libraries-frontend/node_modules/normalize.css/normalize.css")
+        .pipe(rename("_normalize.scss"))
+        .pipe(gulp.dest(paths.source.scss + "/dependencies"));
+
+      console.log("Has copied in normailze.css as _normalize.scss");
+    }
+  }
+  catch (e) {
+    console.log("NOTE: --> normalize.css not found.");
+  }
+
+  try {
+    if (fs.statSync(__dirname + "/libraries-frontend/node_modules/prismjs/themes/prism.css")) {
+      gulp.src(__dirname + "/libraries-frontend/node_modules/prismjs/themes/prism.css")
+        .pipe(rename("_prism.scss"))
+        .pipe(gulp.dest(paths.source.scss + "/dependencies"));
+
+      console.log("Has copied in prism.css as _prism.scss");
+    }
+  }
+  catch (e) {
+    console.log("NOTE: --> prism.css not found.");
+  }
+
 });
 
 // -----------------------------------------------------------------------------

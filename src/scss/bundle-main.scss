@@ -12,7 +12,7 @@
 @import "variables";
 @import "sass-tools/sass-tools";
 
-@import "normalize"; // See the `includePaths` SASS compiler option.
+@import "dependencies/normalize";
 
 @import "global/base";
 @import "global/flex-grid";

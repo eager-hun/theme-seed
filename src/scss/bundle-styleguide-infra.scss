@@ -12,8 +12,6 @@
 @import 'variables';
 @import 'sass-tools/sass-tools';
 
-// NOTE: look at `includePaths` sass compiler option (in gulpfile.js) to find
-// out where this is included from.
-@import "prism";
+@import "dependencies/prism";
 
 @import 'styleguide-infra/styleguide-infra.scss';

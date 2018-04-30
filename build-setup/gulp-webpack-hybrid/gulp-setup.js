@@ -63,10 +63,9 @@ const options = {
       dev: "expanded",
       prod: "compressed",
     },
-    includePaths: [
-      paths.source.frontendLibs + "/normalize.css",
-      paths.source.frontendLibs + "/prismjs/themes"
-    ]
+    // includePaths: [
+    //   paths.source.frontendLibs + "/foo",
+    // ]
   },
   autoprefixer: {
     // https://github.com/postcss/autoprefixer#options
