@@ -42,8 +42,9 @@
 @import "patterns/lists/ul-icon-prefix";
 @import "patterns/box";
 @import "patterns/hero-mosaic";
-@import "patterns/collapsibles/agile-accordion/agile-accordion-base";
-@import "patterns/collapsibles/agile-accordion/agile-accordion-skin";
+
+@import "../libs-custom/agile-accordion/scss/agile-accordion-base";
+@import "../libs-custom/agile-accordion/scss/agile-accordion-skin";
 
 @import "page-definition/page-definition-default";
 
