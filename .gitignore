@@ -9,6 +9,8 @@ node_modules
 # GENERATED CONTENT:
 /built/*
 !/built/.gitkeep
+/assets-built/*
+!/assets-built/.gitkeep
 
 # COPIED-IN DEPENDENCY FILES.
 /src/scss/dependencies/*

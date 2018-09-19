@@ -19,9 +19,9 @@ const paths = {
   },
   output: {
     // No trailing slash!
-    css: "built/gulp-out/css",
-    js: "built/gulp-out/js",
-    svgSprite: "built/gulp-out/graphics/svg-sprite"
+    css: "assets-built/gulp-out/css",
+    js: "assets-built/gulp-out/js",
+    svgSprite: "assets-built/gulp-out/graphics/svg-sprite"
   },
   web: {
     // Use leading slash, but not trailing slash!

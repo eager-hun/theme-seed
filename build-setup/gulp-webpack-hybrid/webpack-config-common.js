@@ -7,7 +7,7 @@ module.exports = {
     index: "./src/js-modules/index.js",
   },
   output: {
-    path: path.resolve(rootPath, "built/webpack-out"),
+    path: path.resolve(rootPath, "assets-built/webpack-out"),
     filename: "[name].built.js",
   },
   resolve: {
