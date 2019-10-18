@@ -278,6 +278,7 @@ gulp.task("watchers", function() {
   livereload.listen(options.livereload);
 
   gulp.watch(paths.source.scss      + "/**/*.scss", ["compile-scss"]);
+  gulp.watch(paths.source.customLibs + "/**/*.scss", ["compile-scss"]);
   gulp.watch(paths.source.svgSprite + "/**/*.svg",  ["compile-svg-sprites"]);
   gulp.watch(paths.source.customJs  + "/**/*.js",   ["oldschool-js-compile-custom"]);
 

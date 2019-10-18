@@ -63,9 +63,10 @@ const options = {
       dev: "expanded",
       prod: "compressed",
     },
-    // includePaths: [
-    //   paths.source.frontendLibs + "/foo",
-    // ]
+    includePaths: [
+      paths.source.customLibs,
+      // paths.source.frontendLibs + "/foo",
+    ]
   },
   autoprefixer: {
     // https://github.com/postcss/autoprefixer#options
@@ -110,8 +111,11 @@ const options = {
     },
     twig: {
       reloadEnabled: true,
-      // Path when used with the Anypage project.
-      pathsToWatch: "../../../private/templates/**/*.twig"
+      pathsToWatch: [
+        "src/libs-custom/**/*.twig",
+        // Path when used with the Anypage project.
+        "../../../private/templates/**/*.twig"
+      ]
     },
     svg: {
       reloadEnabled: true,
