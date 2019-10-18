@@ -10,8 +10,8 @@
   "license": "Unlicense",
   "private": true,
   "engines": {
-    "node": ">=8.9.4",
-    "npm": ">=5.6.0"
+    "node": ">=10.16.3",
+    "npm": ">=6.9.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -38,6 +38,8 @@
     "gulp-sourcemaps": "^1.9.1",
     "gulp-svg-sprite": "^1.3.7",
     "gulp-uglify": "^2.0.0",
+    "natives": "^1.1.6",
+    "phantomjs-prebuilt": "^2.1.16",
     "sass-loader": "^6.0.6",
     "sass-resources-loader": "^1.3.1",
     "vue-loader": "^13.5.0",
